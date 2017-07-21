@@ -9,7 +9,7 @@
 import Foundation
 
 extension NSString {
-    func paragraphRange(at location: Int) -> NSRange {
-        return paragraphRange(for: NSRange(location: location, length: 0))
+    func lineRange(at location: Int) -> NSRange {
+        return lineRange(for: NSRange(location: location, length: 0))
     }
 }

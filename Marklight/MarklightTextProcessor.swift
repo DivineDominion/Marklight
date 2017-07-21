@@ -91,7 +91,7 @@ open class MarklightTextProcessor {
 
         let previousParagraphRange: NSRange
         if editedParagraphRange.location > 0 {
-            previousParagraphRange = nsString.paragraphRange(at: editedParagraphRange.location - 1)
+            previousParagraphRange = nsString.lineRange(at: editedParagraphRange.location - 1)
         } else {
             previousParagraphRange = NSRange(location: editedParagraphRange.location, length: 0)
         }
@@ -99,7 +99,7 @@ open class MarklightTextProcessor {
         let nextParagraphRange: NSRange
         let locationAfterEditedParagraph = editedParagraphRange.location + editedParagraphRange.length
         if locationAfterEditedParagraph < nsString.length {
-            nextParagraphRange = nsString.paragraphRange(at: locationAfterEditedParagraph)
+            nextParagraphRange = nsString.lineRange(at: locationAfterEditedParagraph)
         } else {
             nextParagraphRange = NSRange.init(location: 0, length: 0)
         }

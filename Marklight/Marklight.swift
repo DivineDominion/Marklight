@@ -869,9 +869,15 @@ public struct Marklight {
         _Italic_
     */
 
-    fileprivate static let strictItalicPattern = "(^|[\\W_])(?:(?!\\1)|(?=^))(\\*|_)(?=\\S)((?:(?!\\2).)*?\\S)\\2(?!\\2)(?=[\\W_]|$)"
-    
-    static let strictItalicRegex = Regex(pattern: strictItalicPattern, options: [.anchorsMatchLines])
+    fileprivate static let strictItalicPattern: String = [
+        "(^|[\\W_]) (?:(?!\\1)|(?=^))",
+        "(\\*|_)(?:(?!\\2)|(?=\\2\\2)) (?=\\S)", // opening
+            "(.*?(?!\\2)\\S)",                  // content
+        "\\2(?:(?!\\2)|(?=\\2\\2))",            // closing
+        "(?=[\\W_]|$)"
+        ].joined(separator: "")
+
+    static let strictItalicRegex = Regex(pattern: strictItalicPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
     
     fileprivate static let italicPattern = "(\\*|_) (?=\\S) (.+?) (?<=\\S) (\\1)"
     

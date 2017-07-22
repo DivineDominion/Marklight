@@ -338,10 +338,8 @@ extension BoldItalicRegexTests {
             match("intra*word* emphasis", Marklight.strictItalicRegex) {
                 if let result = $0,
                     result.numberOfRanges == 4 {
-                    XCTAssertEqual(result.rangeAt(0), NSMakeRange(5, 6))
-                    XCTAssertEqual(result.rangeAt(1), NSMakeRange(5, 1))
-                    XCTAssertEqual(result.rangeAt(2), NSMakeRange(6, 4))
-                    XCTAssertEqual(result.rangeAt(3), NSMakeRange(10, 1))
+                    XCTAssertEqual(result.rangeAt(2), NSMakeRange(5, 1))
+                    XCTAssertEqual(result.rangeAt(3), NSMakeRange(6, 4))
                 } else {
                     XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges)))")
                 }
@@ -356,7 +354,6 @@ extension BoldItalicRegexTests {
             match(string, Marklight.strictItalicRegex) {
                 if let result = $0,
                     result.numberOfRanges == 4 {
-                    XCTAssertEqual(result.rangeAt(0), NSMakeRange(9, 5))
                     XCTAssertEqual(result.rangeAt(2), NSMakeRange(9, 1))
                     XCTAssertEqual(result.rangeAt(3), NSMakeRange(10, 3))
                 } else {
@@ -399,6 +396,34 @@ extension BoldItalicRegexTests {
             if let result = $0,
                 result.numberOfRanges == 4 {
                 XCTAssertEqual(result.rangeAt(3), NSMakeRange(2, 16))
+            } else {
+                XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges)))")
+            }
+            boldCallback.fulfill()
+        }
+
+        waitForExpectations(timeout: 0.1, handler: nil)
+    }
+
+    func testItalicAndBold() {
+
+        let italicCallback = expectation(description: "Matched italics")
+        match("*hi **italic** text*", Marklight.strictItalicRegex) {
+            if let result = $0,
+                result.numberOfRanges == 4 {
+                XCTAssertEqual(result.rangeAt(2), NSMakeRange(0, 1))
+                XCTAssertEqual(result.rangeAt(3), NSMakeRange(1, 18))
+            } else {
+                XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges)))")
+            }
+            italicCallback.fulfill()
+        }
+
+        let boldCallback = expectation(description: "Matched bold")
+        match("*hi **italic** text*", Marklight.strictBoldRegex) {
+            if let result = $0,
+                result.numberOfRanges == 4 {
+                XCTAssertEqual(result.rangeAt(3), NSMakeRange(6, 6))
             } else {
                 XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges)))")
             }

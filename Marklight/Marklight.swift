@@ -449,32 +449,6 @@ public struct Marklight {
             hideSyntaxIfNecessary(range: postRange)
         }
 
-        // We detect and process italics
-        Marklight.italicRegex.matches(string, range: paragraphRange) { (result) -> Void in
-            styleApplier.addAttribute(NSFontAttributeName, value: italicFont, range: result!.range)
-
-            let preRange = NSMakeRange(result!.range.location, 1)
-            styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: preRange)
-            hideSyntaxIfNecessary(range: preRange)
-
-            let postRange = NSMakeRange(result!.range.location + result!.range.length - 1, 1)
-            styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: postRange)
-            hideSyntaxIfNecessary(range: postRange)
-        }
-        
-        // We detect and process bolds
-        Marklight.boldRegex.matches(string, range: paragraphRange) { (result) -> Void in
-            styleApplier.addAttribute(NSFontAttributeName, value: boldFont, range: result!.range)
-
-            let preRange = NSMakeRange(result!.range.location, 2)
-            styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: preRange)
-            hideSyntaxIfNecessary(range: preRange)
-
-            let postRange = NSMakeRange(result!.range.location + result!.range.length - 2, 2)
-            styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: postRange)
-            hideSyntaxIfNecessary(range: postRange)
-        }
-
         // We detect and process inline links not formatted
         Marklight.autolinkRegex.matches(string, range: paragraphRange) { (result) -> Void in
             let substring = textStorageNSString.substring(with: result!.range)
@@ -848,27 +822,13 @@ public struct Marklight {
     fileprivate static let blockQuoteOpeningRegex = Regex(pattern: blockQuoteOpeningPattern, options: [.anchorsMatchLines])
     
     // MARK: Bold
-    
-    /*
-        **Bold**
-        __Bold__
-    */
-    
+
     fileprivate static let strictBoldPattern = "(^|[\\W_])(?:(?!\\1)|(?=^))(\\*|_)\\2(?=\\S)(.*?\\S)\\2\\2(?!\\2)(?=[\\W_]|$)"
     
     static let strictBoldRegex = Regex(pattern: strictBoldPattern, options: [.anchorsMatchLines])
-    
-    fileprivate static let boldPattern = "(\\*\\*|__) (?=\\S) (.+?[*_]*?) (?<=\\S) (\\1)"
-    
-    static let boldRegex = Regex(pattern: boldPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
-    
+
     // MARK: Italic
     
-    /*
-        *Italic*
-        _Italic_
-    */
-
     fileprivate static let strictItalicPattern: String = [
         "(^|[\\W_]) (?:(?!\\1)|(?=^))",
         "(\\*|_)(?:(?!\\2)|(?=\\2\\2)) (?=\\S)", // opening
@@ -878,11 +838,7 @@ public struct Marklight {
         ].joined(separator: "")
 
     static let strictItalicRegex = Regex(pattern: strictItalicPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
-    
-    fileprivate static let italicPattern = "(\\*|_) (?=\\S) (.+?) (?<=\\S) (\\1)"
-    
-    static let italicRegex = Regex(pattern: italicPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
-    
+
     fileprivate static let autolinkPattern = "((https?|ftp):[^'\">\\s]+)"
     
     fileprivate static let autolinkRegex = Regex(pattern: autolinkPattern, options: [.allowCommentsAndWhitespace, .dotMatchesLineSeparators])

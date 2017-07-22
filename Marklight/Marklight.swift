@@ -856,11 +856,11 @@ public struct Marklight {
     
     fileprivate static let strictBoldPattern = "(^|[\\W_])(?:(?!\\1)|(?=^))(\\*|_)\\2(?=\\S)(.*?\\S)\\2\\2(?!\\2)(?=[\\W_]|$)"
     
-    fileprivate static let strictBoldRegex = Regex(pattern: strictBoldPattern, options: [.anchorsMatchLines])
+    static let strictBoldRegex = Regex(pattern: strictBoldPattern, options: [.anchorsMatchLines])
     
-    fileprivate static let boldPattern = "(\\*\\*|__) (?=\\S) (.+?[*_]*) (?<=\\S) \\1"
+    fileprivate static let boldPattern = "(\\*\\*|__) (?=\\S) (.+?[*_]*?) (?<=\\S) (\\1)"
     
-    fileprivate static let boldRegex = Regex(pattern: boldPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
+    static let boldRegex = Regex(pattern: boldPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
     
     // MARK: Italic
     
@@ -871,11 +871,11 @@ public struct Marklight {
 
     fileprivate static let strictItalicPattern = "(^|[\\W_])(?:(?!\\1)|(?=^))(\\*|_)(?=\\S)((?:(?!\\2).)*?\\S)\\2(?!\\2)(?=[\\W_]|$)"
     
-    fileprivate static let strictItalicRegex = Regex(pattern: strictItalicPattern, options: [.anchorsMatchLines])
+    static let strictItalicRegex = Regex(pattern: strictItalicPattern, options: [.anchorsMatchLines])
     
-    fileprivate static let italicPattern = "(\\*|_) (?=\\S) (.+?) (?<=\\S) \\1"
+    fileprivate static let italicPattern = "(\\*|_) (?=\\S) (.+?) (?<=\\S) (\\1)"
     
-    fileprivate static let italicRegex = Regex(pattern: italicPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
+    static let italicRegex = Regex(pattern: italicPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
     
     fileprivate static let autolinkPattern = "((https?|ftp):[^'\">\\s]+)"
     
@@ -899,48 +899,7 @@ public struct Marklight {
     fileprivate static let mailtoPattern = "mailto:"
     
     fileprivate static let mailtoRegex = Regex(pattern: mailtoPattern, options: [.allowCommentsAndWhitespace, .dotMatchesLineSeparators])
-    
-    fileprivate struct Regex {
-        fileprivate let regularExpression: NSRegularExpression!
         
-        fileprivate init(pattern: String, options: NSRegularExpression.Options = NSRegularExpression.Options(rawValue: 0)) {
-            var error: NSError?
-            let re: NSRegularExpression?
-            do {
-                re = try NSRegularExpression(pattern: pattern,
-                    options: options)
-            } catch let error1 as NSError {
-                error = error1
-                re = nil
-            }
-            
-            // If re is nil, it means NSRegularExpression didn't like
-            // the pattern we gave it.  All regex patterns used by Markdown
-            // should be valid, so this probably means that a pattern
-            // valid for .NET Regex is not valid for NSRegularExpression.
-            if re == nil {
-                if let error = error {
-                    print("Regular expression error: \(error.userInfo)")
-                }
-                assert(re != nil)
-            }
-            
-            self.regularExpression = re
-        }
-        
-        fileprivate func matches(_ input: String, range: NSRange,
-            completion: @escaping (_ result: NSTextCheckingResult?) -> Void) {
-            let s = input as NSString
-            let options = NSRegularExpression.MatchingOptions(rawValue: 0)
-            regularExpression.enumerateMatches(in: s as String,
-                options: options,
-                range: range,
-                using: { (result, flags, stop) -> Void in
-                    completion(result)
-            })
-        }
-    }
-    
     /// maximum nested depth of [] and () supported by the transform; 
     /// implementation detail
     fileprivate static let _nestDepth = 6

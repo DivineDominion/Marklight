@@ -17,6 +17,9 @@ public protocol MarklightStyleApplier {
     func addAttributes(_ attrs: [String : Any], range: NSRange)
     func removeAttribute(_ name: String, range: NSRange)
     func resetMarklightTextAttributes(textSize: CGFloat, range: NSRange)
+
+    func embolden(range: NSRange)
+    func italicize(range: NSRange)
 }
 
 extension NSTextStorage: MarklightStyleApplier {
@@ -25,5 +28,20 @@ extension NSTextStorage: MarklightStyleApplier {
         self.addAttribute(NSFontAttributeName, value: MarklightFont.systemFont(ofSize: textSize), range: range)
         self.addAttribute(NSParagraphStyleAttributeName, value: NSParagraphStyle(), range: range)
     }
-}
 
+    public func embolden(range: NSRange) {
+
+        guard let font = self.attribute(NSFontAttributeName, at: range.location, effectiveRange: nil) as? MarklightFont
+            else { assertionFailure(); return }
+
+        self.addAttribute(NSFontAttributeName, value: font.emboldened(), range: range)
+    }
+
+    public func italicize(range: NSRange) {
+
+        guard let font = self.attribute(NSFontAttributeName, at: range.location, effectiveRange: nil) as? MarklightFont
+            else { assertionFailure(); return }
+
+        self.addAttribute(NSFontAttributeName, value: font.italicized(), range: range)
+    }
+}

@@ -12,6 +12,19 @@
     typealias MarklightColor = UIColor
     typealias MarklightFont = UIFont
     typealias MarklightFontDescriptor = UIFontDescriptor
+
+    extension UIFont {
+        fileprivate func withTraits(_ traits: UIFontDescriptorSymbolicTraits) -> UIFont {
+
+            guard let fontDescriptor = self.fontDescriptor.withSymbolicTraits(traits) else {
+                assertionFailure("Could not apply traits: \(traits)")
+                return self
+            }
+
+            return UIFont(descriptor: fd, size: pointSize)
+        }
+    }
+
 #elseif os(macOS)
     import AppKit
 
@@ -20,9 +33,23 @@
     typealias MarklightFont = NSFont
     typealias MarklightFontDescriptor = NSFontDescriptor
 
-    extension NSFont {
-        static func italicSystemFont(ofSize size: CGFloat) -> NSFont {
-            return NSFontManager().convert(NSFont.systemFont(ofSize: size), toHaveTrait: .italicFontMask)
-        }
-    }
 #endif
+
+extension MarklightFont {
+
+    func italicized() -> MarklightFont {
+        #if os(iOS)
+            return withTraits(.traitItalic)
+        #elseif os(macOS)
+            return NSFontManager().convert(self, toHaveTrait: .italicFontMask)
+        #endif
+    }
+
+    func emboldened() -> MarklightFont {
+        #if os(iOS)
+            return withTraits(.traitBold)
+        #elseif os(macOS)
+            return NSFontManager().convert(self, toHaveTrait: .boldFontMask)
+        #endif
+    }
+}

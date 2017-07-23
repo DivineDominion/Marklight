@@ -234,8 +234,6 @@ public struct Marklight {
 
         let codeFont = Marklight.codeFont(textSize)
         let quoteFont = Marklight.quoteFont(textSize)
-        let boldFont = MarklightFont.boldSystemFont(ofSize: textSize)
-        let italicFont = MarklightFont.italicSystemFont(ofSize: textSize)
 
         let hiddenFont = MarklightFont.systemFont(ofSize: 0.1)
         let hiddenColor = MarklightColor.clear
@@ -252,7 +250,7 @@ public struct Marklight {
 
         // We detect and process underlined headers
         Marklight.headersSetextRegex.matches(string, range: wholeRange) { (result) -> Void in
-            styleApplier.addAttribute(NSFontAttributeName, value: boldFont, range: result!.range)
+            styleApplier.embolden(range: result!.range)
 
             Marklight.headersSetextUnderlineRegex.matches(string, range: paragraphRange) { (innerResult) -> Void in
                 styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: innerResult!.range)
@@ -261,7 +259,8 @@ public struct Marklight {
 
         // We detect and process dashed headers
         Marklight.headersAtxRegex.matches(string, range: paragraphRange) { (result) -> Void in
-            styleApplier.addAttribute(NSFontAttributeName, value: boldFont, range: result!.range)
+            styleApplier.embolden(range: result!.range)
+
             Marklight.headersAtxOpeningRegex.matches(string, range: paragraphRange) { (innerResult) -> Void in
                 styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: innerResult!.range)
                 hideSyntaxIfNecessary(range: NSMakeRange(innerResult!.range.location, innerResult!.range.length + 1))
@@ -413,9 +412,40 @@ public struct Marklight {
             }
         }
 
-        // We detect and process strict italics
+        func applyBold(string: String, range: NSRange) {
+
+            Marklight.strictBoldRegex.matches(string, range: paragraphRange) { (result) -> Void in
+                styleApplier.embolden(range: result!.range)
+
+                guard hideSyntax else { return }
+
+                let substring = textStorageNSString.substring(with: NSMakeRange(result!.range.location, 1))
+                var start = 0
+                if substring == " " {
+                    start = 1
+                }
+
+                let preRange = NSMakeRange(result!.range.location + start, 2)
+                styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: preRange)
+                hideSyntaxIfNecessary(range: preRange)
+
+                let postRange = NSMakeRange(result!.range.location + result!.range.length - 2, 2)
+                styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: postRange)
+                hideSyntaxIfNecessary(range: postRange)
+            }
+        }
+
+        applyBold(string: string, range: paragraphRange)
+
         Marklight.strictItalicRegex.matches(string, range: paragraphRange) { (result) -> Void in
-            styleApplier.addAttribute(NSFontAttributeName, value: italicFont, range: result!.range)
+            styleApplier.italicize(range: result!.range)
+
+            // Previously applied inner bold text would have been overwritten by now
+            let innerTextRange = result!.rangeAt(3)
+            applyBold(string: string, range: innerTextRange)
+
+            guard hideSyntax else { return }
+
             let substring = textStorageNSString.substring(with: NSMakeRange(result!.range.location, 1))
             var start = 0
             if substring == " " {
@@ -429,25 +459,9 @@ public struct Marklight {
             let postRange = NSMakeRange(result!.range.location + result!.range.length - 1, 1)
             styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: postRange)
             hideSyntaxIfNecessary(range: postRange)
-        }
-        
-        // We detect and process strict bolds
-        Marklight.strictBoldRegex.matches(string, range: paragraphRange) { (result) -> Void in
-            styleApplier.addAttribute(NSFontAttributeName, value: boldFont, range: result!.range)
-            let substring = textStorageNSString.substring(with: NSMakeRange(result!.range.location, 1))
-            var start = 0
-            if substring == " " {
-                start = 1
-            }
 
-            let preRange = NSMakeRange(result!.range.location + start, 2)
-            styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: preRange)
-            hideSyntaxIfNecessary(range: preRange)
-
-            let postRange = NSMakeRange(result!.range.location + result!.range.length - 2, 2)
-            styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: postRange)
-            hideSyntaxIfNecessary(range: postRange)
         }
+
 
         // We detect and process inline links not formatted
         Marklight.autolinkRegex.matches(string, range: paragraphRange) { (result) -> Void in

@@ -22,6 +22,22 @@ public protocol MarklightStyleApplier {
     func italicize(range: NSRange)
 }
 
+extension MarklightStyleApplier {
+    internal func addColorAttribute(_ color: MarklightColor, range: NSRange) {
+        addAttribute(NSForegroundColorAttributeName, value: color, range: range)
+    }
+
+    internal func addHiddenAttributes(range: NSRange) {
+        let hiddenFont = MarklightFont.systemFont(ofSize: 0.1)
+        let hiddenColor = MarklightColor.clear
+        let hiddenAttributes: [String : Any] = [
+            NSFontAttributeName : hiddenFont,
+            NSForegroundColorAttributeName : hiddenColor
+        ]
+        self.addAttributes(hiddenAttributes, range: range)
+    }
+}
+
 extension NSTextStorage: MarklightStyleApplier {
     public func resetMarklightTextAttributes(textSize: CGFloat, range: NSRange) {
         self.removeAttribute(NSForegroundColorAttributeName, range: range)

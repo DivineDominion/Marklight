@@ -14,19 +14,16 @@ import Foundation
 struct ReferenceImageStyle: InlineStyle {
 
     fileprivate static var imagePattern: String { return [
-        "(               # wrap whole match in $1",
-        "!\\[",
+        "(!\\[)          # opening 1st bracket = $1",
         "    (.*?)       # alt text = $2",
-        "\\]",
+        "(\\])           # closing 1st bracket = $3",
         "",
         "\\p{Z}?            # one optional space",
         "(?:\\n\\p{Z}*)?    # one optional newline followed by spaces",
         "",
-        "\\[",
-        "    (.*?)       # id = $3",
-        "\\]",
-        "",
-        ")"
+        "(\\[)           # opening 2nd bracket = $4",
+        "    (.*?)       # id = $5",
+        "(\\])           # opening 1st bracket = $6",
         ].joined(separator: "\n")
     }
 
@@ -41,15 +38,17 @@ struct ReferenceImageStyle: InlineStyle {
             styleApplier.addFontAttribute(codeFont, range: result.range)
 
             // TODO: add image attachment
-            Marklight.imageOpeningSquareRegex.matches(paragraph.string, range: paragraph.paragraphRange) { (innerResult) -> Void in
-                styleApplier.addColorAttribute(Marklight.syntaxColor, range: innerResult.range)
-            }
-            Marklight.imageClosingSquareRegex.matches(paragraph.string, range: paragraph.paragraphRange) { (innerResult) -> Void in
-                styleApplier.addColorAttribute(Marklight.syntaxColor, range: innerResult.range)
-            }
 
             if Marklight.hideSyntax {
                 styleApplier.addHiddenAttributes(range: result.range)
+                return
+            }
+
+            [result.rangeAt(1),
+             result.rangeAt(3),
+             result.rangeAt(4),
+             result.rangeAt(6)].forEach { (bracketRange: NSRange) in
+                styleApplier.addColorAttribute(Marklight.syntaxColor, range: bracketRange)
             }
         }
     }

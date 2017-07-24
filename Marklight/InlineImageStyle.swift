@@ -14,23 +14,21 @@ import Foundation
 struct InlineImageStyle: InlineStyle {
 
     fileprivate static var imageInlinePattern: String { return [
-        "(                     # wrap whole match in $1",
-        "  !\\[",
-        "      (.*?)           # alt text = $2",
-        "  \\]",
-        "  \\s?                # one optional whitespace character",
-        "  \\(                 # literal paren",
-        "      \\p{Z}*",
-        "      (\(Marklight.getNestedParensPattern()))    # href = $3",
-        "      \\p{Z}*",
-        "      (               # $4",
-        "      (['\"])       # quote char = $5",
-        "      (.*?)           # title = $6",
-        "      \\5             # matching quote",
-        "      \\p{Z}*",
-        "      )?              # title is optional",
-        "  \\)",
-        ")"
+        "(!\\[)              # opening 1st bracket = $1",
+        "    (.*?)           # alt text = $2",
+        "(\\])               # closing 1st bracket = $3",
+        "\\s?                # one optional whitespace character",
+        "(\\()               # opening paren = $4",
+        "    \\p{Z}*",
+        "    (\(Marklight.getNestedParensPattern()))    # href = $5",
+        "    \\p{Z}*",
+        "    (               # $6",
+        "    (['\"])         # quote char = $7",
+        "    (.*?)           # title = $8",
+        "    \\5             # matching quote",
+        "    \\p{Z}*",
+        "    )?              # title is optional",
+        "(\\))               # closing paren = $9",
         ].joined(separator: "\n")
     }
 
@@ -46,16 +44,16 @@ struct InlineImageStyle: InlineStyle {
 
             // TODO: add image attachment
 
-            if hideSyntax { styleApplier.addHiddenAttributes(range: result.range) }
+            if hideSyntax {
+                styleApplier.addHiddenAttributes(range: result.range)
+                return
+            }
 
-            Marklight.imageOpeningSquareRegex.matches(paragraph.string, range: paragraph.paragraphRange) { (innerResult) -> Void in
-                styleApplier.addColorAttribute(Marklight.syntaxColor, range: innerResult.range)
-            }
-            Marklight.imageClosingSquareRegex.matches(paragraph.string, range: paragraph.paragraphRange) { (innerResult) -> Void in
-                styleApplier.addColorAttribute(Marklight.syntaxColor, range: innerResult.range)
-            }
-            Marklight.parenRegex.matches(paragraph.string, range: result.range) { (innerResult) -> Void in
-                styleApplier.addColorAttribute(Marklight.syntaxColor, range: innerResult.range)
+            [result.rangeAt(1),
+             result.rangeAt(3),
+             result.rangeAt(4),
+             result.rangeAt(9)].forEach { (bracketRange: NSRange) in
+                styleApplier.addColorAttribute(Marklight.syntaxColor, range: bracketRange)
             }
         }
     }

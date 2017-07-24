@@ -226,31 +226,9 @@ public struct Marklight {
         let document = Document(string: string, wholeRange: wholeRange)
         let paragraph = Paragraph(string: string, paragraphRange: paragraphRange)
 
-        let codeFont = Marklight.codeFont(textSize)
+        AtxHeadingStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, document: document)
+        SetextHeadingStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, document: document)
 
-        // We detect and process underlined headers
-        Marklight.headersSetextRegex.matches(string, range: wholeRange) { (result) -> Void in
-            styleApplier.embolden(range: result.range)
-
-            Marklight.headersSetextUnderlineRegex.matches(string, range: paragraphRange) { (innerResult) -> Void in
-                styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: innerResult.range)
-            }
-        }
-
-        // We detect and process dashed headers
-        Marklight.headersAtxRegex.matches(string, range: paragraphRange) { (result) -> Void in
-            styleApplier.embolden(range: result.range)
-
-            Marklight.headersAtxOpeningRegex.matches(string, range: paragraphRange) { (innerResult) -> Void in
-                styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: innerResult.range)
-                hideSyntaxIfNecessary(styleApplier, range: NSMakeRange(innerResult.range.location, innerResult.range.length + 1))
-            }
-            Marklight.headersAtxClosingRegex.matches(string, range: paragraphRange) { (innerResult) -> Void in
-                styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: innerResult.range)
-                hideSyntaxIfNecessary(styleApplier, range: innerResult.range)
-            }
-        }
-        
         ReferenceDefinitionStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, document: document)
         BlockquoteStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, document: document)
         ListStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, document: document)
@@ -262,25 +240,12 @@ public struct Marklight {
         ReferenceImageStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
         InlineImageStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
 
-
-        // We detect and process inline code
-        Marklight.codeSpanRegex.matches(string, range: wholeRange) { (result) -> Void in
-            styleApplier.addAttribute(NSFontAttributeName, value: codeFont, range: result.range)
-            styleApplier.addAttribute(NSForegroundColorAttributeName, value: codeColor, range: result.range)
-            
-            Marklight.codeSpanOpeningRegex.matches(string, range: paragraphRange) { (innerResult) -> Void in
-                styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: innerResult.range)
-                hideSyntaxIfNecessary(styleApplier, range: innerResult.range)
-            }
-            Marklight.codeSpanClosingRegex.matches(string, range: paragraphRange) { (innerResult) -> Void in
-                styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: innerResult.range)
-                hideSyntaxIfNecessary(styleApplier, range: innerResult.range)
-            }
-        }
-
         // Apply bold before italic to support nested bold/italic styles.
         BoldStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
         ItalicStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
+
+        // Apply code last to remove bold/italic from matches text again 
+        CodeSpanStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
 
         AutolinkStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
         AutolinkEmailStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
@@ -289,68 +254,6 @@ public struct Marklight {
     /// Tabs are automatically converted to spaces as part of the transform
     /// this constant determines how "wide" those tabs become in spaces
     fileprivate static let _tabWidth = 4
-    
-    // MARK: Headers
-
-    /*
-        Head
-        ======
-    
-        Subhead
-        -------
-    */
-
-    fileprivate static let headerSetextPattern = [
-        "^(.+?)",
-        "\\p{Z}*",
-        "\\n",
-        "(=+|-+)",  // $1 = string of ='s or -'s
-        "\\p{Z}*",
-        "\\n+"
-        ].joined(separator: "\n")
-    
-    fileprivate static let headersSetextRegex = Regex(pattern: headerSetextPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
-    
-    fileprivate static let setextUnderlinePattern = [
-        "(==+|--+)     # $1 = string of ='s or -'s",
-        "\\p{Z}*$"
-        ].joined(separator: "\n")
-    
-    fileprivate static let headersSetextUnderlineRegex = Regex(pattern: setextUnderlinePattern, options: [.allowCommentsAndWhitespace])
-    
-    /*
-        # Head
-    
-        ## Subhead ##
-    */
-    
-    fileprivate static let headerAtxPattern = [
-        "^(\\#{1,6})  # $1 = string of #'s",
-        "\\p{Z}*",
-        "(.+?)        # $2 = Header text",
-        "\\p{Z}*",
-        "\\#*         # optional closing #'s (not counted)",
-        "\\n+"
-        ].joined(separator: "\n")
-    
-    fileprivate static let headersAtxRegex = Regex(pattern: headerAtxPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
-
-    fileprivate static let headersAtxOpeningPattern = [
-        "^(\\#{1,6})"
-        ].joined(separator: "\n")
-    
-    fileprivate static let headersAtxOpeningRegex = Regex(pattern: headersAtxOpeningPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
-    
-    fileprivate static let headersAtxClosingPattern = [
-        "\\#{1,6}\\n+"
-        ].joined(separator: "\n")
-    
-    fileprivate static let headersAtxClosingRegex = Regex(pattern: headersAtxClosingPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
-
-    
-    
-    
-    // MARK: Anchors
 
     internal static let openingSquareRegex = Regex(pattern: "(\\[)", options: [])
     internal static let closingSquareRegex = Regex(pattern: "\\]", options: [])
@@ -380,33 +283,6 @@ public struct Marklight {
 
     internal static let imageOpeningSquareRegex = Regex(pattern: "(!\\[)", options: [.allowCommentsAndWhitespace])
     internal static let imageClosingSquareRegex = Regex(pattern: "(\\])", options: [.allowCommentsAndWhitespace])
-    
-
-    fileprivate static let codeSpanPattern = [
-        "(?<![\\\\`])   # Character before opening ` can't be a backslash or backtick",
-        "(`+)           # $1 = Opening run of `",
-        "(?!`)          # and no more backticks -- match the full run",
-        "(.+?)          # $2 = The code block",
-        "(?<!`)",
-        "\\1",
-        "(?!`)"
-        ].joined(separator: "\n")
-    
-    fileprivate static let codeSpanRegex = Regex(pattern: codeSpanPattern, options: [.allowCommentsAndWhitespace, .dotMatchesLineSeparators])
-    
-    fileprivate static let codeSpanOpeningPattern = [
-        "(?<![\\\\`])   # Character before opening ` can't be a backslash or backtick",
-        "(`+)           # $1 = Opening run of `"
-        ].joined(separator: "\n")
-    
-    fileprivate static let codeSpanOpeningRegex = Regex(pattern: codeSpanOpeningPattern, options: [.allowCommentsAndWhitespace, .dotMatchesLineSeparators])
-    
-    fileprivate static let codeSpanClosingPattern = [
-        "(?<![\\\\`])   # Character before opening ` can't be a backslash or backtick",
-        "(`+)           # $1 = Opening run of `"
-        ].joined(separator: "\n")
-    
-    fileprivate static let codeSpanClosingRegex = Regex(pattern: codeSpanClosingPattern, options: [.allowCommentsAndWhitespace, .dotMatchesLineSeparators])
 
     /// maximum nested depth of [] and () supported by the transform; 
     /// implementation detail

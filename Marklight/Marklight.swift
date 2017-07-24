@@ -265,39 +265,11 @@ public struct Marklight {
         
         ReferenceLinkStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
         InlineLinkStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
-        
-        Marklight.imageRegex.matches(string, range: paragraphRange) { (result) -> Void in
-            styleApplier.addAttribute(NSFontAttributeName, value: codeFont, range: result.range)
-            
-            // TODO: add image attachment
-            Marklight.imageOpeningSquareRegex.matches(string, range: paragraphRange) { (innerResult) -> Void in
-                styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: innerResult.range)
-            }
-            Marklight.imageClosingSquareRegex.matches(string, range: paragraphRange) { (innerResult) -> Void in
-                styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: innerResult.range)
-            }
-            if Marklight.hideSyntax { styleApplier.addHiddenAttributes(range: result.range) }
-        }
-        
-        // We detect and process inline images
-        Marklight.imageInlineRegex.matches(string, range: paragraphRange) { (result) -> Void in
-            styleApplier.addAttribute(NSFontAttributeName, value: codeFont, range: result.range)
 
-            // TODO: add image attachment
+        ReferenceImageStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
+        InlineImageStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
 
-            hideSyntaxIfNecessary(styleApplier, range: result.range)
-
-            Marklight.imageOpeningSquareRegex.matches(string, range: paragraphRange) { (innerResult) -> Void in
-                styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: innerResult.range)
-            }
-            Marklight.imageClosingSquareRegex.matches(string, range: paragraphRange) { (innerResult) -> Void in
-                styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: innerResult.range)
-            }
-            Marklight.parenRegex.matches(string, range: result.range) { (innerResult) -> Void in
-                styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: innerResult.range)
-            }
-        }
-        
+               
         // We detect and process inline code
         Marklight.codeSpanRegex.matches(string, range: wholeRange) { (result) -> Void in
             styleApplier.addAttribute(NSFontAttributeName, value: codeFont, range: result.range)
@@ -426,67 +398,14 @@ public struct Marklight {
         ].joined(separator: "\n")
     
     internal static let parenRegex = Regex(pattern: parenPattern, options: [.allowCommentsAndWhitespace])
-    
 
     
     // Mark: Images
+
+    internal static let imageOpeningSquareRegex = Regex(pattern: "(!\\[)", options: [.allowCommentsAndWhitespace])
+    internal static let imageClosingSquareRegex = Regex(pattern: "(\\])", options: [.allowCommentsAndWhitespace])
     
-    /*
-        ![Title](http://example.com/image.png)
-    */
-    
-    fileprivate static let imagePattern = [
-        "(               # wrap whole match in $1",
-        "!\\[",
-        "    (.*?)       # alt text = $2",
-        "\\]",
-        "",
-        "\\p{Z}?            # one optional space",
-        "(?:\\n\\p{Z}*)?    # one optional newline followed by spaces",
-        "",
-        "\\[",
-        "    (.*?)       # id = $3",
-        "\\]",
-        "",
-        ")"
-        ].joined(separator: "\n")
-    
-    fileprivate static let imageRegex = Regex(pattern: imagePattern, options: [.allowCommentsAndWhitespace, .dotMatchesLineSeparators])
-    
-    fileprivate static let imageOpeningSquarePattern = [
-        "(!\\[)"
-        ].joined(separator: "\n")
-    
-    fileprivate static let imageOpeningSquareRegex = Regex(pattern: imageOpeningSquarePattern, options: [.allowCommentsAndWhitespace])
-    
-    fileprivate static let imageClosingSquarePattern = [
-        "(\\])"
-        ].joined(separator: "\n")
-    
-    fileprivate static let imageClosingSquareRegex = Regex(pattern: imageClosingSquarePattern, options: [.allowCommentsAndWhitespace])
-    
-    fileprivate static let imageInlinePattern = [
-        "(                     # wrap whole match in $1",
-        "  !\\[",
-        "      (.*?)           # alt text = $2",
-        "  \\]",
-        "  \\s?                # one optional whitespace character",
-        "  \\(                 # literal paren",
-        "      \\p{Z}*",
-        "      (\(Marklight.getNestedParensPattern()))    # href = $3",
-        "      \\p{Z}*",
-        "      (               # $4",
-        "      (['\"])       # quote char = $5",
-        "      (.*?)           # title = $6",
-        "      \\5             # matching quote",
-        "      \\p{Z}*",
-        "      )?              # title is optional",
-        "  \\)",
-        ")"
-        ].joined(separator: "\n")
-    
-    fileprivate static let imageInlineRegex = Regex(pattern: imageInlinePattern, options: [.allowCommentsAndWhitespace, .dotMatchesLineSeparators])
-    
+
     // MARK: Code
     
     /*

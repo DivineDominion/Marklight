@@ -190,7 +190,7 @@ public struct Marklight {
     #endif
 
     // We transform the user provided `codeFontName` `String` to a `NSFont`
-    fileprivate static func codeFont(_ size: CGFloat) -> MarklightFont {
+    internal static func codeFont(_ size: CGFloat) -> MarklightFont {
         if let font = MarklightFont(name: Marklight.codeFontName, size: size) {
             return font
         } else {
@@ -271,68 +271,8 @@ public struct Marklight {
             }
         }
         
-        // We detect and process anchors (links)
-        Marklight.anchorRegex.matches(string, range: paragraphRange) { (result) -> Void in
-            styleApplier.addAttribute(NSFontAttributeName, value: codeFont, range: result.range)
-            Marklight.openingSquareRegex.matches(string, range: result.range) { (innerResult) -> Void in
-                styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: innerResult.range)
-            }
-            Marklight.closingSquareRegex.matches(string, range: result.range) { (innerResult) -> Void in
-                styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: innerResult.range)
-            }
-            Marklight.parenRegex.matches(string, range: result.range) { (innerResult) -> Void in
-                styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: innerResult.range)
-
-                hideSyntaxIfNecessary(styleApplier, range: NSMakeRange(innerResult.range.location, 1))
-                hideSyntaxIfNecessary(styleApplier, range: NSMakeRange(innerResult.range.location + innerResult.range.length - 1, 1))
-            }
-        }
-        
-        // We detect and process inline anchors (links)
-        Marklight.anchorInlineRegex.matches(string, range: paragraphRange) { (result) -> Void in
-            styleApplier.addAttribute(NSFontAttributeName, value: codeFont, range: result.range)
-            
-            var destinationLink : String?
-            
-            Marklight.coupleRoundRegex.matches(string, range: result.range) { (innerResult) -> Void in
-                styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: innerResult.range)
-                
-                var range = innerResult.range
-                range.location = range.location + 1
-                range.length = range.length - 2
-                
-                let substring = textStorageNSString.substring(with: range)
-                guard substring.lengthOfBytes(using: .utf8) > 0 else { return }
-
-                destinationLink = substring
-                styleApplier.addAttribute(NSLinkAttributeName, value: substring, range: range)
-
-                hideSyntaxIfNecessary(styleApplier, range: innerResult.range)
-            }
-            
-            Marklight.openingSquareRegex.matches(string, range: result.range) { (innerResult) -> Void in
-                styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: innerResult.range)
-                hideSyntaxIfNecessary(styleApplier, range: innerResult.range)
-            }
-            
-            Marklight.closingSquareRegex.matches(string, range: result.range) { (innerResult) -> Void in
-                styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: innerResult.range)
-                hideSyntaxIfNecessary(styleApplier, range: innerResult.range)
-            }
-            
-            guard let destinationLinkString = destinationLink else { return }
-            
-            Marklight.coupleSquareRegex.matches(string, range: result.range) { (innerResult) -> Void in
-                var range = innerResult.range
-                range.location = range.location + 1
-                range.length = range.length - 2
-                
-                let substring = textStorageNSString.substring(with: range)
-                guard substring.lengthOfBytes(using: .utf8) > 0 else { return }
-                
-                styleApplier.addAttribute(NSLinkAttributeName, value: destinationLinkString, range: range)
-            }
-        }
+        ReferenceLinkStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
+        InlineLinkStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
         
         Marklight.imageRegex.matches(string, range: paragraphRange) { (result) -> Void in
             styleApplier.addAttribute(NSFontAttributeName, value: codeFont, range: result.range)
@@ -402,31 +342,8 @@ public struct Marklight {
         BoldStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
         ItalicStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
 
-        // We detect and process inline links not formatted
-        Marklight.autolinkRegex.matches(string, range: paragraphRange) { (result) -> Void in
-            let substring = textStorageNSString.substring(with: result.range)
-            guard substring.lengthOfBytes(using: .utf8) > 0 else { return }
-            styleApplier.addAttribute(NSLinkAttributeName, value: substring, range: result.range)
-            
-            if Marklight.hideSyntax {
-                Marklight.autolinkPrefixRegex.matches(string, range: result.range) { (innerResult) -> Void in
-                    styleApplier.addHiddenAttributes(range: innerResult.range)
-                }
-            }
-        }
-        
-        // We detect and process inline mailto links not formatted
-        Marklight.autolinkEmailRegex.matches(string, range: paragraphRange) { (result) -> Void in
-            let substring = textStorageNSString.substring(with: result.range)
-            guard substring.lengthOfBytes(using: .utf8) > 0 else { return }
-            styleApplier.addAttribute(NSLinkAttributeName, value: substring, range: result.range)
-            
-            if Marklight.hideSyntax {
-                Marklight.mailtoRegex.matches(string, range: result.range) { (innerResult) -> Void in
-                    styleApplier.addHiddenAttributes(range: innerResult.range)
-                }
-            }
-        }
+        AutolinkStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
+        AutolinkEmailStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
     }
     
     /// Tabs are automatically converted to spaces as part of the transform
@@ -555,51 +472,11 @@ public struct Marklight {
     fileprivate static let listOpeningRegex = Regex(pattern: _listMarker, options: [.allowCommentsAndWhitespace])
     
     // MARK: Anchors
-    
-    /*
-        [Title](http://example.com)
-    */
-    
-    fileprivate static let anchorPattern = [
-        "(                                  # wrap whole match in $1",
-        "    \\[",
-        "        (\(Marklight.getNestedBracketsPattern()))  # link text = $2",
-        "    \\]",
-        "",
-        "    \\p{Z}?                        # one optional space",
-        "    (?:\\n\\p{Z}*)?                # one optional newline followed by spaces",
-        "",
-        "    \\[",
-        "        (.*?)                      # id = $3",
-        "    \\]",
-        ")"
-        ].joined(separator: "\n")
-    
-    fileprivate static let anchorRegex = Regex(pattern: anchorPattern, options: [.allowCommentsAndWhitespace, .dotMatchesLineSeparators])
-    
-    fileprivate static let opneningSquarePattern = [
-        "(\\[)"
-        ].joined(separator: "\n")
 
-    fileprivate static let openingSquareRegex = Regex(pattern: opneningSquarePattern, options: [.allowCommentsAndWhitespace])
-    
-    fileprivate static let closingSquarePattern = [
-        "\\]"
-        ].joined(separator: "\n")
-    
-    fileprivate static let closingSquareRegex = Regex(pattern: closingSquarePattern, options: [.allowCommentsAndWhitespace])
-    
-    fileprivate static let coupleSquarePattern = [
-        "\\[(.*?)\\]"
-        ].joined(separator: "\n")
-    
-    fileprivate static let coupleSquareRegex = Regex(pattern: coupleSquarePattern, options: [])
-    
-    fileprivate static let coupleRoundPattern = [
-        "\\((.*?)\\)"
-        ].joined(separator: "\n")
-    
-    fileprivate static let coupleRoundRegex = Regex(pattern: coupleRoundPattern, options: [])
+    internal static let openingSquareRegex = Regex(pattern: "(\\[)", options: [])
+    internal static let closingSquareRegex = Regex(pattern: "\\]", options: [])
+    internal static let coupleSquareRegex  = Regex(pattern: "\\[(.*?)\\]", options: [])
+    internal static let coupleRoundRegex   = Regex(pattern: "\\((.*?)\\)", options: [])
     
     fileprivate static let parenPattern = [
         "(",
@@ -617,28 +494,9 @@ public struct Marklight {
         ")"
         ].joined(separator: "\n")
     
-    fileprivate static let parenRegex = Regex(pattern: parenPattern, options: [.allowCommentsAndWhitespace])
+    internal static let parenRegex = Regex(pattern: parenPattern, options: [.allowCommentsAndWhitespace])
     
-    fileprivate static let anchorInlinePattern = [
-        "(                           # wrap whole match in $1",
-        "    \\[",
-        "        (\(Marklight.getNestedBracketsPattern()))   # link text = $2",
-        "    \\]",
-        "    \\(                     # literal paren",
-        "        \\p{Z}*",
-        "        (\(Marklight.getNestedParensPattern()))   # href = $3",
-        "        \\p{Z}*",
-        "        (                   # $4",
-        "        (['\"])           # quote char = $5",
-        "        (.*?)               # title = $6",
-        "        \\5                 # matching quote",
-        "        \\p{Z}*                # ignore any spaces between closing quote and )",
-        "        )?                  # title is optional",
-        "    \\)",
-        ")"
-        ].joined(separator: "\n")
-    
-    fileprivate static let anchorInlineRegex = Regex(pattern: anchorInlinePattern, options: [.allowCommentsAndWhitespace, .dotMatchesLineSeparators])
+
     
     // Mark: Images
     
@@ -771,30 +629,7 @@ public struct Marklight {
         ].joined(separator: "\n")
 
     fileprivate static let blockQuoteOpeningRegex = Regex(pattern: blockQuoteOpeningPattern, options: [.anchorsMatchLines])
-    
-    fileprivate static let autolinkPattern = "((https?|ftp):[^'\">\\s]+)"
-    
-    fileprivate static let autolinkRegex = Regex(pattern: autolinkPattern, options: [.allowCommentsAndWhitespace, .dotMatchesLineSeparators])
-    
-    fileprivate static let autolinkPrefixPattern = "((https?|ftp)://)"
-    
-    fileprivate static let autolinkPrefixRegex = Regex(pattern: autolinkPrefixPattern, options: [.allowCommentsAndWhitespace, .dotMatchesLineSeparators])
-    
-    fileprivate static let autolinkEmailPattern = [
-        "(?:mailto:)?",
-        "(",
-        "  [-.\\w]+",
-        "  \\@",
-        "  [-a-z0-9]+(\\.[-a-z0-9]+)*\\.[a-z]+",
-        ")"
-        ].joined(separator: "\n")
-    
-    fileprivate static let autolinkEmailRegex = Regex(pattern: autolinkEmailPattern, options: [.allowCommentsAndWhitespace, .dotMatchesLineSeparators])
-    
-    fileprivate static let mailtoPattern = "mailto:"
-    
-    fileprivate static let mailtoRegex = Regex(pattern: mailtoPattern, options: [.allowCommentsAndWhitespace, .dotMatchesLineSeparators])
-        
+
     /// maximum nested depth of [] and () supported by the transform; 
     /// implementation detail
     fileprivate static let _nestDepth = 6
@@ -804,7 +639,7 @@ public struct Marklight {
     
     /// Reusable pattern to match balanced [brackets]. See Friedl's
     /// "Mastering Regular Expressions", 2nd Ed., pp. 328-331.
-    fileprivate static func getNestedBracketsPattern() -> String {
+    internal static func getNestedBracketsPattern() -> String {
         // in other words [this] and [this[also]] and [this[also[too]]]
         // up to _nestDepth
         if (_nestedBracketsPattern.isEmpty) {
@@ -821,7 +656,7 @@ public struct Marklight {
     
     /// Reusable pattern to match balanced (parens). See Friedl's
     /// "Mastering Regular Expressions", 2nd Ed., pp. 328-331.
-    fileprivate static func getNestedParensPattern() -> String {
+    internal static func getNestedParensPattern() -> String {
         // in other words (this) and (this(also)) and (this(also(too)))
         // up to _nestDepth
         if (_nestedParensPattern.isEmpty) {

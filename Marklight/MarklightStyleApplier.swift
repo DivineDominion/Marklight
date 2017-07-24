@@ -27,6 +27,14 @@ extension MarklightStyleApplier {
         addAttribute(NSForegroundColorAttributeName, value: color, range: range)
     }
 
+    internal func addFontAttribute(_ font: MarklightFont, range: NSRange) {
+        addAttribute(NSFontAttributeName, value: font, range: range)
+    }
+
+    internal func addLinkAttribute(_ link: String, range: NSRange) {
+        addAttribute(NSLinkAttributeName, value: link, range: range)
+    }
+
     internal func addHiddenAttributes(range: NSRange) {
         let hiddenFont = MarklightFont.systemFont(ofSize: 0.1)
         let hiddenColor = MarklightColor.clear

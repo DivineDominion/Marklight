@@ -31,6 +31,8 @@
 		5003F97D1F262FC20074C770 /* InlineImageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5003F97B1F262FC20074C770 /* InlineImageStyle.swift */; };
 		5003F97F1F2630FE0074C770 /* ReferenceImageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5003F97E1F2630FE0074C770 /* ReferenceImageStyle.swift */; };
 		5003F9801F2630FE0074C770 /* ReferenceImageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5003F97E1F2630FE0074C770 /* ReferenceImageStyle.swift */; };
+		5003F9821F263F8A0074C770 /* BlockquoteStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5003F9811F263F8A0074C770 /* BlockquoteStyle.swift */; };
+		5003F9831F263F8A0074C770 /* BlockquoteStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5003F9811F263F8A0074C770 /* BlockquoteStyle.swift */; };
 		500DC5461F1F473400FE8C3E /* Marklight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 500DC53D1F1F473300FE8C3E /* Marklight.framework */; };
 		500DC5561F1F4BDC00FE8C3E /* Array+appending.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500DC5551F1F4BDC00FE8C3E /* Array+appending.swift */; };
 		500DC5571F1F508500FE8C3E /* MarklightTextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C46D831C33E1300070AEDC /* MarklightTextStorage.swift */; };
@@ -90,6 +92,7 @@
 		5003F9771F262E470074C770 /* ListStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListStyle.swift; sourceTree = "<group>"; };
 		5003F97B1F262FC20074C770 /* InlineImageStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InlineImageStyle.swift; sourceTree = "<group>"; };
 		5003F97E1F2630FE0074C770 /* ReferenceImageStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceImageStyle.swift; sourceTree = "<group>"; };
+		5003F9811F263F8A0074C770 /* BlockquoteStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockquoteStyle.swift; sourceTree = "<group>"; };
 		500DC53D1F1F473300FE8C3E /* Marklight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Marklight.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		500DC5401F1F473300FE8C3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		500DC5451F1F473300FE8C3E /* Marklight macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Marklight macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,6 +162,8 @@
 				5003F95F1F25D2230074C770 /* BoldStyle.swift */,
 				5003F95C1F25CD2A0074C770 /* ItalicStyle.swift */,
 				5003F9771F262E470074C770 /* ListStyle.swift */,
+				5003F9811F263F8A0074C770 /* BlockquoteStyle.swift */,
+				5003F9711F262C7F0074C770 /* ReferenceDefinitionStyle.swift */,
 				5003F97A1F262F400074C770 /* Image */,
 				5003F96A1F25E76E0074C770 /* Links */,
 			);
@@ -181,7 +186,6 @@
 				5003F96E1F25E8C80074C770 /* AutolinkEmailStyle.swift */,
 				5003F9671F25E2D90074C770 /* InlineLinkStyle.swift */,
 				5003F9641F25DE380074C770 /* ReferenceLinkStyle.swift */,
-				5003F9711F262C7F0074C770 /* ReferenceDefinitionStyle.swift */,
 			);
 			name = Links;
 			sourceTree = "<group>";
@@ -444,6 +448,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5003F9831F263F8A0074C770 /* BlockquoteStyle.swift in Sources */,
 				503683F41F2087B0006A7344 /* NSString+paragraphRangeAt.swift in Sources */,
 				504B70491F2250B5002F9D8E /* Regex.swift in Sources */,
 				5003F9761F262D200074C770 /* BlockStyle.swift in Sources */,
@@ -487,6 +492,7 @@
 				5003F96F1F25E8C80074C770 /* AutolinkEmailStyle.swift in Sources */,
 				95C46D851C33E1300070AEDC /* MarklightTextStorage.swift in Sources */,
 				500DC5561F1F4BDC00FE8C3E /* Array+appending.swift in Sources */,
+				5003F9821F263F8A0074C770 /* BlockquoteStyle.swift in Sources */,
 				95C46D841C33E1300070AEDC /* Marklight.swift in Sources */,
 				5003F9601F25D2230074C770 /* BoldStyle.swift in Sources */,
 				503683F31F2087B0006A7344 /* NSString+paragraphRangeAt.swift in Sources */,

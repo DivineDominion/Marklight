@@ -199,22 +199,14 @@ public struct Marklight {
     }
 
     // We transform the user provided `quoteFontName` `String` to a `NSFont`
-    fileprivate static func quoteFont(_ size: CGFloat) -> MarklightFont {
+    internal static func quoteFont(_ size: CGFloat) -> MarklightFont {
         if let font = MarklightFont(name: Marklight.quoteFontName, size: size) {
             return font
         } else {
             return MarklightFont.systemFont(ofSize: size)
         }
     }
-    
-    // Transform the quote indentation in the `NSParagraphStyle` required to set
-    //  the attribute on the `NSAttributedString`.
-    fileprivate static var quoteIndendationStyle : NSParagraphStyle {
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.headIndent = Marklight.quoteIndendation
-        return paragraphStyle
-    }
-    
+
     // MARK: Processing
     
     /**
@@ -235,7 +227,6 @@ public struct Marklight {
         let paragraph = Paragraph(string: string, paragraphRange: paragraphRange)
 
         let codeFont = Marklight.codeFont(textSize)
-        let quoteFont = Marklight.quoteFont(textSize)
 
         // We detect and process underlined headers
         Marklight.headersSetextRegex.matches(string, range: wholeRange) { (result) -> Void in
@@ -261,15 +252,16 @@ public struct Marklight {
         }
         
         ReferenceDefinitionStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, document: document)
+        BlockquoteStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, document: document)
         ListStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, document: document)
-        
+
         ReferenceLinkStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
         InlineLinkStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
 
         ReferenceImageStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
         InlineImageStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
 
-               
+
         // We detect and process inline code
         Marklight.codeSpanRegex.matches(string, range: wholeRange) { (result) -> Void in
             styleApplier.addAttribute(NSFontAttributeName, value: codeFont, range: result.range)
@@ -289,17 +281,6 @@ public struct Marklight {
         Marklight.codeBlockRegex.matches(string, range: wholeRange) { (result) -> Void in
             styleApplier.addAttribute(NSFontAttributeName, value: codeFont, range: result.range)
             styleApplier.addAttribute(NSForegroundColorAttributeName, value: codeColor, range: result.range)
-        }
-        
-        // We detect and process quotes
-        Marklight.blockQuoteRegex.matches(string, range: wholeRange) { (result) -> Void in
-            styleApplier.addAttribute(NSFontAttributeName, value: quoteFont, range: result.range)
-            styleApplier.addAttribute(NSForegroundColorAttributeName, value: quoteColor, range: result.range)
-            styleApplier.addAttribute(NSParagraphStyleAttributeName, value: quoteIndendationStyle, range: result.range)
-            Marklight.blockQuoteOpeningRegex.matches(string, range: result.range) { (innerResult) -> Void in
-                styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: innerResult.range)
-                hideSyntaxIfNecessary(styleApplier, range: innerResult.range)
-            }
         }
 
         // Apply bold before italic to support nested bold/italic styles.
@@ -454,31 +435,6 @@ public struct Marklight {
         ].joined(separator: "\n")
     
     fileprivate static let codeSpanClosingRegex = Regex(pattern: codeSpanClosingPattern, options: [.allowCommentsAndWhitespace, .dotMatchesLineSeparators])
-    
-    // MARK: Block quotes
-    
-    /*
-        > Quoted text
-    */
-    
-    fileprivate static let blockQuotePattern = [
-        "(                           # Wrap whole match in $1",
-        "    (",
-        "    ^\\p{Z}*>\\p{Z}?              # '>' at the start of a line",
-        "        .+\\n               # rest of the first line",
-        "    (.+\\n)*                # subsequent consecutive lines",
-        "    \\n*                    # blanks",
-        "    )+",
-        ")"
-        ].joined(separator: "\n")
-    
-    fileprivate static let blockQuoteRegex = Regex(pattern: blockQuotePattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
-
-    fileprivate static let blockQuoteOpeningPattern = [
-        "(^\\p{Z}*>\\p{Z})"
-        ].joined(separator: "\n")
-
-    fileprivate static let blockQuoteOpeningRegex = Regex(pattern: blockQuoteOpeningPattern, options: [.anchorsMatchLines])
 
     /// maximum nested depth of [] and () supported by the transform; 
     /// implementation detail

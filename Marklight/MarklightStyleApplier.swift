@@ -35,6 +35,12 @@ extension MarklightStyleApplier {
         addAttribute(NSLinkAttributeName, value: link, range: range)
     }
 
+    internal func addParagraphIndentation(indent: CGFloat, range: NSRange) {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.headIndent = indent
+        addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: range)
+    }
+
     internal func addHiddenAttributes(range: NSRange) {
         let hiddenFont = MarklightFont.systemFont(ofSize: 0.1)
         let hiddenColor = MarklightColor.clear

@@ -1,5 +1,5 @@
 //
-//  BoldInlineStyle.swift
+//  BoldStyle.swift
 //  Marklight
 //
 //  Created by Christian Tietze on 2017-07-24.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct BoldInlineStyle: InlineStyle {
+struct BoldStyle: InlineStyle {
 
     fileprivate static var strictBoldPattern: String {
         return "(^|[\\W_])(?:(?!\\1)|(?=^))(\\*|_)\\2(?=\\S)(.*?\\S)\\2\\2(?!\\2)(?=[\\W_]|$)"
@@ -18,7 +18,7 @@ struct BoldInlineStyle: InlineStyle {
 
     func apply(_ styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
 
-        BoldInlineStyle.strictBoldRegex.matches(paragraph) { (result) -> Void in
+        BoldStyle.strictBoldRegex.matches(paragraph) { (result) -> Void in
             styleApplier.embolden(range: result.range)
 
             let substring = (paragraph.string as NSString).substring(with: NSMakeRange(result.range.location, 1))

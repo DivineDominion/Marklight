@@ -399,8 +399,8 @@ public struct Marklight {
         }
 
         // Apply bold before italic to support nested bold/italic styles.
-        BoldInlineStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
-        ItalicInlineStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
+        BoldStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
+        ItalicStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
 
         // We detect and process inline links not formatted
         Marklight.autolinkRegex.matches(string, range: paragraphRange) { (result) -> Void in

@@ -1,5 +1,5 @@
 //
-//  ItalicInlineStyle.swift
+//  ItalicStyle.swift
 //  Marklight
 //
 //  Created by Christian Tietze on 2017-07-24.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ItalicInlineStyle: InlineStyle {
+struct ItalicStyle: InlineStyle {
 
     fileprivate static var strictItalicPattern: String {
         return [
@@ -22,11 +22,11 @@ struct ItalicInlineStyle: InlineStyle {
 
     static let strictItalicRegex = Regex(pattern: strictItalicPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
 
-    let innerBoldStyle = BoldInlineStyle()
+    let innerBoldStyle = BoldStyle()
 
     func apply(_ styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
 
-        ItalicInlineStyle.strictItalicRegex.matches(paragraph) { result in
+        ItalicStyle.strictItalicRegex.matches(paragraph) { result in
 
             styleApplier.italicize(range: result.range)
 

@@ -17,6 +17,15 @@ extension NSRange: Equatable, CustomStringConvertible {
 class MarklightTextProcessorTests: XCTestCase {
 
     class StyleApplierDouble: MarklightStyleApplier {
+
+        func embolden(range: NSRange) {
+            // no op
+        }
+
+        func italicize(range: NSRange) {
+            // no op
+        }
+
         var didAddAttributes: (attributes: [String : Any], range: NSRange)?
         func addAttributes(_ attrs: [String : Any], range: NSRange) {
             didAddAttributes = (attrs, range)

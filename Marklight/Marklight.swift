@@ -254,6 +254,7 @@ public struct Marklight {
         ReferenceDefinitionStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, document: document)
         BlockquoteStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, document: document)
         ListStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, document: document)
+        CodeBlockStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, document: document)
 
         ReferenceLinkStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
         InlineLinkStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
@@ -275,12 +276,6 @@ public struct Marklight {
                 styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: innerResult.range)
                 hideSyntaxIfNecessary(styleApplier, range: innerResult.range)
             }
-        }
-        
-        // We detect and process code blocks
-        Marklight.codeBlockRegex.matches(string, range: wholeRange) { (result) -> Void in
-            styleApplier.addAttribute(NSFontAttributeName, value: codeFont, range: result.range)
-            styleApplier.addAttribute(NSForegroundColorAttributeName, value: codeColor, range: result.range)
         }
 
         // Apply bold before italic to support nested bold/italic styles.
@@ -387,29 +382,6 @@ public struct Marklight {
     internal static let imageClosingSquareRegex = Regex(pattern: "(\\])", options: [.allowCommentsAndWhitespace])
     
 
-    // MARK: Code
-    
-    /*
-        ```
-        Code
-        ```
-    
-            Code
-    */
-    
-    fileprivate static let codeBlockPattern = [
-        "(?:\\n\\n|\\A\\n?)",
-        "(                        # $1 = the code block -- one or more lines, starting with a space",
-        "(?:",
-        "    (?:\\p{Z}{\(_tabWidth)})       # Lines must start with a tab-width of spaces",
-        "    .*\\n+",
-        ")+",
-        ")",
-        "((?=^\\p{Z}{0,\(_tabWidth)}[^ \\t\\n])|\\Z) # Lookahead for non-space at line-start, or end of doc"
-        ].joined(separator: "\n")
-    
-    fileprivate static let codeBlockRegex = Regex(pattern: codeBlockPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
-    
     fileprivate static let codeSpanPattern = [
         "(?<![\\\\`])   # Character before opening ` can't be a backslash or backtick",
         "(`+)           # $1 = Opening run of `",

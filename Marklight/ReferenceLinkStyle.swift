@@ -14,18 +14,16 @@ import Foundation
 struct ReferenceLinkStyle: InlineStyle {
 
     fileprivate static var anchorPattern: String { return [
-        "(                                  # wrap whole match in $1",
-        "    \\[",
-        "        (\(Marklight.getNestedBracketsPattern()))  # link text = $2",
-        "    \\]",
+        "(\\[)                          # opening 1st bracket = $1",
+        "    (\(Marklight.getNestedBracketsPattern()))  # link text = $2",
+        "(\\])                          # closing 1st bracket = $3",
         "",
-        "    \\p{Z}?                        # one optional space",
-        "    (?:\\n\\p{Z}*)?                # one optional newline followed by spaces",
+        "\\p{Z}?                        # one optional space",
+        "(?:\\n\\p{Z}*)?                # one optional newline followed by spaces",
         "",
-        "    \\[",
-        "        (.*?)                      # id = $3",
-        "    \\]",
-        ")"
+        "(\\[)                          # opening 2nd bracket = $4",
+        "    (.*?)                      # id = $5",
+        "(\\])                          # opening 2nd bracket = $6",
         ].joined(separator: "\n")
     }
 
@@ -39,12 +37,11 @@ struct ReferenceLinkStyle: InlineStyle {
         ReferenceLinkStyle.anchorRegex.matches(paragraph) { (result) -> Void in
             styleApplier.addFontAttribute(codeFont, range: result.range)
 
-            // TODO: use match sub ranges
-            Marklight.openingSquareRegex.matches(paragraph.string, range: result.range) { (innerResult) -> Void in
-                styleApplier.addColorAttribute(Marklight.syntaxColor, range: innerResult.range)
-            }
-            Marklight.closingSquareRegex.matches(paragraph.string, range: result.range) { (innerResult) -> Void in
-                styleApplier.addColorAttribute(Marklight.syntaxColor, range: innerResult.range)
+            [result.rangeAt(1),
+             result.rangeAt(3),
+             result.rangeAt(4),
+             result.rangeAt(6)].forEach { (bracketRange: NSRange) in
+                styleApplier.addColorAttribute(Marklight.syntaxColor, range: bracketRange)
             }
 
             // TODO: see issue #12; what is this used for?

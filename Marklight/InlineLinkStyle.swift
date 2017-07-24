@@ -11,22 +11,20 @@ import Foundation
 struct InlineLinkStyle: InlineStyle {
 
     fileprivate static var anchorInlinePattern: String { return [
-        "(                           # wrap whole match in $1",
-        "    \\[",
-        "        (\(Marklight.getNestedBracketsPattern()))   # link text = $2",
-        "    \\]",
-        "    \\(                     # literal paren",
-        "        \\p{Z}*",
-        "        (\(Marklight.getNestedParensPattern()))   # href = $3",
-        "        \\p{Z}*",
-        "        (                   # $4",
-        "        (['\"])           # quote char = $5",
-        "        (.*?)               # title = $6",
-        "        \\5                 # matching quote",
-        "        \\p{Z}*                # ignore any spaces between closing quote and )",
-        "        )?                  # title is optional",
-        "    \\)",
-        ")"
+        "(\\[)                   # opening 1st bracket = $1",
+        "    (\(Marklight.getNestedBracketsPattern()))   # link text = $2",
+        "(\\])                   # closing 1st bracket = $3",
+        "(\\()                   # opening paren = $4",
+        "    \\p{Z}*",
+        "    (\(Marklight.getNestedParensPattern()))   # href = $5",
+        "    \\p{Z}*",
+        "    (                   # $6",
+        "        (['\"])         # quote char = $7",
+        "        (.*?)           # title = $8",
+        "        \\5             # matching quote",
+        "        \\p{Z}*         # ignore any spaces between closing quote and )",
+        "    )?                  # title is optional",
+        "(\\))                   # closing paren = $9",
         ].joined(separator: "\n")
     }
 
@@ -57,14 +55,9 @@ struct InlineLinkStyle: InlineStyle {
                 styleApplier.addLinkAttribute(substring, range: range)
             }
 
-            Marklight.openingSquareRegex.matches(paragraph.string, range: result.range) { (innerResult) -> Void in
-                if hideSyntax { styleApplier.addHiddenAttributes(range: innerResult.range) }
-                else { styleApplier.addColorAttribute(Marklight.syntaxColor, range: innerResult.range) }
-            }
-
-            Marklight.closingSquareRegex.matches(paragraph.string, range: result.range) { (innerResult) -> Void in
-                if hideSyntax { styleApplier.addHiddenAttributes(range: innerResult.range) }
-                else { styleApplier.addColorAttribute(Marklight.syntaxColor, range: innerResult.range) }
+            [result.rangeAt(1),
+             result.rangeAt(3)].forEach { (bracketRange: NSRange) in
+                styleApplier.addColorAttribute(Marklight.syntaxColor, range: bracketRange)
             }
 
             guard let destinationLinkString = destinationLink else { return }

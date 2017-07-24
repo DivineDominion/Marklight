@@ -21,7 +21,7 @@
                 return self
             }
 
-            return UIFont(descriptor: fd, size: pointSize)
+            return UIFont(descriptor: fontDescriptor, size: pointSize)
         }
     }
 

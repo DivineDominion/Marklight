@@ -417,8 +417,6 @@ public struct Marklight {
             Marklight.strictBoldRegex.matches(string, range: paragraphRange) { (result) -> Void in
                 styleApplier.embolden(range: result!.range)
 
-                guard hideSyntax else { return }
-
                 let substring = textStorageNSString.substring(with: NSMakeRange(result!.range.location, 1))
                 var start = 0
                 if substring == " " {
@@ -443,8 +441,6 @@ public struct Marklight {
             // Previously applied inner bold text would have been overwritten by now
             let innerTextRange = result!.rangeAt(3)
             applyBold(string: string, range: innerTextRange)
-
-            guard hideSyntax else { return }
 
             let substring = textStorageNSString.substring(with: NSMakeRange(result!.range.location, 1))
             var start = 0

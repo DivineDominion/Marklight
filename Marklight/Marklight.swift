@@ -231,6 +231,7 @@ public struct Marklight {
 
         let textStorageNSString = string as NSString
         let wholeRange = NSMakeRange(0, textStorageNSString.length)
+        let document = Document(string: string, wholeRange: wholeRange)
         let paragraph = Paragraph(string: string, paragraphRange: paragraphRange)
 
         let codeFont = Marklight.codeFont(textSize)
@@ -259,17 +260,8 @@ public struct Marklight {
             }
         }
         
-        // We detect and process reference links
-        Marklight.referenceLinkRegex.matches(string, range: wholeRange) { (result) -> Void in
-            styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: result.range)
-        }
-        
-        // We detect and process lists
-        Marklight.listRegex.matches(string, range: wholeRange) { (result) -> Void in
-            Marklight.listOpeningRegex.matches(string, range: result.range) { (innerResult) -> Void in
-                styleApplier.addAttribute(NSForegroundColorAttributeName, value: Marklight.syntaxColor, range: innerResult.range)
-            }
-        }
+        ReferenceDefinitionStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, document: document)
+        ListStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, document: document)
         
         ReferenceLinkStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
         InlineLinkStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
@@ -406,70 +398,9 @@ public struct Marklight {
         ].joined(separator: "\n")
     
     fileprivate static let headersAtxClosingRegex = Regex(pattern: headersAtxClosingPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
+
     
-    // MARK: Reference links
     
-    /*
-        TODO: we don't know how reference links are formed
-    */
-    
-    fileprivate static let referenceLinkPattern = [
-        "^\\p{Z}{0,\(_tabWidth - 1)}\\[([^\\[\\]]+)\\]:  # id = $1",
-        "  \\p{Z}*",
-        "  \\n?                   # maybe *one* newline",
-        "  \\p{Z}*",
-        "<?(\\S+?)>?              # url = $2",
-        "  \\p{Z}*",
-        "  \\n?                   # maybe one newline",
-        "  \\p{Z}*",
-        "(?:",
-        "    (?<=\\s)             # lookbehind for whitespace",
-        "    [\"(]",
-        "    (.+?)                # title = $3",
-        "    [\")]",
-        "    \\p{Z}*",
-        ")?                       # title is optional",
-        "(?:\\n+|\\Z)"
-        ].joined(separator: "")
-    
-    fileprivate static let referenceLinkRegex = Regex(pattern: referenceLinkPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
-    
-    // MARK: Lists
-    
-    /*
-        * First element
-        * Second element
-    */
-    
-    fileprivate static let _markerUL = "[*+-]"
-    fileprivate static let _markerOL = "\\d+[.]"
-    
-    fileprivate static let _listMarker = "(?:\(_markerUL)|\(_markerOL))"
-    fileprivate static let _wholeList = [
-        "(                               # $1 = whole list",
-        "  (                             # $2",
-        "    \\p{Z}{0,\(_tabWidth - 1)}",
-        "    (\(_listMarker))            # $3 = first list item marker",
-        "    \\p{Z}+",
-        "  )",
-        "  (?s:.+?)",
-        "  (                             # $4",
-        "      \\z",
-        "    |",
-        "      \\n{2,}",
-        "      (?=\\S)",
-        "      (?!                       # Negative lookahead for another list item marker",
-        "        \\p{Z}*",
-        "        \(_listMarker)\\p{Z}+",
-        "      )",
-        "  )",
-        ")"
-        ].joined(separator: "\n")
-    
-    fileprivate static let listPattern = "(?:(?<=\\n\\n)|\\A\\n?)" + _wholeList
-    
-    fileprivate static let listRegex = Regex(pattern: listPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
-    fileprivate static let listOpeningRegex = Regex(pattern: _listMarker, options: [.allowCommentsAndWhitespace])
     
     // MARK: Anchors
 

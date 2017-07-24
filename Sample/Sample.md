@@ -8,7 +8,7 @@ Itemized lists look like:
 
 * this one
 * that one
-* the other one
+* the other one 
 
 > Block quotes are written like so.
 > 

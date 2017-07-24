@@ -31,13 +31,15 @@ internal struct Regex {
     }
 
     internal func matches(_ input: String, range: NSRange,
-                             completion: @escaping (_ result: NSTextCheckingResult?) -> Void) {
+                             completion: @escaping (_ result: NSTextCheckingResult) -> Void) {
         let options = NSRegularExpression.MatchingOptions(rawValue: 0)
-        regularExpression.enumerateMatches(in: input,
-                                           options: options,
-                                           range: range,
-                                           using: { (result, flags, stop) -> Void in
-                                            completion(result)
+        regularExpression.enumerateMatches(
+            in: input,
+            options: options,
+            range: range,
+            using: { (result, flags, stop) -> Void in
+                guard let result = result else { assertionFailure("Expected NSTextCheckingResult from Regex match"); return }
+                completion(result)
         })
     }
 }

@@ -12,11 +12,11 @@ struct InlineLinkStyle: InlineStyle {
 
     fileprivate static var anchorInlinePattern: String { return [
         "(\\[)                   # opening 1st bracket = $1",
-        "    (\(Marklight.getNestedBracketsPattern()))   # link text = $2",
+        "    (\(Marklight.nestedBracketsPattern))   # link text = $2",
         "(\\])                   # closing 1st bracket = $3",
         "(\\()                   # opening paren = $4",
         "    \\p{Z}*",
-        "    (\(Marklight.getNestedParensPattern()))   # href = $5",
+        "    (\(Marklight.nestedParensPattern))   # href = $5",
         "    \\p{Z}*",
         "    (                   # $6",
         "        (['\"])         # quote char = $7",
@@ -30,6 +30,9 @@ struct InlineLinkStyle: InlineStyle {
 
     fileprivate static let anchorInlineRegex = Regex(pattern: anchorInlinePattern, options: [.allowCommentsAndWhitespace, .dotMatchesLineSeparators])
 
+    internal static let coupleSquareRegex  = Regex(pattern: "\\[(.*?)\\]", options: [])
+    internal static let coupleRoundRegex   = Regex(pattern: "\\((.*?)\\)", options: [])
+
     func apply(_ styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
 
         // TODO: refactor in Marklight to not compute this everytime
@@ -40,7 +43,8 @@ struct InlineLinkStyle: InlineStyle {
 
             var destinationLink : String?
 
-            Marklight.coupleRoundRegex.matches(paragraph.string, range: result.range) { (innerResult) -> Void in
+            // TODO: use $5?
+            InlineLinkStyle.coupleRoundRegex.matches(paragraph.string, range: result.range) { (innerResult) -> Void in
                 if hideSyntax { styleApplier.addHiddenAttributes(range: innerResult.range) }
                 else { styleApplier.addColorAttribute(Marklight.syntaxColor, range: innerResult.range) }
                 
@@ -62,7 +66,8 @@ struct InlineLinkStyle: InlineStyle {
 
             guard let destinationLinkString = destinationLink else { return }
 
-            Marklight.coupleSquareRegex.matches(paragraph.string, range: result.range) { (innerResult) -> Void in
+            // TODO: use $2?
+            InlineLinkStyle.coupleSquareRegex.matches(paragraph.string, range: result.range) { (innerResult) -> Void in
                 var range = innerResult.range
                 range.location = range.location + 1
                 range.length = range.length - 2

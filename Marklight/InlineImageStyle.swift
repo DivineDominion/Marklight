@@ -20,7 +20,7 @@ struct InlineImageStyle: InlineStyle {
         "\\s?                # one optional whitespace character",
         "(\\()               # opening paren = $4",
         "    \\p{Z}*",
-        "    (\(Marklight.getNestedParensPattern()))    # href = $5",
+        "    (\(Marklight.nestedParensPattern))    # href = $5",
         "    \\p{Z}*",
         "    (               # $6",
         "    (['\"])         # quote char = $7",

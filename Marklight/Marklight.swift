@@ -244,97 +244,48 @@ public struct Marklight {
         BoldStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
         ItalicStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
 
-        // Apply code last to remove bold/italic from matches text again 
+        // Apply code last to remove bold/italic from matched text again
         CodeSpanStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
 
         AutolinkStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
         AutolinkEmailStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
     }
-    
-    /// Tabs are automatically converted to spaces as part of the transform
-    /// this constant determines how "wide" those tabs become in spaces
-    fileprivate static let _tabWidth = 4
-
-    internal static let openingSquareRegex = Regex(pattern: "(\\[)", options: [])
-    internal static let closingSquareRegex = Regex(pattern: "\\]", options: [])
-    internal static let coupleSquareRegex  = Regex(pattern: "\\[(.*?)\\]", options: [])
-    internal static let coupleRoundRegex   = Regex(pattern: "\\((.*?)\\)", options: [])
-    
-    fileprivate static let parenPattern = [
-        "(",
-        "\\(                 # literal paren",
-        "      \\p{Z}*",
-        "      (\(Marklight.getNestedParensPattern()))    # href = $3",
-        "      \\p{Z}*",
-        "      (               # $4",
-        "      (['\"])         # quote char = $5",
-        "      (.*?)           # title = $6",
-        "      \\5             # matching quote",
-        "      \\p{Z}*",
-        "      )?              # title is optional",
-        "  \\)",
-        ")"
-        ].joined(separator: "\n")
-    
-    internal static let parenRegex = Regex(pattern: parenPattern, options: [.allowCommentsAndWhitespace])
-
-    
-    // Mark: Images
-
-    internal static let imageOpeningSquareRegex = Regex(pattern: "(!\\[)", options: [.allowCommentsAndWhitespace])
-    internal static let imageClosingSquareRegex = Regex(pattern: "(\\])", options: [.allowCommentsAndWhitespace])
 
     /// maximum nested depth of [] and () supported by the transform; 
     /// implementation detail
-    fileprivate static let _nestDepth = 6
-    
-    fileprivate static var _nestedBracketsPattern = ""
-    fileprivate static var _nestedParensPattern = ""
-    
-    /// Reusable pattern to match balanced [brackets]. See Friedl's
-    /// "Mastering Regular Expressions", 2nd Ed., pp. 328-331.
-    internal static func getNestedBracketsPattern() -> String {
-        // in other words [this] and [this[also]] and [this[also[too]]]
-        // up to _nestDepth
-        if (_nestedBracketsPattern.isEmpty) {
-            _nestedBracketsPattern = repeatString([
-                "(?>             # Atomic matching",
-                "[^\\[\\]]+      # Anything other than brackets",
-                "|",
-                "\\["
-                ].joined(separator: "\n"), _nestDepth) +
-                repeatString(" \\])*", _nestDepth)
-        }
-        return _nestedBracketsPattern
-    }
-    
+    fileprivate static var nestDepth: Int { return  6 }
+
     /// Reusable pattern to match balanced (parens). See Friedl's
     /// "Mastering Regular Expressions", 2nd Ed., pp. 328-331.
-    internal static func getNestedParensPattern() -> String {
-        // in other words (this) and (this(also)) and (this(also(too)))
-        // up to _nestDepth
-        if (_nestedParensPattern.isEmpty) {
-            _nestedParensPattern = repeatString([
-                "(?>            # Atomic matching",
-                "[^()\\s]+      # Anything other than parens or whitespace",
-                "|",
-                "\\("
-                ].joined(separator: "\n"), _nestDepth) +
-                repeatString(" \\))*", _nestDepth)
-        }
-        return _nestedParensPattern
-    }
+    ///
+    /// In other words [this] and [this[also]] and [this[also[too]]]
+    /// up to `nestDepth`.
+    internal static let nestedBracketsPattern: String = {
+        return repeatString([
+            "(?>             # Atomic matching",
+            "[^\\[\\]]+      # Anything other than brackets",
+            "|",
+            "\\["
+            ].joined(separator: "\n"), nestDepth) +
+            repeatString(" \\])*", nestDepth)
+    }()
 
-    /// this is to emulate what's available in PHP
-    fileprivate static func repeatString(_ text: String, _ count: Int) -> String {
-        return Array(repeating: text, count: count).reduce("", +)
-    }
-
+    /// Reusable pattern to match balanced (parens). See Friedl's
+    /// "Mastering Regular Expressions", 2nd Ed., pp. 328-331.
+    ///
+    /// In other words (this) and (this(also)) and (this(also(too)))
+    /// up to `nestDepth`.
+    internal static let nestedParensPattern: String = {
+        return repeatString([
+            "(?>            # Atomic matching",
+            "[^()\\s]+      # Anything other than parens or whitespace",
+            "|",
+            "\\("
+            ].joined(separator: "\n"), nestDepth) +
+            repeatString(" \\))*", nestDepth)
+    }()
 }
 
-func hideSyntaxIfNecessary(
-    _ styleApplier: MarklightStyleApplier,
-    range: @autoclosure () -> NSRange) {
-    guard Marklight.hideSyntax else { return }
-    styleApplier.addHiddenAttributes(range: range())
+internal func repeatString(_ text: String, _ count: Int) -> String {
+    return Array(repeating: text, count: count).reduce("", +)
 }

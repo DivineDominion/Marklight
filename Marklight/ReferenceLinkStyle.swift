@@ -15,7 +15,7 @@ struct ReferenceLinkStyle: InlineStyle {
 
     fileprivate static var anchorPattern: String { return [
         "(\\[)                          # opening 1st bracket = $1",
-        "    (\(Marklight.getNestedBracketsPattern()))  # link text = $2",
+        "    (\(Marklight.nestedBracketsPattern))  # link text = $2",
         "(\\])                          # closing 1st bracket = $3",
         "",
         "\\p{Z}?                        # one optional space",
@@ -28,6 +28,26 @@ struct ReferenceLinkStyle: InlineStyle {
     }
 
     fileprivate static let anchorRegex = Regex(pattern: anchorPattern, options: [.allowCommentsAndWhitespace, .dotMatchesLineSeparators])
+
+
+    fileprivate static var parenPattern: String { return [
+        "(",
+        "\\(                 # literal paren",
+        "      \\p{Z}*",
+        "      (\(Marklight.nestedParensPattern))    # href = $3",
+        "      \\p{Z}*",
+        "      (               # $4",
+        "      (['\"])         # quote char = $5",
+        "      (.*?)           # title = $6",
+        "      \\5             # matching quote",
+        "      \\p{Z}*",
+        "      )?              # title is optional",
+        "  \\)",
+        ")"
+        ].joined(separator: "\n")
+    }
+
+    internal static let parenRegex = Regex(pattern: parenPattern, options: [.allowCommentsAndWhitespace])
 
     func apply(_ styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
 
@@ -45,7 +65,7 @@ struct ReferenceLinkStyle: InlineStyle {
             }
 
             // TODO: see issue #12; what is this used for?
-            Marklight.parenRegex.matches(paragraph.string, range: result.range) { (innerResult) -> Void in
+            ReferenceLinkStyle.parenRegex.matches(paragraph.string, range: result.range) { (innerResult) -> Void in
                 styleApplier.addColorAttribute(Marklight.syntaxColor, range: innerResult.range)
 
                 if hideSyntax {

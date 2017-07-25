@@ -38,7 +38,7 @@ struct BlockquoteStyle: BlockStyle {
             styleApplier.addFontAttribute(quoteFont, range: result.range)
             styleApplier.addColorAttribute(quoteColor, range: result.range)
 
-            styleApplier.addParagraphIndentation(indent: Marklight.quoteIndendation, range: result.range)
+            styleApplier.addParagraphIndentation(indent: Marklight.quoteIndentation, range: result.range)
 
             BlockquoteStyle.blockQuoteOpeningRegex.matches(document.string, range: result.range) { (innerResult) -> Void in
                 if hideSyntax { styleApplier.addHiddenAttributes(range: innerResult.range) }

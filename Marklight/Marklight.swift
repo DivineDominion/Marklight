@@ -173,7 +173,7 @@ public struct Marklight {
     /**
     Quote indentation in points. Default 20.
      */
-    public static var quoteIndendation : CGFloat = 20
+    public static var quoteIndentation : CGFloat = 20
     
     /**
      If the markdown syntax should be hidden or visible
@@ -197,7 +197,6 @@ public struct Marklight {
         Marklight.codeFont = namedFont(Marklight.codeFontName, size: Marklight.textSize)
         Marklight.quoteFont = namedFont(Marklight.quoteFontName, size: Marklight.textSize)
     }
-
 
     internal fileprivate(set) static var codeFont: MarklightFont = namedFont(Marklight.codeFontName, size: Marklight.textSize)
 

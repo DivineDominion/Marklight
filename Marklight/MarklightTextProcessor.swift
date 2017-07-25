@@ -45,7 +45,7 @@ open class MarklightTextProcessor {
     /**
      Quote indentation in points. Default 20.
      */
-    open var quoteIndendation : CGFloat = 20
+    open var quoteIndentation : CGFloat = 20
 
     /**
      If the markdown syntax should be hidden or visible
@@ -68,7 +68,7 @@ open class MarklightTextProcessor {
         Marklight.codeColor = codeColor
         Marklight.quoteFontName = quoteFontName
         Marklight.quoteColor = quoteColor
-        Marklight.quoteIndendation = quoteIndendation
+        Marklight.quoteIndentation = quoteIndentation
         Marklight.textSize = textSize
         Marklight.hideSyntax = hideSyntax
 

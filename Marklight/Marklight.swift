@@ -153,7 +153,9 @@ public struct Marklight {
     /**
     Font used for blocks and inline code. Default value is *Menlo*.
      */
-    public static var codeFontName = "Menlo"
+    public static var codeFontName = "Menlo" {
+        didSet { Marklight.reloadFonts() }
+    }
     
     /**
      Color used for blocks and inline code. Default value is dark grey.
@@ -163,7 +165,9 @@ public struct Marklight {
     /**
     Font used for quote blocks. Default value is *Menlo*.
      */
-    public static var quoteFontName = "Menlo"
+    public static var quoteFontName = "Menlo" {
+        didSet { Marklight.reloadFonts() }
+    }
     
     /**
     Color used for quote blocks. Default value is dark grey.
@@ -194,23 +198,23 @@ public struct Marklight {
     #endif
 
     fileprivate static func reloadFonts() {
-        Marklight.codeFont = namedFont(Marklight.codeFontName, size: Marklight.textSize)
-        Marklight.quoteFont = namedFont(Marklight.quoteFontName, size: Marklight.textSize)
+        Marklight.theme = DefaultMarklightTheme(
+            codeFontName: Marklight.codeFontName,
+            quoteFontName: Marklight.quoteFontName,
+            textSize: textSize)
     }
 
-    internal fileprivate(set) static var codeFont: MarklightFont = namedFont(Marklight.codeFontName, size: Marklight.textSize)
+    internal static var theme: MarklightTheme = DefaultMarklightTheme(
+        codeFontName: Marklight.codeFontName,
+        quoteFontName: Marklight.quoteFontName,
+        textSize: textSize)
 
-    internal fileprivate(set) static var quoteFont: MarklightFont = namedFont(Marklight.quoteFontName, size: Marklight.textSize)
+    internal static var codeFont: MarklightFont {
+        return theme.codeFont
+    }
 
-    /// Loads a font named `name` or falls back to the system font of the same
-    /// size if that fails
-    internal static func namedFont(_ name: String, size: CGFloat) -> MarklightFont {
-        if let font = MarklightFont(name: name, size: size) {
-            return font
-        } else {
-            NSLog("Could not load font named '\(name)'.")
-            return MarklightFont.systemFont(ofSize: size)
-        }
+    internal static var quoteFont: MarklightFont {
+        return theme.quoteFont
     }
 
     // MARK: Processing

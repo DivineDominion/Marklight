@@ -9,9 +9,9 @@
 #if os(iOS)
     import UIKit
 
-    typealias MarklightColor = UIColor
-    typealias MarklightFont = UIFont
-    typealias MarklightFontDescriptor = UIFontDescriptor
+    public typealias MarklightColor = UIColor
+    public typealias MarklightFont = UIFont
+    public typealias MarklightFontDescriptor = UIFontDescriptor
 
     extension UIFont {
         fileprivate func withTraits(_ traits: UIFontDescriptorSymbolicTraits) -> UIFont {
@@ -28,11 +28,9 @@
 #elseif os(macOS)
     import AppKit
 
-
-    typealias MarklightColor = NSColor
-    typealias MarklightFont = NSFont
-    typealias MarklightFontDescriptor = NSFontDescriptor
-
+    public typealias MarklightColor = NSColor
+    public typealias MarklightFont = NSFont
+    public typealias MarklightFontDescriptor = NSFontDescriptor
 #endif
 
 extension MarklightFont {

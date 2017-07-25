@@ -14,7 +14,9 @@
 
 open class MarklightTextProcessor {
 
-    public var hideSyntax: Bool {
+    public init() { }
+
+    open var hideSyntax: Bool {
         get { return Marklight.hideSyntax }
         set { Marklight.hideSyntax = newValue }
     }

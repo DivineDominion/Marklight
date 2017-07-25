@@ -24,7 +24,7 @@ struct CodeBlockStyle: BlockStyle {
         "(?:\\n\\n|\\A\\n?)",
         "(                        # $1 = the code block -- one or more lines, starting with a space",
         "(?:",
-        "    (?:[\\p{Z}]{4})       # Lines must start with a tab-width of spaces",
+        "    (?:[\\p{Z}]{4}|\\t)  # Lines must start with a tab-width of spaces",
         "    .*\\n+",
         ")+",
         ")",

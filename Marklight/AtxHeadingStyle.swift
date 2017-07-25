@@ -30,6 +30,11 @@ struct AtxHeadingStyle: BlockStyle {
     func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, document: Document) {
 
         AtxHeadingStyle.headersAtxRegex.matches(document) { (result) -> Void in
+            // TODO: Solve quickfix.
+            // Without re-applying the base style, on iOS the headers will 
+            // obtain a hidden style when you type elsewhere.
+            theme.baseStyle.apply(styleApplier, range: result.range)
+
             styleApplier.embolden(range: result.range)
 
             [result.rangeAt(1),

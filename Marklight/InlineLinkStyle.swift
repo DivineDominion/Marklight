@@ -35,17 +35,15 @@ struct InlineLinkStyle: InlineStyle {
 
     func apply(_ styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
 
-        let codeFont = Marklight.codeFont
-
         InlineLinkStyle.anchorInlineRegex.matches(paragraph) { (result) -> Void in
-            styleApplier.addFontAttribute(codeFont, range: result.range)
+            Marklight.theme.linkStyle.apply(styleApplier, range: result.range)
 
             var destinationLink : String?
 
             // TODO: use $5?
             InlineLinkStyle.coupleRoundRegex.matches(paragraph.string, range: result.range) { (innerResult) -> Void in
                 if hideSyntax { styleApplier.addHiddenAttributes(range: innerResult.range) }
-                else { styleApplier.addColorAttribute(Marklight.syntaxColor, range: innerResult.range) }
+                else { Marklight.theme.syntaxStyle.apply(styleApplier, range: innerResult.range) }
                 
                 var range = innerResult.range
                 range.location = range.location + 1
@@ -60,7 +58,7 @@ struct InlineLinkStyle: InlineStyle {
 
             [result.rangeAt(1),
              result.rangeAt(3)].forEach { (bracketRange: NSRange) in
-                styleApplier.addColorAttribute(Marklight.syntaxColor, range: bracketRange)
+                Marklight.theme.syntaxStyle.apply(styleApplier, range: bracketRange)
             }
 
             guard let destinationLinkString = destinationLink else { return }

@@ -145,35 +145,7 @@
  - see: `MarklightTextStorage`
 */
 public struct Marklight {
-    /**
-    Color used to highlight markdown syntax. Default value is light grey.
-     */
-    public static var syntaxColor = MarklightColor.lightGray
-    
-    /**
-    Font used for blocks and inline code. Default value is *Menlo*.
-     */
-    public static var codeFontName = "Menlo" {
-        didSet { Marklight.reloadFonts() }
-    }
-    
-    /**
-     Color used for blocks and inline code. Default value is dark grey.
-     */
-    public static var codeColor = MarklightColor.darkGray
-    
-    /**
-    Font used for quote blocks. Default value is *Menlo*.
-     */
-    public static var quoteFontName = "Menlo" {
-        didSet { Marklight.reloadFonts() }
-    }
-    
-    /**
-    Color used for quote blocks. Default value is dark grey.
-     */
-    public static var quoteColor = MarklightColor.darkGray
-    
+
     /**
     Quote indentation in points. Default 20.
      */
@@ -184,38 +156,23 @@ public struct Marklight {
      */
     public static var hideSyntax = false
 
-    /**
-     Text size measured in points.
-     */
-    #if os(iOS)
-    public static var textSize: CGFloat = MarklightFont.systemFontSize  {
-        didSet { Marklight.reloadFonts() }
-    }
-    #elseif os(macOS)
-    public static var textSize: CGFloat = MarklightFont.systemFontSize() {
-        didSet { Marklight.reloadFonts() }
-    }
-    #endif
+    fileprivate static func defaultTheme() -> MarklightTheme {
 
-    fileprivate static func reloadFonts() {
-        Marklight.theme = DefaultMarklightTheme(
-            codeFontName: Marklight.codeFontName,
-            quoteFontName: Marklight.quoteFontName,
-            textSize: textSize)
+        #if os(iOS)
+            let textSize: CGFloat = MarklightFont.systemFontSize
+        #elseif os(macOS)
+            let textSize: CGFloat = MarklightFont.systemFontSize()
+        #endif
+
+        return DefaultMarklightTheme(
+            baseStyle: FontStyle(fontReplacement: MarklightFont.systemFont(ofSize: textSize)),
+            syntaxStyle: FontStyle(color: MarklightColor.lightGray),
+            codeStyle: FontStyle(fontName: "Menlo", textSize: textSize, color: MarklightColor.darkGray),
+            quoteStyle: FontStyle(fontName: "Menlo", textSize: textSize, color: MarklightColor.darkGray),
+            referenceDefinitionStyle: FontStyle(color: MarklightColor.lightGray))
     }
 
-    internal static var theme: MarklightTheme = DefaultMarklightTheme(
-        codeFontName: Marklight.codeFontName,
-        quoteFontName: Marklight.quoteFontName,
-        textSize: textSize)
-
-    internal static var codeFont: MarklightFont {
-        return theme.codeFont
-    }
-
-    internal static var quoteFont: MarklightFont {
-        return theme.quoteFont
-    }
+    public static var theme: MarklightTheme = Marklight.defaultTheme()
 
     // MARK: Processing
     

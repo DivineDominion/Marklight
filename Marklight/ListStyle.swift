@@ -43,7 +43,7 @@ struct ListStyle: BlockStyle {
 
         ListStyle.listRegex.matches(document) { (result) -> Void in
             ListStyle.listOpeningRegex.matches(document.string, range: result.range) { (innerResult) -> Void in
-                styleApplier.addColorAttribute(Marklight.syntaxColor, range: innerResult.range)
+                Marklight.theme.syntaxStyle.apply(styleApplier, range: innerResult.range)
             }
         }
     }

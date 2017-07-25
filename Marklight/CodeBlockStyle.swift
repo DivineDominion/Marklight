@@ -45,23 +45,17 @@ struct CodeBlockStyle: BlockStyle {
 
     func apply(_ styleApplier: MarklightStyleApplier, hideSyntax: Bool, document: Document) {
 
-        let codeFont = Marklight.codeFont
-        let codeColor = Marklight.codeColor
-
         CodeBlockStyle.codeBlockRegex.matches(document) { (result) -> Void in
-            styleApplier.addFontAttribute(codeFont, range: result.range)
-            styleApplier.addColorAttribute(codeColor, range: result.range)
+            Marklight.theme.codeStyle.apply(styleApplier, range: result.range)
         }
 
         CodeBlockStyle.fencedCodeBlockRegex.matches(document) { (result) -> Void in
-            styleApplier.addFontAttribute(codeFont, range: result.range)
+            Marklight.theme.codeStyle.apply(styleApplier, range: result.range)
 
             [result.rangeAt(1),
              result.rangeAt(4)].forEach { fenceRange in
-                styleApplier.addColorAttribute(Marklight.syntaxColor, range: fenceRange)
+                Marklight.theme.syntaxStyle.apply(styleApplier, range: fenceRange)
             }
-
-            styleApplier.addColorAttribute(codeColor, range: result.rangeAt(3))
         }
     }
 }

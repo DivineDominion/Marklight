@@ -12,48 +12,12 @@
     import AppKit
 #endif
 
-
 open class MarklightTextProcessor {
 
-    // MARK: Syntax highlight customisation
-
-    /**
-     Color used to highlight markdown syntax. Default value is light grey.
-     */
-    open var syntaxColor = MarklightColor.lightGray
-
-    /**
-     Font used for blocks and inline code. Default value is *Menlo*.
-     */
-    open var codeFontName = "Menlo"
-
-    /**
-     `MarklightColor` used for blocks and inline code. Default value is dark grey.
-     */
-    open var codeColor = MarklightColor.darkGray
-
-    /**
-     Font used for quote blocks. Default value is *Menlo*.
-     */
-    open var quoteFontName = "Menlo"
-
-    /**
-     `MarklightColor` used for quote blocks. Default value is dark grey.
-     */
-    open var quoteColor = MarklightColor.darkGray
-
-    /**
-     Quote indentation in points. Default 20.
-     */
-    open var quoteIndentation : CGFloat = 20
-
-    /**
-     If the markdown syntax should be hidden or visible
-     */
-    open var hideSyntax = false
-
-
-    // MARK: Syntax highlighting
+    public var hideSyntax: Bool {
+        get { return Marklight.hideSyntax }
+        set { Marklight.hideSyntax = newValue }
+    }
 
     open func processEditing(
         styleApplier: MarklightStyleApplier,
@@ -62,15 +26,6 @@ open class MarklightTextProcessor {
         ) -> MarklightProcessingResult {
 
         let editedAndAdjacentParagraphRange = self.editedAndAdjacentParagraphRange(in: string, editedRange: editedRange)
-
-        Marklight.syntaxColor = syntaxColor
-        Marklight.codeFontName = codeFontName
-        Marklight.codeColor = codeColor
-        Marklight.quoteFontName = quoteFontName
-        Marklight.quoteColor = quoteColor
-        Marklight.quoteIndentation = quoteIndentation
-        Marklight.textSize = textSize
-        Marklight.hideSyntax = hideSyntax
 
         resetMarklightAttributes(
             styleApplier: styleApplier,
@@ -114,9 +69,8 @@ open class MarklightTextProcessor {
 
     fileprivate func resetMarklightAttributes(styleApplier: MarklightStyleApplier, range: NSRange) {
 
-        styleApplier.resetMarklightTextAttributes(
-            textSize: self.textSize,
-            range: range)
+        styleApplier.resetMarklightTextAttributes(range: range)
+        Marklight.theme.baseStyle.apply(styleApplier, range: range)
     }
 
     #if os(iOS)

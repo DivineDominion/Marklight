@@ -17,12 +17,17 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        textStorage.marklightTextProcessor.codeColor = NSColor.orange
-        textStorage.marklightTextProcessor.quoteColor = NSColor.darkGray
-        textStorage.marklightTextProcessor.syntaxColor = NSColor.blue
-        textStorage.marklightTextProcessor.codeFontName = "Courier"
-        textStorage.marklightTextProcessor.textSize = 18.0
-        textStorage.marklightTextProcessor.hideSyntax = true
+        let textSize: CGFloat = 18.0
+        let theme = DefaultMarklightTheme(
+            baseStyle: FontStyle(fontReplacement: NSFont.systemFont(ofSize: textSize)),
+            syntaxStyle: FontStyle(color: MarklightColor.blue),
+            codeStyle: FontStyle(fontName: "Courier", textSize: textSize, color: MarklightColor.orange),
+            quoteStyle: FontStyle(fontName: "Menlo", textSize: textSize, color: MarklightColor.darkGray),
+            referenceDefinitionStyle: FontStyle(color: MarklightColor.lightGray),
+            imageStyle: FontStyle(fontName: "Menlo", textSize: textSize),
+            linkStyle: FontStyle(fontName: "Menlo", textSize: textSize))
+        Marklight.theme = theme
+        Marklight.hideSyntax = false
 
         textView.layoutManager?.replaceTextStorage(textStorage)
 

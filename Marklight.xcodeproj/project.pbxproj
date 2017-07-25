@@ -47,6 +47,8 @@
 		500DC5581F1F50B100FE8C3E /* Marklight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C46D821C33E1300070AEDC /* Marklight.swift */; };
 		502B56FE1F2732D8004DDB54 /* MarklightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502B56FD1F2732D8004DDB54 /* MarklightTheme.swift */; };
 		502B56FF1F2732D8004DDB54 /* MarklightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502B56FD1F2732D8004DDB54 /* MarklightTheme.swift */; };
+		502B57021F276C7D004DDB54 /* FontStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502B57011F276C7D004DDB54 /* FontStyle.swift */; };
+		502B57031F276C7D004DDB54 /* FontStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502B57011F276C7D004DDB54 /* FontStyle.swift */; };
 		503683ED1F207DCD006A7344 /* MarklightTextProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503683EC1F207DCD006A7344 /* MarklightTextProcessor.swift */; };
 		503683EE1F207DCD006A7344 /* MarklightTextProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503683EC1F207DCD006A7344 /* MarklightTextProcessor.swift */; };
 		503683F01F208690006A7344 /* UniversalTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503683EF1F208690006A7344 /* UniversalTypes.swift */; };
@@ -113,6 +115,7 @@
 		500DC54C1F1F473400FE8C3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		500DC5551F1F4BDC00FE8C3E /* Array+appending.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+appending.swift"; sourceTree = "<group>"; };
 		502B56FD1F2732D8004DDB54 /* MarklightTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarklightTheme.swift; sourceTree = "<group>"; };
+		502B57011F276C7D004DDB54 /* FontStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontStyle.swift; sourceTree = "<group>"; };
 		503683EC1F207DCD006A7344 /* MarklightTextProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarklightTextProcessor.swift; sourceTree = "<group>"; };
 		503683EF1F208690006A7344 /* UniversalTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversalTypes.swift; sourceTree = "<group>"; };
 		503683F21F2087B0006A7344 /* NSString+paragraphRangeAt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSString+paragraphRangeAt.swift"; sourceTree = "<group>"; };
@@ -250,6 +253,15 @@
 			path = "Marklight macOSTests";
 			sourceTree = "<group>";
 		};
+		502B57001F276C6D004DDB54 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				502B56FD1F2732D8004DDB54 /* MarklightTheme.swift */,
+				502B57011F276C7D004DDB54 /* FontStyle.swift */,
+			);
+			name = Theme;
+			sourceTree = "<group>";
+		};
 		95C46D5E1C33E11A0070AEDC = {
 			isa = PBXGroup;
 			children = (
@@ -284,7 +296,7 @@
 				95C46D831C33E1300070AEDC /* MarklightTextStorage.swift */,
 				503683EC1F207DCD006A7344 /* MarklightTextProcessor.swift */,
 				503683F51F2095E3006A7344 /* MarklightTextProcessingResult.swift */,
-				502B56FD1F2732D8004DDB54 /* MarklightTheme.swift */,
+				502B57001F276C6D004DDB54 /* Theme */,
 				504B70471F2250B5002F9D8E /* Regex.swift */,
 				503683EF1F208690006A7344 /* UniversalTypes.swift */,
 				5003F9631F25D8CE0074C770 /* Util */,
@@ -504,6 +516,7 @@
 				5003F9801F2630FE0074C770 /* ReferenceImageStyle.swift in Sources */,
 				5003F9691F25E2D90074C770 /* InlineLinkStyle.swift in Sources */,
 				5003F9661F25DE380074C770 /* ReferenceLinkStyle.swift in Sources */,
+				502B57031F276C7D004DDB54 /* FontStyle.swift in Sources */,
 				5003F95B1F25CCE20074C770 /* InlineStyle.swift in Sources */,
 				5003F9611F25D2230074C770 /* BoldStyle.swift in Sources */,
 				5003F95E1F25CD2A0074C770 /* ItalicStyle.swift in Sources */,
@@ -533,6 +546,7 @@
 				5003F96F1F25E8C80074C770 /* AutolinkEmailStyle.swift in Sources */,
 				5003F9891F26442B0074C770 /* CodeSpanStyle.swift in Sources */,
 				95C46D851C33E1300070AEDC /* MarklightTextStorage.swift in Sources */,
+				502B57021F276C7D004DDB54 /* FontStyle.swift in Sources */,
 				500DC5561F1F4BDC00FE8C3E /* Array+appending.swift in Sources */,
 				5003F9821F263F8A0074C770 /* BlockquoteStyle.swift in Sources */,
 				502B56FE1F2732D8004DDB54 /* MarklightTheme.swift in Sources */,

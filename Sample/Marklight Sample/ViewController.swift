@@ -23,13 +23,21 @@ class ViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        textStorage.marklightTextProcessor.codeColor = UIColor.orange
-        textStorage.marklightTextProcessor.quoteColor = UIColor.darkGray
-        textStorage.marklightTextProcessor.syntaxColor = UIColor.blue
-        textStorage.marklightTextProcessor.codeFontName = "Courier"
-        textStorage.marklightTextProcessor.fontTextStyle = UIFontTextStyle.subheadline.rawValue
-        textStorage.marklightTextProcessor.hideSyntax = true
+
+        let fontTextStyle = UIFontTextStyle.subheadline.rawValue
+        let textSize = MarklightFontDescriptor
+            .preferredFontDescriptor(withTextStyle: UIFontTextStyle(rawValue: fontTextStyle))
+            .pointSize
+        let theme = DefaultMarklightTheme(
+            baseStyle: FontStyle(fontReplacement: MarklightFont.systemFont(ofSize: textSize)),
+            syntaxStyle: FontStyle(color: MarklightColor.blue),
+            codeStyle: FontStyle(fontName: "Courier", textSize: textSize, color: MarklightColor.orange),
+            quoteStyle: FontStyle(fontName: "Courier", textSize: textSize, color: MarklightColor.darkGray),
+            referenceDefinitionStyle: FontStyle(color: MarklightColor.lightGray),
+            imageStyle: FontStyle(fontName: "Courier", textSize: textSize),
+            linkStyle: FontStyle(fontName: "Courier", textSize: textSize))
+        Marklight.theme = theme
+        Marklight.hideSyntax = true
         
         let layoutManager = NSLayoutManager()
         

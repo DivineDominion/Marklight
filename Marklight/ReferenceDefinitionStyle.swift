@@ -33,9 +33,8 @@ struct ReferenceDefinitionStyle: BlockStyle {
     fileprivate static let referenceLinkRegex = Regex(pattern: referenceLinkPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
 
     func apply(_ styleApplier: MarklightStyleApplier, hideSyntax: Bool, document: Document) {
-
         ReferenceDefinitionStyle.referenceLinkRegex.matches(document) { (result) -> Void in
-            styleApplier.addColorAttribute(Marklight.syntaxColor, range: result.range)
+            Marklight.theme.referenceDefinitionStyle.apply(styleApplier, range: result.range)
         }
     }
 }

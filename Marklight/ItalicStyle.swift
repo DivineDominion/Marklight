@@ -44,11 +44,11 @@ struct ItalicStyle: InlineStyle {
             }
 
             let preRange = NSMakeRange(result.range.location + start, 1)
-            styleApplier.addColorAttribute(Marklight.syntaxColor, range: preRange)
+            Marklight.theme.syntaxStyle.apply(styleApplier, range: preRange)
             if hideSyntax { styleApplier.addHiddenAttributes(range: preRange) }
 
             let postRange = NSMakeRange(result.range.location + result.range.length - 1, 1)
-            styleApplier.addColorAttribute(Marklight.syntaxColor, range: postRange)
+            Marklight.theme.syntaxStyle.apply(styleApplier, range: postRange)
             if hideSyntax { styleApplier.addHiddenAttributes(range: postRange) }
         }
     }

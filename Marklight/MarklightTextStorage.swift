@@ -74,6 +74,11 @@ open class MarklightTextStorage: NSTextStorage {
 
     open lazy var marklightTextProcessor: MarklightTextProcessor = MarklightTextProcessor()
 
+    public var hideSyntax: Bool {
+        get { return marklightTextProcessor.hideSyntax }
+        set { marklightTextProcessor.hideSyntax = newValue }
+    }
+
     /// Delegate from this class cluster to a regular `NSTextStorage` instance
     /// because it does some additional performance optimizations 
     /// over `NSMutableAttributedString`.
@@ -117,11 +122,10 @@ open class MarklightTextStorage: NSTextStorage {
         super.processEditing()
     }
 
-    override public func resetMarklightTextAttributes(textSize: CGFloat, range: NSRange) {
+    override public func resetMarklightTextAttributes(range: NSRange) {
         // Use `imp` directly instead of `self` to avoid changing the edited range
         // after attribute fixing, affecting the insertion point on macOS.
         imp.removeAttribute(NSForegroundColorAttributeName, range: range)
-        imp.addAttribute(NSFontAttributeName, value: MarklightFont.systemFont(ofSize: textSize), range: range)
         imp.addAttribute(NSParagraphStyleAttributeName, value: NSParagraphStyle(), range: range)
     }
 

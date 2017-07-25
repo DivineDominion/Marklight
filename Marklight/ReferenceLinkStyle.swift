@@ -51,21 +51,20 @@ struct ReferenceLinkStyle: InlineStyle {
 
     func apply(_ styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
 
-        let codeFont = Marklight.codeFont
-
         ReferenceLinkStyle.anchorRegex.matches(paragraph) { (result) -> Void in
-            styleApplier.addFontAttribute(codeFont, range: result.range)
+
+            Marklight.theme.linkStyle.apply(styleApplier, range: result.range)
 
             [result.rangeAt(1),
              result.rangeAt(3),
              result.rangeAt(4),
              result.rangeAt(6)].forEach { (bracketRange: NSRange) in
-                styleApplier.addColorAttribute(Marklight.syntaxColor, range: bracketRange)
+                Marklight.theme.syntaxStyle.apply(styleApplier, range: bracketRange)
             }
 
             // TODO: see issue #12; what is this used for?
             ReferenceLinkStyle.parenRegex.matches(paragraph.string, range: result.range) { (innerResult) -> Void in
-                styleApplier.addColorAttribute(Marklight.syntaxColor, range: innerResult.range)
+                Marklight.theme.syntaxStyle.apply(styleApplier, range: innerResult.range)
 
                 if hideSyntax {
                     styleApplier.addHiddenAttributes(range: NSMakeRange(innerResult.range.location, 1))

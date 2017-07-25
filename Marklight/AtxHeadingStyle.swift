@@ -35,7 +35,7 @@ struct AtxHeadingStyle: BlockStyle {
             [result.rangeAt(1),
              result.rangeAt(3)].forEach { hashRange in
                 if hideSyntax { styleApplier.addHiddenAttributes(range: hashRange) }
-                else { styleApplier.addColorAttribute(Marklight.syntaxColor, range: hashRange) }
+                else { Marklight.theme.syntaxStyle.apply(styleApplier, range: hashRange) }
             }
         }
     }

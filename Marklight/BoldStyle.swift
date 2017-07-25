@@ -28,12 +28,12 @@ struct BoldStyle: InlineStyle {
             }
 
             let preRange = NSMakeRange(result.range.location + start, 2)
-            styleApplier.addColorAttribute(Marklight.syntaxColor, range: preRange)
             if hideSyntax { styleApplier.addHiddenAttributes(range: preRange) }
+            else { Marklight.theme.syntaxStyle.apply(styleApplier, range: preRange) }
 
             let postRange = NSMakeRange(result.range.location + result.range.length - 2, 2)
-            styleApplier.addColorAttribute(Marklight.syntaxColor, range: postRange)
             if hideSyntax { styleApplier.addHiddenAttributes(range: postRange) }
+            else { Marklight.theme.syntaxStyle.apply(styleApplier, range: postRange) }
         }
     }
 }

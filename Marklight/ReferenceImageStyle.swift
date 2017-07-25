@@ -31,10 +31,9 @@ struct ReferenceImageStyle: InlineStyle {
 
     func apply(_ styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
 
-        let codeFont = Marklight.codeFont
-
         ReferenceImageStyle.imageRegex.matches(paragraph) { (result) -> Void in
-            styleApplier.addFontAttribute(codeFont, range: result.range)
+            
+            Marklight.theme.imageStyle.apply(styleApplier, range: result.range)
 
             // TODO: add image attachment
 
@@ -47,7 +46,7 @@ struct ReferenceImageStyle: InlineStyle {
              result.rangeAt(3),
              result.rangeAt(4),
              result.rangeAt(6)].forEach { (bracketRange: NSRange) in
-                styleApplier.addColorAttribute(Marklight.syntaxColor, range: bracketRange)
+                Marklight.theme.syntaxStyle.apply(styleApplier, range: bracketRange)
             }
         }
     }

@@ -24,18 +24,14 @@ class ViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let fontTextStyle = UIFontTextStyle.subheadline.rawValue
-        let textSize = MarklightFontDescriptor
-            .preferredFontDescriptor(withTextStyle: UIFontTextStyle(rawValue: fontTextStyle))
-            .pointSize
         let theme = DefaultMarklightTheme(
-            baseStyle: FontStyle(fontReplacement: MarklightFont.systemFont(ofSize: textSize)),
+            baseStyle: FontStyle(preferredFontForTextStyle: .body),
             syntaxStyle: FontStyle(color: MarklightColor.blue),
-            codeStyle: FontStyle(fontName: "Courier", textSize: textSize, color: MarklightColor.orange),
-            quoteStyle: FontStyle(fontName: "Courier", textSize: textSize, color: MarklightColor.darkGray),
+            codeStyle: FontStyle(fontName: "Courier", fontTextStyle: .body, color: MarklightColor.orange),
+            quoteStyle: FontStyle(fontName: "Courier", fontTextStyle: .body, color: MarklightColor.darkGray),
             referenceDefinitionStyle: FontStyle(color: MarklightColor.lightGray),
-            imageStyle: FontStyle(fontName: "Courier", textSize: textSize),
-            linkStyle: FontStyle(fontName: "Courier", textSize: textSize))
+            imageStyle: FontStyle(fontName: "Courier", fontTextStyle: .body),
+            linkStyle: FontStyle(fontName: "Courier", fontTextStyle: .body))
         Marklight.theme = theme
         Marklight.hideSyntax = true
         

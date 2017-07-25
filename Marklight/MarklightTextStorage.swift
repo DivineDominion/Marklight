@@ -159,8 +159,6 @@ open class MarklightTextStorage: NSTextStorage {
      - returns: The attributes for the character at index.     - see:
      [`NSTextStorage`](xcdoc://?url=developer.apple.com/library/ios/documentation/UIKit/Reference/NSTextStorage_Class_TextKit/index.html#//apple_ref/doc/uid/TP40013282)
      */
-
-    
     open override func attributes(at location: Int, effectiveRange range: NSRangePointer?) -> [String : Any] {
         return imp.attributes(at: location, effectiveRange: range)
     }
@@ -206,8 +204,6 @@ open class MarklightTextStorage: NSTextStorage {
      - see:
         [`NSTextStorage`](xcdoc://?url=developer.apple.com/library/ios/documentation/UIKit/Reference/NSTextStorage_Class_TextKit/index.html#//apple_ref/doc/uid/TP40013282)
      */
-    
-    
     open override func setAttributes(_ attrs: [String : Any]?, range: NSRange) {
         // When we are processing, using the regular callback triggers will 
         // result in the caret jumping to the end of the document.
@@ -243,11 +239,16 @@ open class MarklightTextStorage: NSTextStorage {
      - note: Currently it works only after the user adds or removes some chars inside the
      `UITextView`.
      */
-    // TODO: Make this work without needing to type in the text view.
     func observeTextSize() {
-        NotificationCenter.default.addObserver(forName: .UIContentSizeCategoryDidChange, object: nil, queue: OperationQueue.main) { [weak self] (notification) -> Void in
-            self?.invalidateTextSizeForWholeRange()
-        }
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(didChangeContentSizeCategory(_:)),
+            name: .UIContentSizeCategoryDidChange,
+            object: nil)
+    }
+
+    @objc fileprivate func didChangeContentSizeCategory(_ notification: Notification) {
+        invalidateTextSizeForWholeRange()
     }
 
     deinit {
@@ -255,11 +256,15 @@ open class MarklightTextStorage: NSTextStorage {
     }
 
     fileprivate func invalidateTextSizeForWholeRange() {
-        let wholeRange = NSMakeRange(0, (self.string as NSString).length)
-        self.invalidateAttributes(in: wholeRange)
-        for layoutManager in self.layoutManagers {
-            layoutManager.invalidateDisplay(forCharacterRange: wholeRange)
+
+        if var theme = Marklight.theme as? DynamicMarklightTheme {
+            theme.refreshFontSizes()
+            Marklight.theme = theme
         }
+
+        let wholeRange = NSMakeRange(0, (self.string as NSString).length)
+        self.edited(.editedAttributes, range: wholeRange, changeInLength: 0)
     }
+
     #endif
 }

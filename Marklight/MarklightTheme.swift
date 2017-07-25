@@ -6,8 +6,6 @@
 //  Copyright © 2017 MacTeo. See LICENSE for details.
 //
 
-import struct Foundation.CGFloat
-
 public protocol MarklightTheme {
     /// Style initially used for any text.
     var baseStyle: FontStyle { get }
@@ -33,13 +31,13 @@ public protocol MarklightTheme {
 
 public struct DefaultMarklightTheme: MarklightTheme {
 
-    public let baseStyle: FontStyle
-    public let syntaxStyle: FontStyle
-    public let codeStyle: FontStyle
-    public let quoteStyle: FontStyle
-    public let referenceDefinitionStyle: FontStyle
-    public let imageStyle: FontStyle
-    public let linkStyle: FontStyle
+    public var baseStyle: FontStyle
+    public var syntaxStyle: FontStyle
+    public var codeStyle: FontStyle
+    public var quoteStyle: FontStyle
+    public var referenceDefinitionStyle: FontStyle
+    public var imageStyle: FontStyle
+    public var linkStyle: FontStyle
 
     public init(
         baseStyle: FontStyle = .empty,
@@ -60,13 +58,26 @@ public struct DefaultMarklightTheme: MarklightTheme {
     }
 }
 
-/// Loads a font named `name` or falls back to the system font of the same
-/// size if that fails
-internal func namedFont(_ name: String, size: CGFloat) -> MarklightFont {
-    if let font = MarklightFont(name: name, size: size) {
-        return font
-    } else {
-        Swift.print("Could not load font named '\(name)'.")
-        return MarklightFont.systemFont(ofSize: size)
+#if os(iOS)
+/// Optional `MarkdownTheme` trait that will be picked up by
+/// `MarklightTextStorage` to update font sizes on dynamic text
+/// setting changes. 
+/// 
+/// If you do not use `MarklightTextStorage`, there's no need to adopt this
+/// in your themes.
+public protocol DynamicMarklightTheme: MarklightTheme {
+    mutating func refreshFontSizes()
+}
+
+extension DefaultMarklightTheme: DynamicMarklightTheme {
+    public mutating func refreshFontSizes() {
+        baseStyle.refreshFontSize()
+        syntaxStyle.refreshFontSize()
+        codeStyle.refreshFontSize()
+        quoteStyle.refreshFontSize()
+        referenceDefinitionStyle.refreshFontSize()
+        imageStyle.refreshFontSize()
+        linkStyle.refreshFontSize()
     }
 }
+#endif

@@ -34,6 +34,15 @@ struct CodeBlockStyle: BlockStyle {
 
     fileprivate static let codeBlockRegex = Regex(pattern: codeBlockPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
 
+    fileprivate static var fencedCodeBlockPattern: String { return [
+        "^(`{3}([\\S]+)?)\\n",  // $1 = opening fence, $2 = language
+        "([\\s\\S]+)",          // $3 = code block
+        "\\n(`{3})"             // $4 = opening fence
+        ].joined(separator: "")
+    }
+
+    fileprivate static let fencedCodeBlockRegex = Regex(pattern: fencedCodeBlockPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
+
     func apply(_ styleApplier: MarklightStyleApplier, hideSyntax: Bool, document: Document) {
 
         // TODO: refactor in Marklight to not compute this everytime
@@ -43,6 +52,17 @@ struct CodeBlockStyle: BlockStyle {
         CodeBlockStyle.codeBlockRegex.matches(document) { (result) -> Void in
             styleApplier.addFontAttribute(codeFont, range: result.range)
             styleApplier.addColorAttribute(codeColor, range: result.range)
+        }
+
+        CodeBlockStyle.fencedCodeBlockRegex.matches(document) { (result) -> Void in
+            styleApplier.addFontAttribute(codeFont, range: result.range)
+
+            [result.rangeAt(1),
+             result.rangeAt(4)].forEach { fenceRange in
+                styleApplier.addColorAttribute(Marklight.syntaxColor, range: fenceRange)
+            }
+
+            styleApplier.addColorAttribute(codeColor, range: result.rangeAt(3))
         }
     }
 }

@@ -184,25 +184,32 @@ public struct Marklight {
      Text size measured in points.
      */
     #if os(iOS)
-    public static var textSize: CGFloat = MarklightFont.systemFontSize
+    public static var textSize: CGFloat = MarklightFont.systemFontSize  {
+        didSet { Marklight.reloadFonts() }
+    }
     #elseif os(macOS)
-    public static var textSize: CGFloat = MarklightFont.systemFontSize()
+    public static var textSize: CGFloat = MarklightFont.systemFontSize() {
+        didSet { Marklight.reloadFonts() }
+    }
     #endif
 
-    // We transform the user provided `codeFontName` `String` to a `NSFont`
-    internal static func codeFont(_ size: CGFloat) -> MarklightFont {
-        if let font = MarklightFont(name: Marklight.codeFontName, size: size) {
-            return font
-        } else {
-            return MarklightFont.systemFont(ofSize: size)
-        }
+    fileprivate static func reloadFonts() {
+        Marklight.codeFont = namedFont(Marklight.codeFontName, size: Marklight.textSize)
+        Marklight.quoteFont = namedFont(Marklight.quoteFontName, size: Marklight.textSize)
     }
 
-    // We transform the user provided `quoteFontName` `String` to a `NSFont`
-    internal static func quoteFont(_ size: CGFloat) -> MarklightFont {
-        if let font = MarklightFont(name: Marklight.quoteFontName, size: size) {
+
+    internal fileprivate(set) static var codeFont: MarklightFont = namedFont(Marklight.codeFontName, size: Marklight.textSize)
+
+    internal fileprivate(set) static var quoteFont: MarklightFont = namedFont(Marklight.quoteFontName, size: Marklight.textSize)
+
+    /// Loads a font named `name` or falls back to the system font of the same
+    /// size if that fails
+    internal static func namedFont(_ name: String, size: CGFloat) -> MarklightFont {
+        if let font = MarklightFont(name: name, size: size) {
             return font
         } else {
+            NSLog("Could not load font named '\(name)'.")
             return MarklightFont.systemFont(ofSize: size)
         }
     }

@@ -45,8 +45,7 @@ struct CodeBlockStyle: BlockStyle {
 
     func apply(_ styleApplier: MarklightStyleApplier, hideSyntax: Bool, document: Document) {
 
-        // TODO: refactor in Marklight to not compute this everytime
-        let codeFont = Marklight.codeFont(Marklight.textSize)
+        let codeFont = Marklight.codeFont
         let codeColor = Marklight.codeColor
 
         CodeBlockStyle.codeBlockRegex.matches(document) { (result) -> Void in

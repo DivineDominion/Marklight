@@ -31,8 +31,7 @@ struct BlockquoteStyle: BlockStyle {
 
     func apply(_ styleApplier: MarklightStyleApplier, hideSyntax: Bool, document: Document) {
 
-        // TODO: Refactor in Marklight
-        let quoteFont = Marklight.quoteFont(Marklight.textSize)
+        let quoteFont = Marklight.quoteFont
         let quoteColor = Marklight.quoteColor
 
         BlockquoteStyle.blockQuoteRegex.matches(document) { (result) -> Void in

@@ -31,8 +31,7 @@ struct ReferenceImageStyle: InlineStyle {
 
     func apply(_ styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
 
-        // TODO: refactor in Marklight to not compute this everytime
-        let codeFont = Marklight.codeFont(Marklight.textSize)
+        let codeFont = Marklight.codeFont
 
         ReferenceImageStyle.imageRegex.matches(paragraph) { (result) -> Void in
             styleApplier.addFontAttribute(codeFont, range: result.range)

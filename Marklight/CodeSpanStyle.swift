@@ -42,8 +42,8 @@ struct CodeSpanStyle: InlineStyle {
 
     func apply(_ styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
 
-        // TODO: refactor in Marklight to not compute this everytime
-        let codeFont = Marklight.codeFont(Marklight.textSize)
+
+        let codeFont = Marklight.codeFont
         let codeColor = Marklight.codeColor
         
         CodeSpanStyle.codeSpanRegex.matches(paragraph) { (result) -> Void in

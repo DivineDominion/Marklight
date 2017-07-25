@@ -217,20 +217,17 @@ public struct Marklight {
     
     /**
      This function should be called by the `-processEditing` method in your
-     `NSTextStorage` subclass and this is the function that is being called
-      for every change in the text view's text.
+     `NSTextStorage` subclass for block-level changes and initial document parsing.
 
      - parameter styleApplier: `MarklightStyleApplier`, for example
          your `NSTextStorage` subclass.
-     - parameter string: The text that should be scanned for styling.
-     - parameter affectedRange: The range to apply styling to.
-    */
-    public static func applyMarkdownStyle(_ styleApplier: MarklightStyleApplier, string: String, affectedRange paragraphRange: NSRange) {
+     - parameter string: The text that should be scanned for styling, 
+         assumed to be the whole document.
+     */
+    public static func applyBlockMarkdownStyle(_ styleApplier: MarklightStyleApplier, string: String) {
 
-        let textStorageNSString = string as NSString
-        let wholeRange = NSMakeRange(0, textStorageNSString.length)
+        let wholeRange = NSMakeRange(0, (string as NSString).length)
         let document = Document(string: string, wholeRange: wholeRange)
-        let paragraph = Paragraph(string: string, paragraphRange: paragraphRange)
 
         AtxHeadingStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, document: document)
         SetextHeadingStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, document: document)
@@ -239,6 +236,21 @@ public struct Marklight {
         BlockquoteStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, document: document)
         ListStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, document: document)
         CodeBlockStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, document: document)
+    }
+
+    /**
+     This function should be called by the `-processEditing` method in your
+     `NSTextStorage` subclass and this is the function that is being called
+     for every change in the text view's text during live-editing.
+
+     - parameter styleApplier: `MarklightStyleApplier`, for example
+         your `NSTextStorage` subclass.
+     - parameter string: The text that should be scanned for styling.
+     - parameter affectedRange: The range to apply styling to.
+     */
+    public static func applySpanMarkdownStyle(_ styleApplier: MarklightStyleApplier, string: String, affectedRange paragraphRange: NSRange) {
+
+        let paragraph = Paragraph(string: string, paragraphRange: paragraphRange)
 
         ReferenceLinkStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
         InlineLinkStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)

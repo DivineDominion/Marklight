@@ -75,7 +75,10 @@ open class MarklightTextProcessor {
         resetMarklightAttributes(
             styleApplier: styleApplier,
             range: editedAndAdjacentParagraphRange)
-        Marklight.applyMarkdownStyle(
+        Marklight.applyBlockMarkdownStyle(
+            styleApplier,
+            string: string)
+        Marklight.applySpanMarkdownStyle(
             styleApplier,
             string: string,
             affectedRange: editedAndAdjacentParagraphRange)

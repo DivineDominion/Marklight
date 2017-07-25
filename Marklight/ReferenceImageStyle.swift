@@ -2,8 +2,8 @@
 //  ReferenceImageStyle.swift
 //  Marklight
 //
-//  Created by Christian Tietze on 24.07.17.
-//  Copyright © 2017 Dolomate. All rights reserved.
+//  Created by Christian Tietze on 2017-07-24.
+//  Copyright © 2017 MacTeo. See LICENSE for details.s
 //
 
 import Foundation

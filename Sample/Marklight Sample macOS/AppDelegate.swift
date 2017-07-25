@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  Marklight Sample macOS
 //
-//  Created by Christian Tietze on 19.07.17.
-//  Copyright © 2017 Dolomate. All rights reserved.
+//  Created by Christian Tietze on 2017-07-19.
+//  Copyright © 2017 MacTeo. See LICENSE for details.
 //
 
 import Cocoa

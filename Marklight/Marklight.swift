@@ -190,14 +190,20 @@ public struct Marklight {
         let wholeRange = NSMakeRange(0, (string as NSString).length)
         let document = Document(string: string, wholeRange: wholeRange)
 
-        AtxHeadingStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, document: document)
-        SetextHeadingStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, document: document)
-
-        ReferenceDefinitionStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, document: document)
-        BlockquoteStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, document: document)
-        ListStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, document: document)
-        CodeBlockStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, document: document)
+        blockMarkdownStyles.forEach { blockStyle in
+            blockStyle.apply(Marklight.theme, styleApplier: styleApplier, hideSyntax: Marklight.hideSyntax, document: document)
+        }
     }
+
+    fileprivate static let blockMarkdownStyles: [BlockStyle] = [
+        AtxHeadingStyle(),
+        SetextHeadingStyle(),
+
+        ReferenceDefinitionStyle(),
+        BlockquoteStyle(),
+        ListStyle(),
+        CodeBlockStyle()
+    ]
 
     /**
      This function should be called by the `-processEditing` method in your
@@ -213,22 +219,28 @@ public struct Marklight {
 
         let paragraph = Paragraph(string: string, paragraphRange: paragraphRange)
 
-        ReferenceLinkStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
-        InlineLinkStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
+        spanMarkdownStyles.forEach { style in
+            style.apply(Marklight.theme, styleApplier: styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
+        }
+    }
 
-        ReferenceImageStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
-        InlineImageStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
+    fileprivate static let spanMarkdownStyles: [InlineStyle] = [
+        ReferenceLinkStyle(),
+        InlineLinkStyle(),
+
+        ReferenceImageStyle(),
+        InlineImageStyle(),
 
         // Apply bold before italic to support nested bold/italic styles.
-        BoldStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
-        ItalicStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
+        BoldStyle(),
+        ItalicStyle(),
 
         // Apply code last to remove bold/italic from matched text again
-        CodeSpanStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
+        CodeSpanStyle(),
 
-        AutolinkStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
-        AutolinkEmailStyle().apply(styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
-    }
+        AutolinkStyle(),
+        AutolinkEmailStyle()
+    ]
 
     /// maximum nested depth of [] and () supported by the transform; 
     /// implementation detail

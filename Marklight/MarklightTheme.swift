@@ -6,6 +6,8 @@
 //  Copyright © 2017 MacTeo. See LICENSE for details.
 //
 
+import struct Foundation.CGFloat
+
 public protocol MarklightTheme {
     /// Style initially used for any text.
     var baseStyle: FontStyle { get }

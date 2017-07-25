@@ -15,7 +15,8 @@ internal struct Document {
 
 internal protocol BlockStyle {
     func apply(
-        _ styleApplier: MarklightStyleApplier,
+        _ theme: MarklightTheme,
+        styleApplier: MarklightStyleApplier,
         hideSyntax: Bool,
         document: Document)
 }

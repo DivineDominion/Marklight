@@ -24,7 +24,7 @@ struct ItalicStyle: InlineStyle {
 
     let innerBoldStyle = BoldStyle()
 
-    func apply(_ styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
+    func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
 
         ItalicStyle.strictItalicRegex.matches(paragraph) { result in
 
@@ -33,7 +33,8 @@ struct ItalicStyle: InlineStyle {
             // Previously applied inner bold text would have been overwritten by now
             let innerTextRange = result.rangeAt(3)
             self.innerBoldStyle.apply(
-                styleApplier,
+                theme,
+                styleApplier: styleApplier,
                 hideSyntax: hideSyntax,
                 paragraph: Paragraph(string: paragraph.string, paragraphRange: innerTextRange))
 
@@ -44,11 +45,11 @@ struct ItalicStyle: InlineStyle {
             }
 
             let preRange = NSMakeRange(result.range.location + start, 1)
-            Marklight.theme.syntaxStyle.apply(styleApplier, range: preRange)
+            theme.syntaxStyle.apply(styleApplier, range: preRange)
             if hideSyntax { styleApplier.addHiddenAttributes(range: preRange) }
 
             let postRange = NSMakeRange(result.range.location + result.range.length - 1, 1)
-            Marklight.theme.syntaxStyle.apply(styleApplier, range: postRange)
+            theme.syntaxStyle.apply(styleApplier, range: postRange)
             if hideSyntax { styleApplier.addHiddenAttributes(range: postRange) }
         }
     }

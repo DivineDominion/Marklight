@@ -43,18 +43,18 @@ struct CodeBlockStyle: BlockStyle {
 
     fileprivate static let fencedCodeBlockRegex = Regex(pattern: fencedCodeBlockPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
 
-    func apply(_ styleApplier: MarklightStyleApplier, hideSyntax: Bool, document: Document) {
+    func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, document: Document) {
 
         CodeBlockStyle.codeBlockRegex.matches(document) { (result) -> Void in
-            Marklight.theme.codeStyle.apply(styleApplier, range: result.range)
+            theme.codeStyle.apply(styleApplier, range: result.range)
         }
 
         CodeBlockStyle.fencedCodeBlockRegex.matches(document) { (result) -> Void in
-            Marklight.theme.codeStyle.apply(styleApplier, range: result.range)
+            theme.codeStyle.apply(styleApplier, range: result.range)
 
             [result.rangeAt(1),
              result.rangeAt(4)].forEach { fenceRange in
-                Marklight.theme.syntaxStyle.apply(styleApplier, range: fenceRange)
+                theme.syntaxStyle.apply(styleApplier, range: fenceRange)
             }
         }
     }

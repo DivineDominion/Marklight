@@ -27,7 +27,7 @@ struct AtxHeadingStyle: BlockStyle {
 
     fileprivate static let headersAtxRegex = Regex(pattern: headerAtxPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
 
-    func apply(_ styleApplier: MarklightStyleApplier, hideSyntax: Bool, document: Document) {
+    func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, document: Document) {
 
         AtxHeadingStyle.headersAtxRegex.matches(document) { (result) -> Void in
             styleApplier.embolden(range: result.range)
@@ -35,7 +35,7 @@ struct AtxHeadingStyle: BlockStyle {
             [result.rangeAt(1),
              result.rangeAt(3)].forEach { hashRange in
                 if hideSyntax { styleApplier.addHiddenAttributes(range: hashRange) }
-                else { Marklight.theme.syntaxStyle.apply(styleApplier, range: hashRange) }
+                else { theme.syntaxStyle.apply(styleApplier, range: hashRange) }
             }
         }
     }

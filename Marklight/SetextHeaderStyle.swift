@@ -29,10 +29,10 @@ struct SetextHeadingStyle: BlockStyle {
 
     fileprivate static let headersSetextRegex = Regex(pattern: headerSetextPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
 
-    func apply(_ styleApplier: MarklightStyleApplier, hideSyntax: Bool, document: Document) {
+    func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, document: Document) {
         SetextHeadingStyle.headersSetextRegex.matches(document) { (result) -> Void in
             styleApplier.embolden(range: result.range)
-            Marklight.theme.syntaxStyle.apply(styleApplier, range: result.rangeAt(1))
+            theme.syntaxStyle.apply(styleApplier, range: result.rangeAt(1))
         }
     }
 }

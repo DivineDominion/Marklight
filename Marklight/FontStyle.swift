@@ -7,6 +7,9 @@
 //
 
 import struct Foundation.NSRange
+#if os(macOS)
+import struct Foundation.CGFloat
+#endif
 
 /// Cascading style, i.e. you don't need to set any value
 /// if you do not want to change the parent style of the

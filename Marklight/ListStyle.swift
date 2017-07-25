@@ -39,11 +39,11 @@ struct ListStyle: BlockStyle {
     fileprivate static var listPattern: String { return "(?:(?<=\\n\\n)|\\A\\n?)" + _wholeList }
     fileprivate static let listRegex = Regex(pattern: listPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
 
-    func apply(_ styleApplier: MarklightStyleApplier, hideSyntax: Bool, document: Document) {
+    func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, document: Document) {
 
         ListStyle.listRegex.matches(document) { (result) -> Void in
             ListStyle.listOpeningRegex.matches(document.string, range: result.range) { (innerResult) -> Void in
-                Marklight.theme.syntaxStyle.apply(styleApplier, range: innerResult.range)
+                theme.syntaxStyle.apply(styleApplier, range: innerResult.range)
             }
         }
     }

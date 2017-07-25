@@ -49,22 +49,22 @@ struct ReferenceLinkStyle: InlineStyle {
 
     internal static let parenRegex = Regex(pattern: parenPattern, options: [.allowCommentsAndWhitespace])
 
-    func apply(_ styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
+    func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
 
         ReferenceLinkStyle.anchorRegex.matches(paragraph) { (result) -> Void in
 
-            Marklight.theme.linkStyle.apply(styleApplier, range: result.range)
+            theme.linkStyle.apply(styleApplier, range: result.range)
 
             [result.rangeAt(1),
              result.rangeAt(3),
              result.rangeAt(4),
              result.rangeAt(6)].forEach { (bracketRange: NSRange) in
-                Marklight.theme.syntaxStyle.apply(styleApplier, range: bracketRange)
+                theme.syntaxStyle.apply(styleApplier, range: bracketRange)
             }
 
             // TODO: see issue #12; what is this used for?
             ReferenceLinkStyle.parenRegex.matches(paragraph.string, range: result.range) { (innerResult) -> Void in
-                Marklight.theme.syntaxStyle.apply(styleApplier, range: innerResult.range)
+                theme.syntaxStyle.apply(styleApplier, range: innerResult.range)
 
                 if hideSyntax {
                     styleApplier.addHiddenAttributes(range: NSMakeRange(innerResult.range.location, 1))

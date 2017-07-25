@@ -29,16 +29,16 @@ struct BlockquoteStyle: BlockStyle {
 
     fileprivate static let blockQuoteOpeningRegex = Regex(pattern: "(^\\p{Z}*>\\p{Z})", options: [.anchorsMatchLines])
 
-    func apply(_ styleApplier: MarklightStyleApplier, hideSyntax: Bool, document: Document) {
+    func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, document: Document) {
 
         BlockquoteStyle.blockQuoteRegex.matches(document) { (result) -> Void in
-            Marklight.theme.quoteStyle.apply(styleApplier, range: result.range)
+            theme.quoteStyle.apply(styleApplier, range: result.range)
 
             styleApplier.addParagraphIndentation(indent: Marklight.quoteIndentation, range: result.range)
 
             BlockquoteStyle.blockQuoteOpeningRegex.matches(document.string, range: result.range) { (innerResult) -> Void in
                 if hideSyntax { styleApplier.addHiddenAttributes(range: innerResult.range) }
-                else { Marklight.theme.syntaxStyle.apply(styleApplier, range: innerResult.range) }
+                else { theme.syntaxStyle.apply(styleApplier, range: innerResult.range) }
             }
         }
     }

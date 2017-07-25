@@ -16,7 +16,7 @@ struct AutolinkStyle: InlineStyle {
     fileprivate static var autolinkPrefixPattern: String { return "((https?|ftp)://)" }
     fileprivate static let autolinkPrefixRegex = Regex(pattern: autolinkPrefixPattern, options: [.dotMatchesLineSeparators])
 
-    func apply(_ styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
+    func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
 
         AutolinkStyle.autolinkRegex.matches(paragraph) { (result) -> Void in
             let linkSubstring = (paragraph.string as NSString).substring(with: result.range)

@@ -16,7 +16,7 @@ struct BoldStyle: InlineStyle {
 
     static let strictBoldRegex = Regex(pattern: strictBoldPattern, options: [.anchorsMatchLines])
 
-    func apply(_ styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
+    func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
 
         BoldStyle.strictBoldRegex.matches(paragraph) { (result) -> Void in
             styleApplier.embolden(range: result.range)
@@ -29,11 +29,11 @@ struct BoldStyle: InlineStyle {
 
             let preRange = NSMakeRange(result.range.location + start, 2)
             if hideSyntax { styleApplier.addHiddenAttributes(range: preRange) }
-            else { Marklight.theme.syntaxStyle.apply(styleApplier, range: preRange) }
+            else { theme.syntaxStyle.apply(styleApplier, range: preRange) }
 
             let postRange = NSMakeRange(result.range.location + result.range.length - 2, 2)
             if hideSyntax { styleApplier.addHiddenAttributes(range: postRange) }
-            else { Marklight.theme.syntaxStyle.apply(styleApplier, range: postRange) }
+            else { theme.syntaxStyle.apply(styleApplier, range: postRange) }
         }
     }
 }

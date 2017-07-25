@@ -29,11 +29,11 @@ struct ReferenceImageStyle: InlineStyle {
 
     fileprivate static let imageRegex = Regex(pattern: imagePattern, options: [.allowCommentsAndWhitespace, .dotMatchesLineSeparators])
 
-    func apply(_ styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
+    func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
 
         ReferenceImageStyle.imageRegex.matches(paragraph) { (result) -> Void in
             
-            Marklight.theme.imageStyle.apply(styleApplier, range: result.range)
+            theme.imageStyle.apply(styleApplier, range: result.range)
 
             // TODO: add image attachment
 
@@ -46,7 +46,7 @@ struct ReferenceImageStyle: InlineStyle {
              result.rangeAt(3),
              result.rangeAt(4),
              result.rangeAt(6)].forEach { (bracketRange: NSRange) in
-                Marklight.theme.syntaxStyle.apply(styleApplier, range: bracketRange)
+                theme.syntaxStyle.apply(styleApplier, range: bracketRange)
             }
         }
     }

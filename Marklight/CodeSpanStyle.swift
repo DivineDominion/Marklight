@@ -39,18 +39,18 @@ struct CodeSpanStyle: InlineStyle {
 
     fileprivate static let codeSpanClosingRegex = Regex(pattern: codeSpanClosingPattern, options: [.allowCommentsAndWhitespace, .dotMatchesLineSeparators])
 
-    func apply(_ styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
+    func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
 
         CodeSpanStyle.codeSpanRegex.matches(paragraph) { (result) -> Void in
-            Marklight.theme.codeStyle.apply(styleApplier, range: result.range)
+            theme.codeStyle.apply(styleApplier, range: result.range)
 
             CodeSpanStyle.codeSpanOpeningRegex.matches(paragraph) { (innerResult) -> Void in
                 if hideSyntax { styleApplier.addHiddenAttributes(range: innerResult.range) }
-                else { Marklight.theme.syntaxStyle.apply(styleApplier, range: innerResult.range) }
+                else { theme.syntaxStyle.apply(styleApplier, range: innerResult.range) }
             }
             CodeSpanStyle.codeSpanClosingRegex.matches(paragraph) { (innerResult) -> Void in
                 if hideSyntax { styleApplier.addHiddenAttributes(range: innerResult.range) }
-                else { Marklight.theme.syntaxStyle.apply(styleApplier, range: innerResult.range) }
+                else { theme.syntaxStyle.apply(styleApplier, range: innerResult.range) }
             }
         }
     }

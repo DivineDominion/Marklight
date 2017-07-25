@@ -15,7 +15,8 @@ internal struct Paragraph {
 
 internal protocol InlineStyle {
     func apply(
-        _ styleApplier: MarklightStyleApplier,
+        _ theme: MarklightTheme,
+        styleApplier: MarklightStyleApplier,
         hideSyntax: Bool,
         paragraph: Paragraph)
 }

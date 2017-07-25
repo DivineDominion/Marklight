@@ -25,7 +25,7 @@ struct AutolinkEmailStyle: InlineStyle {
 
     fileprivate static let mailtoRegex = Regex(pattern: mailtoPattern, options: [.allowCommentsAndWhitespace, .dotMatchesLineSeparators])
 
-    func apply(_ styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
+    func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
         AutolinkEmailStyle.autolinkEmailRegex.matches(paragraph) { (result) -> Void in
             let linkSubstring = (paragraph.string as NSString).substring(with: result.range)
             guard linkSubstring.lengthOfBytes(using: .utf8) > 0 else { return }

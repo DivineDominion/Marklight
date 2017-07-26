@@ -16,11 +16,11 @@ import Foundation
 struct AtxHeadingStyle: BlockStyle {
 
     fileprivate static var headerAtxPattern: String { return [
-        "^(\\#{1,6})  # $1 = string of #'s",
+        "^[\\ ]{0,3}\\\\{0}(\\#{1,6})", // $1 = string of #'s
+        "\\p{Z}+",
+        "(.+?)",                        // $2 = Header text
         "\\p{Z}*",
-        "(.+?)        # $2 = Header text",
-        "\\p{Z}*",
-        "(\\#*)       # $3 = optional closing #'s (not counted)",
+        "(\\#*)",                       // $3 = optional closing #'s (not counted)
         "\\n+"
         ].joined(separator: "\n")
     }

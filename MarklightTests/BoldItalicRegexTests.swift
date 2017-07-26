@@ -241,6 +241,37 @@ extension BoldItalicRegexTests {
         waitForExpectations(timeout: 0.1, handler: nil)
     }
 
+    func testBoldAndItalic_SameGlyph_NestingPrecedence() {
+
+        let italicCallback = expectation(description: "Matched italics on the inside")
+        match("***italic***", ItalicStyle.strictItalicRegex) {
+            if let result = $0,
+                result.numberOfRanges == 5 {
+                XCTAssertEqual(result.rangeAt(2), NSMakeRange(2, 1))
+                XCTAssertEqual(result.rangeAt(3), NSMakeRange(3, 6))
+                XCTAssertEqual(result.rangeAt(4), NSMakeRange(9, 1))
+            } else {
+                XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges)))")
+            }
+            italicCallback.fulfill()
+        }
+
+        let boldCallback = expectation(description: "Matched bold on the outside")
+        match("***bold***", BoldStyle.strictBoldRegex) {
+            if let result = $0,
+                result.numberOfRanges == 6 {
+                XCTAssertEqual(result.rangeAt(2), NSMakeRange(0, 2))
+                XCTAssertEqual(result.rangeAt(4), NSMakeRange(2, 6))
+                XCTAssertEqual(result.rangeAt(5), NSMakeRange(8, 2))
+            } else {
+                XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges)))")
+            }
+            boldCallback.fulfill()
+        }
+
+        waitForExpectations(timeout: 0.1, handler: nil)
+    }
+
     func testItalicAndBold() {
 
         let italicCallback = expectation(description: "Matched italics")
@@ -269,4 +300,34 @@ extension BoldItalicRegexTests {
         waitForExpectations(timeout: 0.1, handler: nil)
     }
 
+    func testItalicAndBold_DifferentGlyphWithoutAlphanumericCharacterInBetween() {
+
+        let italicCallback = expectation(description: "Matched italics next to bold syntax")
+        match("_**italic**_", ItalicStyle.strictItalicRegex) {
+            if let result = $0,
+                result.numberOfRanges == 5 {
+                XCTAssertEqual(result.rangeAt(2), NSMakeRange(0, 1))
+                XCTAssertEqual(result.rangeAt(3), NSMakeRange(1, 10))
+                XCTAssertEqual(result.rangeAt(4), NSMakeRange(11, 1))
+            } else {
+                XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges)))")
+            }
+            italicCallback.fulfill()
+        }
+
+        let boldCallback = expectation(description: "Matched bold")
+        match("_**bold**_", BoldStyle.strictBoldRegex) {
+            if let result = $0,
+                result.numberOfRanges == 6 {
+                XCTAssertEqual(result.rangeAt(2), NSMakeRange(1, 2))
+                XCTAssertEqual(result.rangeAt(4), NSMakeRange(3, 4))
+                XCTAssertEqual(result.rangeAt(5), NSMakeRange(7, 2))
+            } else {
+                XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges)))")
+            }
+            boldCallback.fulfill()
+        }
+
+        waitForExpectations(timeout: 0.1, handler: nil)
+    }
 }

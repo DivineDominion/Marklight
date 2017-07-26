@@ -97,7 +97,7 @@
 /* Begin PBXFileReference section */
 		04A5D83756D646D5B0F24D1AEA279CE1 /* ListStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ListStyle.swift; sourceTree = "<group>"; };
 		08B51271D8816A139E397BD3EEFC4172 /* Marklight-OSX-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Marklight-OSX-umbrella.h"; sourceTree = "<group>"; };
-		09226AE663C2BBB2FBAF315C196479F7 /* Marklight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Marklight.framework; path = "Marklight-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		09226AE663C2BBB2FBAF315C196479F7 /* Marklight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Marklight.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D272D4BE74D02D8E6758FC6C6CD6597 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Marklight-iOS/Info.plist"; sourceTree = "<group>"; };
 		106E8948987B305C34B4C2BF4FE8874D /* AutolinkStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AutolinkStyle.swift; sourceTree = "<group>"; };
 		16B2C2471BA861F687191D963B0294BE /* InlineLinkStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InlineLinkStyle.swift; sourceTree = "<group>"; };
@@ -111,9 +111,9 @@
 		37E960CD1C3EF893A6D50FB0F4E50FAF /* BlockStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BlockStyle.swift; sourceTree = "<group>"; };
 		4051C4938A994D10791DB42B95C6258F /* CodeSpanStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CodeSpanStyle.swift; sourceTree = "<group>"; };
 		43CCA00B356A285E2E0A5E99C0831227 /* InlineImageStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InlineImageStyle.swift; sourceTree = "<group>"; };
-		43DF927B37430BB78EB68BEA8CDABD53 /* Marklight-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; name = "Marklight-iOS.modulemap"; path = "../Marklight-iOS/Marklight-iOS.modulemap"; sourceTree = "<group>"; };
+		43DF927B37430BB78EB68BEA8CDABD53 /* Marklight-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; name = "Marklight-iOS.modulemap"; path = "../Marklight-iOS/Marklight-iOS.modulemap"; sourceTree = "<group>"; };
 		463E64432DD88F5DBC8B9D3DD71419D3 /* Marklight-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Marklight-iOS-umbrella.h"; path = "../Marklight-iOS/Marklight-iOS-umbrella.h"; sourceTree = "<group>"; };
-		4B5BAF31CDC2E5C8D6FB1C4E26D87313 /* Pods_Marklight_Marklight_Sample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Marklight_Marklight_Sample.framework; path = "Pods-Marklight-Marklight Sample.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B5BAF31CDC2E5C8D6FB1C4E26D87313 /* Pods_Marklight_Marklight_Sample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marklight_Marklight_Sample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CF01C333B00A07A42D60C0F8C156E06 /* ItalicStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ItalicStyle.swift; sourceTree = "<group>"; };
 		504AFCB6CDCED06DFA7CBCCE54EB4B10 /* Pods-Marklight-Marklight Sample-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Marklight-Marklight Sample-umbrella.h"; sourceTree = "<group>"; };
 		54DA7EED76170BEC6A9AD3E26C25829F /* SetextHeaderStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SetextHeaderStyle.swift; sourceTree = "<group>"; };
@@ -121,17 +121,17 @@
 		578C65CA4D55E331FDCE813DF6CC1D4F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		582A12EF9DEFFEC8FE247DF19DFA84D8 /* MarklightTextProcessor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MarklightTextProcessor.swift; sourceTree = "<group>"; };
 		5BEC194900724FA39134E150F2565D3B /* Pods-Marklight-Marklight Sample-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Marklight-Marklight Sample-acknowledgements.plist"; sourceTree = "<group>"; };
-		5DE6924255815EFAE93E0BE6DEC59070 /* Pods-Marklight-Marklight Sample macOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Marklight-Marklight Sample macOS.modulemap"; sourceTree = "<group>"; };
+		5DE6924255815EFAE93E0BE6DEC59070 /* Pods-Marklight-Marklight Sample macOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Marklight-Marklight Sample macOS.modulemap"; sourceTree = "<group>"; };
 		65E04205B4BEC2547BCC96FFDE7B533D /* InlineStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InlineStyle.swift; sourceTree = "<group>"; };
 		6E8968F009BF86CCE562B5316359E50F /* Marklight-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Marklight-iOS-dummy.m"; path = "../Marklight-iOS/Marklight-iOS-dummy.m"; sourceTree = "<group>"; };
 		701CF9EA3E89735B83D332277BCC59CC /* Marklight.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Marklight.swift; sourceTree = "<group>"; };
 		71E6CB78FFFA83229A53A147A62F96F3 /* Pods-Marklight-Marklight Sample macOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Marklight-Marklight Sample macOS-dummy.m"; sourceTree = "<group>"; };
 		742E9EC6EE2851970AA0F40719DD4C63 /* AtxHeadingStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AtxHeadingStyle.swift; sourceTree = "<group>"; };
 		76A42D928B7AD16DEED3348D880DCB7B /* MarklightTheme.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MarklightTheme.swift; sourceTree = "<group>"; };
-		843C32C9C475C8EC0FB7B7C033B8DEE9 /* Pods-Marklight-Marklight Sample.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Marklight-Marklight Sample.modulemap"; sourceTree = "<group>"; };
+		843C32C9C475C8EC0FB7B7C033B8DEE9 /* Pods-Marklight-Marklight Sample.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Marklight-Marklight Sample.modulemap"; sourceTree = "<group>"; };
 		8BF4322C4DB72C7EC8C44A4D29B6B31B /* Array+appending.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Array+appending.swift"; sourceTree = "<group>"; };
 		92BC6DE58210B38C700FD11D6A87D0F3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9A0C55E39FDA6434BFBEFA5297FF5F28 /* Pods-Marklight-Marklight Sample macOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Marklight-Marklight Sample macOS-acknowledgements.markdown"; sourceTree = "<group>"; };
 		9D997AD92D29379A9564227402B1DB03 /* Pods-Marklight-Marklight Sample macOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Marklight-Marklight Sample macOS-umbrella.h"; sourceTree = "<group>"; };
 		A183DAE50D3D1375CC1E5940AAD8669B /* Pods-Marklight-Marklight Sample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Marklight-Marklight Sample.debug.xcconfig"; sourceTree = "<group>"; };
@@ -152,12 +152,12 @@
 		E05DF1B938576A3A34C7C1D2D6460105 /* Pods-Marklight-Marklight Sample-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Marklight-Marklight Sample-acknowledgements.markdown"; sourceTree = "<group>"; };
 		E14B1153892D6E47F07988CEF935C656 /* Regex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 		E3992CF302A62CD93304B4800D70CB20 /* Pods-Marklight-Marklight Sample macOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Marklight-Marklight Sample macOS-resources.sh"; sourceTree = "<group>"; };
-		E64FF4B4B61227C565A28D9F1A796579 /* Pods_Marklight_Marklight_Sample_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Marklight_Marklight_Sample_macOS.framework; path = "Pods-Marklight-Marklight Sample macOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E64FF4B4B61227C565A28D9F1A796579 /* Pods_Marklight_Marklight_Sample_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marklight_Marklight_Sample_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8BD4078E9B4674831BB5E515FD95999 /* Pods-Marklight-Marklight Sample-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Marklight-Marklight Sample-resources.sh"; sourceTree = "<group>"; };
-		E9432A6655CE7E92A6099DAE20BF835D /* Marklight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Marklight.framework; path = "Marklight-OSX.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9432A6655CE7E92A6099DAE20BF835D /* Marklight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Marklight.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED02BCBEB0B232496022A0B486474F80 /* Marklight-iOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Marklight-iOS.xcconfig"; path = "../Marklight-iOS/Marklight-iOS.xcconfig"; sourceTree = "<group>"; };
 		ED7FE9AB6D54916292B8C176725F67FB /* ReferenceDefinitionStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReferenceDefinitionStyle.swift; sourceTree = "<group>"; };
-		F2FD7B26D8E25341F072CCF8A76FFF42 /* Marklight-OSX.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Marklight-OSX.modulemap"; sourceTree = "<group>"; };
+		F2FD7B26D8E25341F072CCF8A76FFF42 /* Marklight-OSX.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Marklight-OSX.modulemap"; sourceTree = "<group>"; };
 		F317F573435518453F297799C5974AD5 /* UniversalTypes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UniversalTypes.swift; sourceTree = "<group>"; };
 		F83CA49050FD3631A1673F98311BDD75 /* Marklight-OSX-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Marklight-OSX-dummy.m"; sourceTree = "<group>"; };
 		FAC8140593AF379498930206868F9871 /* Pods-Marklight-Marklight Sample macOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Marklight-Marklight Sample macOS-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -326,9 +326,9 @@
 			children = (
 				8BF4322C4DB72C7EC8C44A4D29B6B31B /* Array+appending.swift */,
 				742E9EC6EE2851970AA0F40719DD4C63 /* AtxHeadingStyle.swift */,
-				D932FB5AAAF93F42D1E29DFB0927C50E /* AutolinkEmailStyle.swift */,
 				106E8948987B305C34B4C2BF4FE8874D /* AutolinkStyle.swift */,
 				FCAAB3B6664E553D605E2F96D3AAD98D /* BlockquoteStyle.swift */,
+				D932FB5AAAF93F42D1E29DFB0927C50E /* AutolinkEmailStyle.swift */,
 				37E960CD1C3EF893A6D50FB0F4E50FAF /* BlockStyle.swift */,
 				D84DAFB9D2A07E5C2FDC78187F6A8BE7 /* BoldStyle.swift */,
 				218C800352879FA78D9523006EC5995B /* CodeBlockStyle.swift */,
@@ -353,7 +353,6 @@
 				54DA7EED76170BEC6A9AD3E26C25829F /* SetextHeaderStyle.swift */,
 				F317F573435518453F297799C5974AD5 /* UniversalTypes.swift */,
 			);
-			name = Marklight;
 			path = Marklight;
 			sourceTree = "<group>";
 		};

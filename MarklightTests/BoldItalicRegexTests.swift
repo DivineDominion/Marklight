@@ -43,8 +43,8 @@ extension BoldItalicRegexTests {
             let callbackExp = expectation(description: "Matched \(string)")
             match(string, BoldStyle.strictBoldRegex) {
                 if let result = $0,
-                    result.numberOfRanges == 4 {
-                    XCTAssertEqual(result.rangeAt(3), NSMakeRange(5, 4))
+                    result.numberOfRanges == 6 {
+                    XCTAssertEqual(result.rangeAt(4), NSMakeRange(5, 4))
                 } else {
                     XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges))) in \(string)")
                 }
@@ -59,11 +59,11 @@ extension BoldItalicRegexTests {
             let callbackExp = expectation(description: "Matched intraword bold emphasis")
             match("intra**word** emphasis", BoldStyle.strictBoldRegex) {
                 if let result = $0,
-                    result.numberOfRanges == 4 {
+                    result.numberOfRanges == 6 {
                     XCTAssertEqual(result.rangeAt(0), NSMakeRange(5, 8))
-                    XCTAssertEqual(result.rangeAt(1), NSMakeRange(5, 2))
-                    XCTAssertEqual(result.rangeAt(2), NSMakeRange(7, 4))
-                    XCTAssertEqual(result.rangeAt(3), NSMakeRange(11, 2))
+                    XCTAssertEqual(result.rangeAt(2), NSMakeRange(5, 2))
+                    XCTAssertEqual(result.rangeAt(4), NSMakeRange(7, 4))
+                    XCTAssertEqual(result.rangeAt(5), NSMakeRange(11, 2))
                 } else {
                     XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges)))")
                 }
@@ -73,34 +73,34 @@ extension BoldItalicRegexTests {
 
         do {
             var nestedMatches = 0
-            let outerCallbackExp = expectation(description: "Matched outer bold")
-            let innerCallbackExp = expectation(description: "Matched inner bold")
+            let outerCallbackExp = expectation(description: "Matched nested outer bold")
+            let innerCallbackExp = expectation(description: "Matched nested inner bold")
             match("__foo, __bar__, baz__", BoldStyle.strictBoldRegex) {
                 if nestedMatches == 0 {
                     // Outer emphasis
                     if let result = $0,
-                        result.numberOfRanges == 4 {
+                        result.numberOfRanges == 6 {
                         XCTAssertEqual(result.rangeAt(2), NSMakeRange(0, 2))
-                        XCTAssertEqual(result.rangeAt(3), NSMakeRange(2, 17))
+                        XCTAssertEqual(result.rangeAt(4), NSMakeRange(2, 17))
                     } else {
                         XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges)))")
                     }
-                    nestedMatches += 1
                     outerCallbackExp.fulfill()
                 } else if nestedMatches == 1 {
                     // Inner emphasis
                     if let result = $0,
-                        result.numberOfRanges == 4 {
-                        XCTAssertEqual(result.rangeAt(0), NSMakeRange(7, 5))
-                        XCTAssertEqual(result.rangeAt(1), NSMakeRange(7, 2))
-                        XCTAssertEqual(result.rangeAt(2), NSMakeRange(9, 3))
-                        XCTAssertEqual(result.rangeAt(3), NSMakeRange(12, 2))
+                        result.numberOfRanges == 6 {
+                        XCTAssertEqual(result.rangeAt(2), NSMakeRange(7, 2))
+                        XCTAssertEqual(result.rangeAt(4), NSMakeRange(9, 3))
+                        XCTAssertEqual(result.rangeAt(5), NSMakeRange(12, 2))
                     } else {
                         XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges)))")
                     }
                     innerCallbackExp.fulfill()
                 }
+                nestedMatches += 1
             }
+            XCTAssertEqual(nestedMatches, 2, "Should match twice")
         }
 
         // Left & right flanking
@@ -109,9 +109,9 @@ extension BoldItalicRegexTests {
             let callbackExp = expectation(description: "Matched \(string)")
             match(string, BoldStyle.strictBoldRegex) {
                 if let result = $0,
-                    result.numberOfRanges == 4 {
+                    result.numberOfRanges == 6 {
                     XCTAssertEqual(result.rangeAt(2), NSMakeRange(9, 2))
-                    XCTAssertEqual(result.rangeAt(3), NSMakeRange(11, 3))
+                    XCTAssertEqual(result.rangeAt(4), NSMakeRange(11, 3))
                 } else {
                     XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges))) in \(string)")
                 }
@@ -142,8 +142,8 @@ internal var italicNonMatches: [String] {
         "a * foo bar*",
         "not _matching*",
         "not *matching_",
-        "*(*foo)",
-        "(foo*)*"
+        "no *(*foo)",
+        "nah (foo*)*"
     ]
 }
 
@@ -156,7 +156,7 @@ extension BoldItalicRegexTests {
             let callbackExp = expectation(description: "Matched \(string)")
             match(string, ItalicStyle.strictItalicRegex) {
                 if let result = $0,
-                    result.numberOfRanges == 4 {
+                    result.numberOfRanges == 5 {
                     XCTAssertEqual(result.rangeAt(2), NSMakeRange(3, 1))
                     XCTAssertEqual(result.rangeAt(3), NSMakeRange(4, 6))
                 } else {
@@ -173,7 +173,7 @@ extension BoldItalicRegexTests {
             let callbackExp = expectation(description: "Matched intraword emphasis")
             match("intra*word* emphasis", ItalicStyle.strictItalicRegex) {
                 if let result = $0,
-                    result.numberOfRanges == 4 {
+                    result.numberOfRanges == 5 {
                     XCTAssertEqual(result.rangeAt(2), NSMakeRange(5, 1))
                     XCTAssertEqual(result.rangeAt(3), NSMakeRange(6, 4))
                 } else {
@@ -189,7 +189,7 @@ extension BoldItalicRegexTests {
             let callbackExp = expectation(description: "Matched \(string)")
             match(string, ItalicStyle.strictItalicRegex) {
                 if let result = $0,
-                    result.numberOfRanges == 4 {
+                    result.numberOfRanges == 5 {
                     XCTAssertEqual(result.rangeAt(2), NSMakeRange(9, 1))
                     XCTAssertEqual(result.rangeAt(3), NSMakeRange(10, 3))
                 } else {
@@ -218,7 +218,7 @@ extension BoldItalicRegexTests {
         let italicCallback = expectation(description: "Matched italics")
         match("**hi *italic* text**", ItalicStyle.strictItalicRegex) {
             if let result = $0,
-                result.numberOfRanges == 4 {
+                result.numberOfRanges == 5 {
                 XCTAssertEqual(result.rangeAt(2), NSMakeRange(5, 1))
                 XCTAssertEqual(result.rangeAt(3), NSMakeRange(6, 6))
             } else {
@@ -230,8 +230,8 @@ extension BoldItalicRegexTests {
         let boldCallback = expectation(description: "Matched bold")
         match("**hi *italic* text**", BoldStyle.strictBoldRegex) {
             if let result = $0,
-                result.numberOfRanges == 4 {
-                XCTAssertEqual(result.rangeAt(3), NSMakeRange(2, 16))
+                result.numberOfRanges == 6 {
+                XCTAssertEqual(result.rangeAt(4), NSMakeRange(2, 16))
             } else {
                 XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges)))")
             }
@@ -246,7 +246,7 @@ extension BoldItalicRegexTests {
         let italicCallback = expectation(description: "Matched italics")
         match("*hi **italic** text*", ItalicStyle.strictItalicRegex) {
             if let result = $0,
-                result.numberOfRanges == 4 {
+                result.numberOfRanges == 5 {
                 XCTAssertEqual(result.rangeAt(2), NSMakeRange(0, 1))
                 XCTAssertEqual(result.rangeAt(3), NSMakeRange(1, 18))
             } else {
@@ -258,8 +258,8 @@ extension BoldItalicRegexTests {
         let boldCallback = expectation(description: "Matched bold")
         match("*hi **italic** text*", BoldStyle.strictBoldRegex) {
             if let result = $0,
-                result.numberOfRanges == 4 {
-                XCTAssertEqual(result.rangeAt(3), NSMakeRange(6, 6))
+                result.numberOfRanges == 6 {
+                XCTAssertEqual(result.rangeAt(4), NSMakeRange(6, 6))
             } else {
                 XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges)))")
             }

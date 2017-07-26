@@ -231,7 +231,7 @@ public struct Marklight {
         ReferenceImageStyle(),
         InlineImageStyle(),
 
-        // Apply bold before italic to support nested bold/italic styles.
+        // Apply bold before italic to support hiding syntax glyphs in nested bold/italic styles.
         BoldStyle(),
         ItalicStyle(),
 

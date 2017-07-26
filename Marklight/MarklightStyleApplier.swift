@@ -62,7 +62,7 @@ extension NSTextStorage: MarklightStyleApplier {
 
     public func embolden(range: NSRange) {
 
-        guard let font = self.attribute(NSFontAttributeName, at: range.location, effectiveRange: nil) as? MarklightFont
+        guard let font = self.attribute(NSFontAttributeName, at: range.location + range.length / 2, effectiveRange: nil) as? MarklightFont
             else { assertionFailure(); return }
 
         self.addAttribute(NSFontAttributeName, value: font.emboldened(), range: range)
@@ -70,7 +70,7 @@ extension NSTextStorage: MarklightStyleApplier {
 
     public func italicize(range: NSRange) {
 
-        guard let font = self.attribute(NSFontAttributeName, at: range.location, effectiveRange: nil) as? MarklightFont
+        guard let font = self.attribute(NSFontAttributeName, at: range.location + range.length / 2, effectiveRange: nil) as? MarklightFont
             else { assertionFailure(); return }
 
         self.addAttribute(NSFontAttributeName, value: font.italicized(), range: range)

@@ -11,29 +11,28 @@ import Foundation
 struct BoldStyle: InlineStyle {
 
     fileprivate static var strictBoldPattern: String {
-        return "(^|[\\W_])(?:(?!\\1)|(?=^))(\\*|_)\\2(?=\\S)(.*?\\S)\\2\\2(?!\\2)(?=[\\W_]|$)"
+        return [
+            "(^|[\\W_])",                       // $1
+            "(",                                // $2 = all emphasized stuff
+            "  ((\\*|_)\\4) (?=\\S)",           // $3 = opening __/**, $4 = single _/*
+            "  (.*?\\S)",                       // $5 = content
+            "  (\\4\\4) (?!\\4)",               // $6 = closing double __/**
+            ")"
+        ].joined()
     }
 
-    static let strictBoldRegex = Regex(pattern: strictBoldPattern, options: [.anchorsMatchLines])
+    static let strictBoldRegex = Regex(pattern: strictBoldPattern, options: [.anchorsMatchLines, .allowCommentsAndWhitespace])
 
     func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
 
         BoldStyle.strictBoldRegex.matches(paragraph) { (result) -> Void in
-            styleApplier.embolden(range: result.range)
+            styleApplier.embolden(range: result.rangeAt(2))
 
-            let substring = (paragraph.string as NSString).substring(with: NSMakeRange(result.range.location, 1))
-            var start = 0
-            if substring.rangeOfCharacter(from: CharacterSet.whitespacesAndNewlines) != nil {
-                start = 1
+            [result.rangeAt(3),
+             result.rangeAt(6)].forEach { syntaxRange in
+                if hideSyntax { styleApplier.addHiddenAttributes(range: syntaxRange) }
+                else { theme.syntaxStyle.apply(styleApplier, range: syntaxRange) }
             }
-
-            let preRange = NSMakeRange(result.range.location + start, 2)
-            if hideSyntax { styleApplier.addHiddenAttributes(range: preRange) }
-            else { theme.syntaxStyle.apply(styleApplier, range: preRange) }
-
-            let postRange = NSMakeRange(result.range.location + result.range.length - 2, 2)
-            if hideSyntax { styleApplier.addHiddenAttributes(range: postRange) }
-            else { theme.syntaxStyle.apply(styleApplier, range: postRange) }
         }
     }
 }

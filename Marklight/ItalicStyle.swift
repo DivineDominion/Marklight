@@ -12,12 +12,11 @@ struct ItalicStyle: InlineStyle {
 
     fileprivate static var strictItalicPattern: String {
         return [
-            "(^|[\\W_]) (?:(?!\\1)|(?=^))",
-            "(\\*|_)(?:(?!\\2)|(?=\\2\\2)) (?=\\S)", // opening
-            "(.*?(?!\\2)\\S)",                  // content
-            "\\2(?:(?!\\2)|(?=\\2\\2))",            // closing
-            "(?=[\\W_]|$)"
-            ].joined(separator: "")
+            "(^|[\\W_]) (?:(?!\\1)|(?=^))",                  // $1 e.g. prevents matching bold as italic
+            "(?:[\\*_]{0}|[\\*_]{2})(\\*|_)(?!\\2) (?=\\S)", // $2 = opening _/* innermost as possible
+            "(.*?(?!\\2)\\S)",                               // $3 = content
+            "(\\2)",                                         // $4 = closing _/*
+            ].joined()
     }
 
     static let strictItalicRegex = Regex(pattern: strictItalicPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
@@ -27,30 +26,27 @@ struct ItalicStyle: InlineStyle {
     func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
 
         ItalicStyle.strictItalicRegex.matches(paragraph) { result in
-
-            styleApplier.italicize(range: result.range)
-
-            // Previously applied inner bold text would have been overwritten by now
             let innerTextRange = result.rangeAt(3)
-            self.innerBoldStyle.apply(
-                theme,
-                styleApplier: styleApplier,
-                hideSyntax: hideSyntax,
-                paragraph: Paragraph(string: paragraph.string, paragraphRange: innerTextRange))
 
-            let substring = (paragraph.string as NSString).substring(with: NSMakeRange(result.range.location, 1))
-            var start = 0
-            if substring.rangeOfCharacter(from: CharacterSet.whitespacesAndNewlines) != nil {
-                start = 1
+            // Do not make the syntax glyphs themselves italic
+            styleApplier.italicize(range: innerTextRange)
+
+            if hideSyntax {
+                // Bold font was already applied, but if italics surround 
+                // bold syntax, the previously hidden **/__ now have 
+                // regular font size again.
+                self.innerBoldStyle.apply(
+                    theme,
+                    styleApplier: styleApplier,
+                    hideSyntax: hideSyntax,
+                    paragraph: Paragraph(string: paragraph.string, paragraphRange: innerTextRange))
             }
 
-            let preRange = NSMakeRange(result.range.location + start, 1)
-            theme.syntaxStyle.apply(styleApplier, range: preRange)
-            if hideSyntax { styleApplier.addHiddenAttributes(range: preRange) }
-
-            let postRange = NSMakeRange(result.range.location + result.range.length - 1, 1)
-            theme.syntaxStyle.apply(styleApplier, range: postRange)
-            if hideSyntax { styleApplier.addHiddenAttributes(range: postRange) }
+            [result.rangeAt(2),
+             result.rangeAt(4)].forEach { syntaxRange in
+                if hideSyntax { styleApplier.addHiddenAttributes(range: syntaxRange) }
+                else { theme.syntaxStyle.apply(styleApplier, range: syntaxRange) }
+            }
         }
     }
 }

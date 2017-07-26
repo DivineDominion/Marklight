@@ -12,11 +12,10 @@ struct BoldStyle: InlineStyle {
 
     fileprivate static var strictBoldPattern: String {
         return [
-            "(^|[\\W_])",                       // $1
-            "(",                                // $2 = all emphasized stuff
-            "  ((\\*|_)\\4) (?=\\S)",           // $3 = opening __/**, $4 = single _/*
-            "  (.*?\\S)",                       // $5 = content
-            "  (\\4\\4) (?!\\4)",               // $6 = closing double __/**
+            "(",                                // $1 = all emphasized stuff
+            "  ((\\*|(?<=\\W)_)\\3) (?=\\S)",   // $2 = opening __/**, $3 = single _/*
+            "  (.*?\\S)",                       // $4 = content
+            "  (\\3\\3) (?!\\3)",               // $5 = closing double __/**
             ")"
         ].joined()
     }
@@ -26,10 +25,10 @@ struct BoldStyle: InlineStyle {
     func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
 
         BoldStyle.strictBoldRegex.matches(paragraph) { (result) -> Void in
-            styleApplier.embolden(range: result.rangeAt(2))
+            styleApplier.embolden(range: result.rangeAt(1))
 
-            [result.rangeAt(3),
-             result.rangeAt(6)].forEach { syntaxRange in
+            [result.rangeAt(2),
+             result.rangeAt(5)].forEach { syntaxRange in
                 if hideSyntax { styleApplier.addHiddenAttributes(range: syntaxRange) }
                 else { theme.syntaxStyle.apply(styleApplier, range: syntaxRange) }
             }

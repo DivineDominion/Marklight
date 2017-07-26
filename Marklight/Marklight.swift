@@ -232,7 +232,7 @@ public struct Marklight {
         InlineImageStyle(),
 
         // Apply bold before italic to support hiding syntax glyphs in nested bold/italic styles.
-//        BoldStyle(),
+        BoldStyle(),
         ItalicStyle(),
 
         // Apply code last to remove bold/italic from matched text again

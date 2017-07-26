@@ -14,7 +14,10 @@ struct ItalicStyle: InlineStyle {
         return [
             "(^|\\s|[:alpha:])",
             "(?:[\\*_]{0}|[\\*_]{2})(\\*|(?<=\\W)_)(?!\\2) (?=\\S)", // $2 = opening _/* innermost as possible
-            "([:alnum:]{1}.*?(?!\\2)\\S)",                                       // $3 = content
+            "(",                                                     // $3 = content
+            "  (?:[:alnum:]{1}|[\\*_]{2})", // Do not apply to numbers (do not match 1*2*3=6), but bold syntax
+            "  .*?(?!\\2)\\S",
+            ")",
             "(\\2) (?:(?!\\2)|(?=\\2\\2))",                          // $4 = closing _/*
             ].joined()
     }

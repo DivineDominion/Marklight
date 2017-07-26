@@ -65,8 +65,6 @@
 		504B70481F2250B5002F9D8E /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504B70471F2250B5002F9D8E /* Regex.swift */; };
 		504B70491F2250B5002F9D8E /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504B70471F2250B5002F9D8E /* Regex.swift */; };
 		504B704A1F225109002F9D8E /* BoldItalicRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504B70451F224FCB002F9D8E /* BoldItalicRegexTests.swift */; };
-		5063B26D1F233F78001DE8C4 /* NonStrictBoldItalicRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5063B26C1F233F78001DE8C4 /* NonStrictBoldItalicRegexTests.swift */; };
-		5063B26E1F233F78001DE8C4 /* NonStrictBoldItalicRegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5063B26C1F233F78001DE8C4 /* NonStrictBoldItalicRegexTests.swift */; };
 		95C46D6C1C33E11A0070AEDC /* Marklight.h in Headers */ = {isa = PBXBuildFile; fileRef = 95C46D6B1C33E11A0070AEDC /* Marklight.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		95C46D731C33E11A0070AEDC /* Marklight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C46D681C33E11A0070AEDC /* Marklight.framework */; };
 		95C46D781C33E11A0070AEDC /* MarklightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C46D771C33E11A0070AEDC /* MarklightTests.swift */; };
@@ -531,7 +529,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				504B704A1F225109002F9D8E /* BoldItalicRegexTests.swift in Sources */,
-				5063B26E1F233F78001DE8C4 /* NonStrictBoldItalicRegexTests.swift in Sources */,
 				503683FA1F209689006A7344 /* MarklightTextProcessorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -578,7 +575,6 @@
 				504B70461F224FCB002F9D8E /* BoldItalicRegexTests.swift in Sources */,
 				95C46D781C33E11A0070AEDC /* MarklightTests.swift in Sources */,
 				503683F91F209665006A7344 /* MarklightTextProcessorTests.swift in Sources */,
-				5063B26D1F233F78001DE8C4 /* NonStrictBoldItalicRegexTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

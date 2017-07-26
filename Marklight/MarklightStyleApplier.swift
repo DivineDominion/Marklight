@@ -16,6 +16,9 @@ public protocol MarklightStyleApplier {
     func addAttribute(_ name: String, value: Any, range: NSRange)
     func addAttributes(_ attrs: [String : Any], range: NSRange)
     func removeAttribute(_ name: String, range: NSRange)
+
+    /// Resets all Marklight-relevant settings, like font, link, and color.
+    /// Also resets the paragraph style.
     func resetMarklightTextAttributes(range: NSRange)
 
     func embolden(range: NSRange)
@@ -54,8 +57,9 @@ extension MarklightStyleApplier {
 
 extension NSTextStorage: MarklightStyleApplier {
     public func resetMarklightTextAttributes(range: NSRange) {
-
+        // Remember to keep this in sync with MarklightStorage:
         self.removeAttribute(NSFontAttributeName, range: range)
+        self.removeAttribute(NSLinkAttributeName, range: range)
         self.removeAttribute(NSForegroundColorAttributeName, range: range)
         self.addAttribute(NSParagraphStyleAttributeName, value: NSParagraphStyle(), range: range)
     }

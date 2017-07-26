@@ -123,6 +123,8 @@ open class MarklightTextStorage: NSTextStorage {
     override public func resetMarklightTextAttributes(range: NSRange) {
         // Use `imp` directly instead of `self` to avoid changing the edited range
         // after attribute fixing, affecting the insertion point on macOS.
+        imp.removeAttribute(NSLinkAttributeName, range: range)
+        imp.removeAttribute(NSFontAttributeName, range: range)
         imp.removeAttribute(NSForegroundColorAttributeName, range: range)
         imp.addAttribute(NSParagraphStyleAttributeName, value: NSParagraphStyle(), range: range)
     }

@@ -23,7 +23,7 @@ struct BoldStyle: InlineStyle {
 
             let substring = (paragraph.string as NSString).substring(with: NSMakeRange(result.range.location, 1))
             var start = 0
-            if substring == " " {
+            if substring.rangeOfCharacter(from: CharacterSet.whitespacesAndNewlines) != nil {
                 start = 1
             }
 

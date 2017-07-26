@@ -113,13 +113,11 @@ open class MarklightTextStorage: NSTextStorage {
             string: self.string,
             editedRange: editedRange)
 
-        defer {
-            // Include surrounding paragraphs in layout manager's styling pass
-            // after finishing the real edit. Mostly needed for Setex headings.
-            processingResult.updateLayoutManagers(for: self)
-        }
-
         super.processEditing()
+
+        // Include surrounding paragraphs in layout manager's styling pass
+        // after finishing the real edit. Mostly needed for Setex headings.
+        processingResult.updateLayoutManagers(for: self)
     }
 
     override public func resetMarklightTextAttributes(range: NSRange) {

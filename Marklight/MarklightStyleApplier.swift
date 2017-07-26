@@ -54,6 +54,8 @@ extension MarklightStyleApplier {
 
 extension NSTextStorage: MarklightStyleApplier {
     public func resetMarklightTextAttributes(range: NSRange) {
+
+        self.removeAttribute(NSFontAttributeName, range: range)
         self.removeAttribute(NSForegroundColorAttributeName, range: range)
         self.addAttribute(NSParagraphStyleAttributeName, value: NSParagraphStyle(), range: range)
     }

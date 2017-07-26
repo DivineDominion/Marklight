@@ -7,7 +7,8 @@
 //
 
 public protocol MarklightTheme {
-    /// Style initially used for any text.
+    /// Style initially used for any text. Comparable to CSS selectors on 
+    /// the `body` or `html` tags. Setting this affects all subsequent styles.
     var baseStyle: FontStyle { get }
 
     /// Style used to highlight markdown syntax.
@@ -39,8 +40,18 @@ public struct DefaultMarklightTheme: MarklightTheme {
     public var imageStyle: FontStyle
     public var linkStyle: FontStyle
 
+    /// - parameter baseStyle: Required font setting for unstyled text. Like 
+    ///   `body` or `html` in a CSS style sheet. Set to `.empty` to fall back to
+    ///   system default font settings. Note this will not be `NSTextView.font`
+    ///   or `UITextView.font`.
+    /// - parameter syntaxStyle: Decoration for Markdown syntax elements.
+    /// - parameter codeStyle: Decoration for inline code and code blocks.
+    /// - parameter quoteStyle: Decoration for blockquotes.
+    /// - parameter referenceDefinitionStyle: Decoration for link or image reference definitions.
+    /// - parameter imageStyle: Decoration for inline and reference style images tags.
+    /// - parameter linkStyle: Decoration for inline or reference style link tags.
     public init(
-        baseStyle: FontStyle = .empty,
+        baseStyle: FontStyle,
         syntaxStyle: FontStyle = .empty,
         codeStyle: FontStyle = .empty,
         quoteStyle: FontStyle = .empty,

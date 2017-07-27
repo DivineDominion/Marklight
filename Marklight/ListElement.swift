@@ -13,7 +13,6 @@ struct ListElement: BlockElement {
     fileprivate static var _markerUL: String { return "[*+-]" }
     fileprivate static var _markerOL: String { return "\\d+[.]" }
     fileprivate static var _listMarker: String { return "(?:\(_markerUL)|\(_markerOL))" }
-    fileprivate static let listOpeningRegex = Regex(pattern: "^\\p{Z}*\(_listMarker)", options: [.anchorsMatchLines])
 
     fileprivate static var listPattern: String { return [
         "(?:(?<=\\n\\n)|\\A\\n?)",
@@ -35,16 +34,26 @@ struct ListElement: BlockElement {
         "      )",
         "  )",
         ")"
-        ].joined(separator: "\n")
+        ].joined()
     }
 
     fileprivate static let listRegex = Regex(pattern: listPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
 
+    fileprivate static var listItemPattern: String { return [
+        "^\\p{Z}*(\(_listMarker))", // $1 = list marker
+        "(.*?)$"                    // $2 = list item text
+        ].joined()
+    }
+
+    fileprivate static let listItemRegex = Regex(pattern: listItemPattern, options: [.anchorsMatchLines])
+
     func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, document: Document) {
 
         ListElement.listRegex.matches(document) { (result) -> Void in
-            ListElement.listOpeningRegex.matches(document.string, range: result.range) { (innerResult) -> Void in
-                theme.syntaxStyle.apply(styleApplier, range: innerResult.range)
+            theme.listStyle.apply(styleApplier, range: result.range)
+
+            ListElement.listItemRegex.matches(document.string, range: result.range) { (innerResult) -> Void in
+                theme.syntaxStyle.apply(styleApplier, range: innerResult.rangeAt(1))
             }
         }
     }

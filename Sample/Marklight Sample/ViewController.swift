@@ -25,6 +25,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         let theme = DefaultMarklightTheme(
             baseStyle: BlockStyle(fontStyle: FontStyle(preferredFontForTextStyle: .body)),
             referenceDefinitionStyle: BlockStyle(fontStyle: FontStyle(color: MarklightColor.lightGray)),
+            listStyle: BlockStyle(indentation: .points(16)),
             codeBlockStyle: BlockStyle(fontStyle: FontStyle(fontName: "Courier", fontTextStyle: .body, color: MarklightColor.orange)),
             quoteStyle: BlockStyle(fontStyle: FontStyle(fontName: "Courier", fontTextStyle: .body, color: MarklightColor.darkGray), indentation: .characters(2)),
             inlineCodeStyle: SpanStyle(fontStyle: FontStyle(fontName: "Courier", fontTextStyle: .body, color: MarklightColor.orange)),

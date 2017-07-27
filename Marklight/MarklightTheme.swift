@@ -14,6 +14,9 @@ public protocol MarklightTheme {
     /// Style used for reference definitions.
     var referenceDefinitionStyle: BlockStyle { get }
 
+    /// Style used for unordered and ordered list blocks.
+    var listStyle: BlockStyle { get }
+
     /// Style used for block code.
     var codeBlockStyle: BlockStyle { get }
 
@@ -38,6 +41,7 @@ public struct DefaultMarklightTheme: MarklightTheme {
     public var baseStyle: BlockStyle
 
     public var referenceDefinitionStyle: BlockStyle
+    public var listStyle: BlockStyle
     public var codeBlockStyle: BlockStyle
     public var quoteStyle: BlockStyle
 
@@ -51,6 +55,7 @@ public struct DefaultMarklightTheme: MarklightTheme {
     ///   system default font settings. Note this will not be `NSTextView.font`
     ///   or `UITextView.font`.
     /// - parameter referenceDefinitionStyle: Decoration for link or image reference definitions.
+    /// - parameter listStyle: Decoration for unordered or ordered list blocks.
     /// - parameter codeBlockStyle: Decoration for code blocks.
     /// - parameter quoteStyle: Decoration for blockquotes.
     /// - parameter inlineCodeStyle: Decoration for inline code.
@@ -60,6 +65,7 @@ public struct DefaultMarklightTheme: MarklightTheme {
     public init(
         baseStyle: BlockStyle,
         referenceDefinitionStyle: BlockStyle = .inherit,
+        listStyle: BlockStyle = .inherit,
         codeBlockStyle: BlockStyle = .inherit,
         quoteStyle: BlockStyle = .inherit,
 
@@ -69,9 +75,12 @@ public struct DefaultMarklightTheme: MarklightTheme {
         syntaxStyle: SpanStyle = .inherit){
 
         self.baseStyle = baseStyle
+
         self.referenceDefinitionStyle = referenceDefinitionStyle
+        self.listStyle = listStyle
         self.codeBlockStyle = codeBlockStyle
         self.quoteStyle = quoteStyle
+
         self.inlineCodeStyle = inlineCodeStyle
         self.imageStyle = imageStyle
         self.linkStyle = linkStyle
@@ -96,9 +105,12 @@ public protocol DynamicMarklightTheme: MarklightTheme {
 extension DefaultMarklightTheme: DynamicMarklightTheme {
     public mutating func refreshFontSizes() {
         baseStyle.refreshFontSize()
+
         referenceDefinitionStyle.refreshFontSize()
+        listStyle.refreshFontSize()
         codeBlockStyle.refreshFontSize()
         quoteStyle.refreshFontSize()
+
         inlineCodeStyle.refreshFontSize()
         imageStyle.refreshFontSize()
         linkStyle.refreshFontSize()

@@ -55,16 +55,9 @@ extension MarklightStyleApplier {
     }
 }
 
-extension NSTextStorage: MarklightStyleApplier {
-    public func resetMarklightTextAttributes(range: NSRange) {
-        // Remember to keep this in sync with MarklightStorage:
-        self.removeAttribute(NSFontAttributeName, range: range)
-        self.removeAttribute(NSLinkAttributeName, range: range)
-        self.removeAttribute(NSForegroundColorAttributeName, range: range)
-        self.addAttribute(NSParagraphStyleAttributeName, value: NSParagraphStyle(), range: range)
-    }
-
-    public func embolden(range: NSRange) {
+/// Provide conformance to most of `MarklightStyleApplier`'s protocol.
+extension NSTextStorage {
+    open func embolden(range: NSRange) {
 
         guard let font = self.attribute(NSFontAttributeName, at: range.location + range.length / 2, effectiveRange: nil) as? MarklightFont
             else { assertionFailure(); return }
@@ -72,7 +65,7 @@ extension NSTextStorage: MarklightStyleApplier {
         self.addAttribute(NSFontAttributeName, value: font.emboldened(), range: range)
     }
 
-    public func italicize(range: NSRange) {
+    open func italicize(range: NSRange) {
 
         guard let font = self.attribute(NSFontAttributeName, at: range.location + range.length / 2, effectiveRange: nil) as? MarklightFont
             else { assertionFailure(); return }

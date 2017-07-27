@@ -70,7 +70,7 @@
     - see: `Marklight`
  */
 
-open class MarklightTextStorage: NSTextStorage {
+open class MarklightTextStorage: NSTextStorage, MarklightStyleApplier {
 
     open lazy var marklightTextProcessor: MarklightTextProcessor = MarklightTextProcessor()
 
@@ -120,7 +120,7 @@ open class MarklightTextStorage: NSTextStorage {
         processingResult.updateLayoutManagers(for: self)
     }
 
-    override public func resetMarklightTextAttributes(range: NSRange) {
+    open func resetMarklightTextAttributes(range: NSRange) {
         // Use `imp` directly instead of `self` to avoid changing the edited range
         // after attribute fixing, affecting the insertion point on macOS.
         imp.removeAttribute(NSLinkAttributeName, range: range)

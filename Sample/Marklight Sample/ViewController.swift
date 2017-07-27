@@ -26,13 +26,13 @@ class ViewController: UIViewController, UITextViewDelegate {
 
         let theme = DefaultMarklightTheme(
             baseStyle: FontStyle(preferredFontForTextStyle: .body),
-            syntaxStyle: FontStyle(color: MarklightColor.blue),
-            inlineCodeStyle: FontStyle(fontName: "Courier", fontTextStyle: .body, color: MarklightColor.orange),
+            referenceDefinitionStyle: FontStyle(color: MarklightColor.lightGray),
             codeBlockStyle: FontStyle(fontName: "Courier", fontTextStyle: .body, color: MarklightColor.orange),
             quoteStyle: FontStyle(fontName: "Courier", fontTextStyle: .body, color: MarklightColor.darkGray),
-            referenceDefinitionStyle: FontStyle(color: MarklightColor.lightGray),
+            inlineCodeStyle: FontStyle(fontName: "Courier", fontTextStyle: .body, color: MarklightColor.orange),
             imageStyle: FontStyle(fontName: "Courier", fontTextStyle: .body),
-            linkStyle: FontStyle(fontName: "Courier", fontTextStyle: .body))
+            linkStyle: FontStyle(fontName: "Courier", fontTextStyle: .body),
+            syntaxStyle: FontStyle(color: MarklightColor.blue))
         Marklight.theme = theme
         Marklight.hideSyntax = true
         

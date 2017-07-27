@@ -20,13 +20,13 @@ class ViewController: NSViewController {
         let textSize: CGFloat = 18.0
         let theme = DefaultMarklightTheme(
             baseStyle: FontStyle(fontReplacement: NSFont.systemFont(ofSize: textSize)),
-            syntaxStyle: FontStyle(color: MarklightColor.blue),
-            inlineCodeStyle: FontStyle(fontName: "Courier", textSize: textSize, color: MarklightColor.orange),
+            referenceDefinitionStyle: FontStyle(color: MarklightColor.lightGray),
             codeBlockStyle: FontStyle(fontName: "Courier", textSize: textSize, color: MarklightColor.orange),
             quoteStyle: FontStyle(fontName: "Menlo", textSize: textSize, color: MarklightColor.darkGray),
-            referenceDefinitionStyle: FontStyle(color: MarklightColor.lightGray),
+            inlineCodeStyle: FontStyle(fontName: "Courier", textSize: textSize, color: MarklightColor.orange),
             imageStyle: FontStyle(fontName: "Menlo", textSize: textSize),
-            linkStyle: FontStyle(fontName: "Menlo", textSize: textSize))
+            linkStyle: FontStyle(fontName: "Menlo", textSize: textSize),
+            syntaxStyle: FontStyle(color: MarklightColor.blue))
         Marklight.theme = theme
         Marklight.hideSyntax = false
 

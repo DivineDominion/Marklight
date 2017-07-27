@@ -167,7 +167,8 @@ public struct Marklight {
         return DefaultMarklightTheme(
             baseStyle: FontStyle(fontReplacement: MarklightFont.systemFont(ofSize: textSize)),
             syntaxStyle: FontStyle(color: MarklightColor.lightGray),
-            codeStyle: FontStyle(fontName: "Menlo", textSize: textSize, color: MarklightColor.darkGray),
+            inlineCodeStyle: FontStyle(fontName: "Menlo", textSize: textSize, color: MarklightColor.darkGray),
+            codeBlockStyle: FontStyle(fontName: "Menlo", textSize: textSize, color: MarklightColor.darkGray),
             quoteStyle: FontStyle(fontName: "Menlo", textSize: textSize, color: MarklightColor.darkGray),
             referenceDefinitionStyle: FontStyle(color: MarklightColor.lightGray))
     }

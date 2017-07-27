@@ -42,7 +42,7 @@ struct CodeSpanStyle: InlineStyle {
     func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
 
         CodeSpanStyle.codeSpanRegex.matches(paragraph) { (result) -> Void in
-            theme.codeStyle.apply(styleApplier, range: result.range)
+            theme.inlineCodeStyle.apply(styleApplier, range: result.range)
 
             CodeSpanStyle.codeSpanOpeningRegex.matches(paragraph) { (innerResult) -> Void in
                 if hideSyntax { styleApplier.addHiddenAttributes(range: innerResult.range) }

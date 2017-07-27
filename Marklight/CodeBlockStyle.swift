@@ -46,11 +46,11 @@ struct CodeBlockStyle: BlockStyle {
     func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, document: Document) {
 
         CodeBlockStyle.codeBlockRegex.matches(document) { (result) -> Void in
-            theme.codeStyle.apply(styleApplier, range: result.range)
+            theme.codeBlockStyle.apply(styleApplier, range: result.range)
         }
 
         CodeBlockStyle.fencedCodeBlockRegex.matches(document) { (result) -> Void in
-            theme.codeStyle.apply(styleApplier, range: result.range)
+            theme.codeBlockStyle.apply(styleApplier, range: result.range)
 
             [result.rangeAt(1),
              result.rangeAt(4)].forEach { fenceRange in

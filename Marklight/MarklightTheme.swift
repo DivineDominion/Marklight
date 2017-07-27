@@ -14,8 +14,11 @@ public protocol MarklightTheme {
     /// Style used to highlight markdown syntax.
     var syntaxStyle: FontStyle { get }
 
-    /// Style used for code blocks and inline code.
-    var codeStyle: FontStyle { get }
+    /// Style used for inline code.
+    var inlineCodeStyle: FontStyle { get }
+
+    /// Style used for block code.
+    var codeBlockStyle: FontStyle { get }
 
     /// Style used for quotation blocks.
     var quoteStyle: FontStyle { get }
@@ -34,7 +37,8 @@ public struct DefaultMarklightTheme: MarklightTheme {
 
     public var baseStyle: FontStyle
     public var syntaxStyle: FontStyle
-    public var codeStyle: FontStyle
+    public var inlineCodeStyle: FontStyle
+    public var codeBlockStyle: FontStyle
     public var quoteStyle: FontStyle
     public var referenceDefinitionStyle: FontStyle
     public var imageStyle: FontStyle
@@ -45,7 +49,8 @@ public struct DefaultMarklightTheme: MarklightTheme {
     ///   system default font settings. Note this will not be `NSTextView.font`
     ///   or `UITextView.font`.
     /// - parameter syntaxStyle: Decoration for Markdown syntax elements.
-    /// - parameter codeStyle: Decoration for inline code and code blocks.
+    /// - parameter inlineCodeStyle: Decoration for inline code.
+    /// - parameter codeBlockStyle: Decoration for code blocks.
     /// - parameter quoteStyle: Decoration for blockquotes.
     /// - parameter referenceDefinitionStyle: Decoration for link or image reference definitions.
     /// - parameter imageStyle: Decoration for inline and reference style images tags.
@@ -53,7 +58,8 @@ public struct DefaultMarklightTheme: MarklightTheme {
     public init(
         baseStyle: FontStyle,
         syntaxStyle: FontStyle = .empty,
-        codeStyle: FontStyle = .empty,
+        inlineCodeStyle: FontStyle = .empty,
+        codeBlockStyle: FontStyle = .empty,
         quoteStyle: FontStyle = .empty,
         referenceDefinitionStyle: FontStyle = .empty,
         imageStyle: FontStyle = .empty,
@@ -61,7 +67,8 @@ public struct DefaultMarklightTheme: MarklightTheme {
 
         self.baseStyle = baseStyle
         self.syntaxStyle = syntaxStyle
-        self.codeStyle = codeStyle
+        self.inlineCodeStyle = inlineCodeStyle
+        self.codeBlockStyle = codeBlockStyle
         self.quoteStyle = quoteStyle
         self.referenceDefinitionStyle = referenceDefinitionStyle
         self.imageStyle = imageStyle
@@ -84,7 +91,8 @@ extension DefaultMarklightTheme: DynamicMarklightTheme {
     public mutating func refreshFontSizes() {
         baseStyle.refreshFontSize()
         syntaxStyle.refreshFontSize()
-        codeStyle.refreshFontSize()
+        inlineCodeStyle.refreshFontSize()
+        codeBlockStyle.refreshFontSize()
         quoteStyle.refreshFontSize()
         referenceDefinitionStyle.refreshFontSize()
         imageStyle.refreshFontSize()

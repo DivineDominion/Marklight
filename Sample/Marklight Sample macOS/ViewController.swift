@@ -21,7 +21,8 @@ class ViewController: NSViewController {
         let theme = DefaultMarklightTheme(
             baseStyle: FontStyle(fontReplacement: NSFont.systemFont(ofSize: textSize)),
             syntaxStyle: FontStyle(color: MarklightColor.blue),
-            codeStyle: FontStyle(fontName: "Courier", textSize: textSize, color: MarklightColor.orange),
+            inlineCodeStyle: FontStyle(fontName: "Courier", textSize: textSize, color: MarklightColor.orange),
+            codeBlockStyle: FontStyle(fontName: "Courier", textSize: textSize, color: MarklightColor.orange),
             quoteStyle: FontStyle(fontName: "Menlo", textSize: textSize, color: MarklightColor.darkGray),
             referenceDefinitionStyle: FontStyle(color: MarklightColor.lightGray),
             imageStyle: FontStyle(fontName: "Menlo", textSize: textSize),

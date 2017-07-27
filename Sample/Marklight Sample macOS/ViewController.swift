@@ -19,14 +19,14 @@ class ViewController: NSViewController {
 
         let textSize: CGFloat = 18.0
         let theme = DefaultMarklightTheme(
-            baseStyle: FontStyle(fontReplacement: NSFont.systemFont(ofSize: textSize)),
-            referenceDefinitionStyle: FontStyle(color: MarklightColor.lightGray),
-            codeBlockStyle: FontStyle(fontName: "Courier", textSize: textSize, color: MarklightColor.orange),
-            quoteStyle: FontStyle(fontName: "Menlo", textSize: textSize, color: MarklightColor.darkGray),
-            inlineCodeStyle: FontStyle(fontName: "Courier", textSize: textSize, color: MarklightColor.orange),
-            imageStyle: FontStyle(fontName: "Menlo", textSize: textSize),
-            linkStyle: FontStyle(fontName: "Menlo", textSize: textSize),
-            syntaxStyle: FontStyle(color: MarklightColor.blue))
+            baseStyle: BlockStyle(fontStyle: FontStyle(fontReplacement: NSFont.systemFont(ofSize: textSize))),
+            referenceDefinitionStyle: BlockStyle(fontStyle: FontStyle(color: MarklightColor.lightGray)),
+            codeBlockStyle: BlockStyle(fontStyle: FontStyle(fontName: "Courier", textSize: textSize, color: MarklightColor.orange)),
+            quoteStyle: BlockStyle(fontStyle: FontStyle(fontName: "Menlo", textSize: textSize, color: MarklightColor.darkGray), indentation: .characters(2)),
+            inlineCodeStyle: SpanStyle(fontStyle: FontStyle(fontName: "Courier", textSize: textSize, color: MarklightColor.orange)),
+            imageStyle: SpanStyle(fontStyle: FontStyle(fontName: "Menlo", textSize: textSize)),
+            linkStyle: SpanStyle(fontStyle: FontStyle(fontName: "Menlo", textSize: textSize)),
+            syntaxStyle: SpanStyle(fontStyle: FontStyle(color: MarklightColor.blue)))
         Marklight.theme = theme
         Marklight.hideSyntax = false
 

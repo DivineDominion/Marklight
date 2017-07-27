@@ -145,11 +145,6 @@
  - see: `MarklightTextStorage`
 */
 public struct Marklight {
-
-    /**
-    Quote indentation in points. Default 20.
-     */
-    public static var quoteIndentation : CGFloat = 20
     
     /**
      If the markdown syntax should be hidden or visible
@@ -165,12 +160,12 @@ public struct Marklight {
         #endif
 
         return DefaultMarklightTheme(
-            baseStyle: FontStyle(fontReplacement: MarklightFont.systemFont(ofSize: textSize)),
-            referenceDefinitionStyle: FontStyle(color: MarklightColor.lightGray),
-            codeBlockStyle: FontStyle(fontName: "Menlo", textSize: textSize, color: MarklightColor.darkGray),
-            quoteStyle: FontStyle(fontName: "Menlo", textSize: textSize, color: MarklightColor.darkGray),
-            inlineCodeStyle: FontStyle(fontName: "Menlo", textSize: textSize, color: MarklightColor.darkGray),
-            syntaxStyle: FontStyle(color: MarklightColor.lightGray))
+            baseStyle: BlockStyle(fontStyle: FontStyle(fontReplacement: MarklightFont.systemFont(ofSize: textSize))),
+            referenceDefinitionStyle: BlockStyle(fontStyle: FontStyle(color: MarklightColor.lightGray)),
+            codeBlockStyle: BlockStyle(fontStyle: FontStyle(fontName: "Menlo", textSize: textSize, color: MarklightColor.darkGray)),
+            quoteStyle: BlockStyle(fontStyle: FontStyle(fontName: "Menlo", textSize: textSize, color: MarklightColor.darkGray)),
+            inlineCodeStyle: SpanStyle(fontStyle: FontStyle(fontName: "Menlo", textSize: textSize, color: MarklightColor.darkGray)),
+            syntaxStyle: SpanStyle(fontStyle: FontStyle(color: MarklightColor.lightGray)))
     }
 
     public static var theme: MarklightTheme = Marklight.defaultTheme()

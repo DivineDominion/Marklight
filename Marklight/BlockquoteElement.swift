@@ -34,8 +34,6 @@ struct BlockquoteElement: BlockElement {
         BlockquoteElement.blockQuoteRegex.matches(document) { (result) -> Void in
             theme.quoteStyle.apply(styleApplier, range: result.range)
 
-            styleApplier.addParagraphIndentation(indent: Marklight.quoteIndentation, range: result.range)
-
             BlockquoteElement.blockQuoteOpeningRegex.matches(document.string, range: result.range) { (innerResult) -> Void in
                 if hideSyntax { styleApplier.addHiddenAttributes(range: innerResult.range) }
                 else { theme.syntaxStyle.apply(styleApplier, range: innerResult.range) }

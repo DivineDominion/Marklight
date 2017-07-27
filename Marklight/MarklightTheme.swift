@@ -9,42 +9,42 @@
 public protocol MarklightTheme {
     /// Style initially used for any text. Comparable to CSS selectors on 
     /// the `body` or `html` tags. Setting this affects all subsequent styles.
-    var baseStyle: FontStyle { get }
+    var baseStyle: BlockStyle { get }
 
     /// Style used for reference definitions.
-    var referenceDefinitionStyle: FontStyle { get }
+    var referenceDefinitionStyle: BlockStyle { get }
 
     /// Style used for block code.
-    var codeBlockStyle: FontStyle { get }
+    var codeBlockStyle: BlockStyle { get }
 
     /// Style used for quotation blocks.
-    var quoteStyle: FontStyle { get }
+    var quoteStyle: BlockStyle { get }
 
     /// Style used for inline code.
-    var inlineCodeStyle: FontStyle { get }
+    var inlineCodeStyle: SpanStyle { get }
 
     /// Style used for both inline and reference images.
-    var imageStyle: FontStyle { get }
+    var imageStyle: SpanStyle { get }
 
     /// Style used for both inline and reference links.
-    var linkStyle: FontStyle { get }
+    var linkStyle: SpanStyle { get }
 
     /// Style used to highlight markdown syntax.
-    var syntaxStyle: FontStyle { get }
+    var syntaxStyle: SpanStyle { get }
 }
 
 public struct DefaultMarklightTheme: MarklightTheme {
 
-    public var baseStyle: FontStyle
+    public var baseStyle: BlockStyle
 
-    public var referenceDefinitionStyle: FontStyle
-    public var codeBlockStyle: FontStyle
-    public var quoteStyle: FontStyle
+    public var referenceDefinitionStyle: BlockStyle
+    public var codeBlockStyle: BlockStyle
+    public var quoteStyle: BlockStyle
 
-    public var inlineCodeStyle: FontStyle
-    public var imageStyle: FontStyle
-    public var linkStyle: FontStyle
-    public var syntaxStyle: FontStyle
+    public var inlineCodeStyle: SpanStyle
+    public var imageStyle: SpanStyle
+    public var linkStyle: SpanStyle
+    public var syntaxStyle: SpanStyle
 
     /// - parameter baseStyle: Required font setting for unstyled text. Like 
     ///   `body` or `html` in a CSS style sheet. Set to `.empty` to fall back to
@@ -58,15 +58,15 @@ public struct DefaultMarklightTheme: MarklightTheme {
     /// - parameter linkStyle: Decoration for inline or reference style link tags.
     /// - parameter syntaxStyle: Decoration for Markdown syntax elements.
     public init(
-        baseStyle: FontStyle,
-        referenceDefinitionStyle: FontStyle = .empty,
-        codeBlockStyle: FontStyle = .empty,
-        quoteStyle: FontStyle = .empty,
+        baseStyle: BlockStyle,
+        referenceDefinitionStyle: BlockStyle = .inherit,
+        codeBlockStyle: BlockStyle = .inherit,
+        quoteStyle: BlockStyle = .inherit,
 
-        inlineCodeStyle: FontStyle = .empty,
-        imageStyle: FontStyle = .empty,
-        linkStyle: FontStyle = .empty,
-        syntaxStyle: FontStyle = .empty){
+        inlineCodeStyle: SpanStyle = .inherit,
+        imageStyle: SpanStyle = .inherit,
+        linkStyle: SpanStyle = .inherit,
+        syntaxStyle: SpanStyle = .inherit){
 
         self.baseStyle = baseStyle
         self.referenceDefinitionStyle = referenceDefinitionStyle
@@ -79,7 +79,10 @@ public struct DefaultMarklightTheme: MarklightTheme {
     }
 }
 
+
 #if os(iOS)
+// MARK: - Dynamic Type
+
 /// Optional `MarkdownTheme` trait that will be picked up by
 /// `MarklightTextStorage` to update font sizes on dynamic text
 /// setting changes. 

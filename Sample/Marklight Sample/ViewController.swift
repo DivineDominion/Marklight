@@ -7,8 +7,6 @@
 //
 
 import UIKit
-
-// Import the Marklight framework
 import Marklight
 
 class ViewController: UIViewController, UITextViewDelegate {
@@ -25,14 +23,14 @@ class ViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
 
         let theme = DefaultMarklightTheme(
-            baseStyle: FontStyle(preferredFontForTextStyle: .body),
-            referenceDefinitionStyle: FontStyle(color: MarklightColor.lightGray),
-            codeBlockStyle: FontStyle(fontName: "Courier", fontTextStyle: .body, color: MarklightColor.orange),
-            quoteStyle: FontStyle(fontName: "Courier", fontTextStyle: .body, color: MarklightColor.darkGray),
-            inlineCodeStyle: FontStyle(fontName: "Courier", fontTextStyle: .body, color: MarklightColor.orange),
-            imageStyle: FontStyle(fontName: "Courier", fontTextStyle: .body),
-            linkStyle: FontStyle(fontName: "Courier", fontTextStyle: .body),
-            syntaxStyle: FontStyle(color: MarklightColor.blue))
+            baseStyle: BlockStyle(fontStyle: FontStyle(preferredFontForTextStyle: .body)),
+            referenceDefinitionStyle: BlockStyle(fontStyle: FontStyle(color: MarklightColor.lightGray)),
+            codeBlockStyle: BlockStyle(fontStyle: FontStyle(fontName: "Courier", fontTextStyle: .body, color: MarklightColor.orange)),
+            quoteStyle: BlockStyle(fontStyle: FontStyle(fontName: "Courier", fontTextStyle: .body, color: MarklightColor.darkGray), indentation: .characters(2)),
+            inlineCodeStyle: SpanStyle(fontStyle: FontStyle(fontName: "Courier", fontTextStyle: .body, color: MarklightColor.orange)),
+            imageStyle: SpanStyle(fontStyle: FontStyle(fontName: "Courier", fontTextStyle: .body)),
+            linkStyle: SpanStyle(fontStyle: FontStyle(fontName: "Courier", fontTextStyle: .body)),
+            syntaxStyle: SpanStyle(fontStyle: FontStyle(color: MarklightColor.blue)))
         Marklight.theme = theme
         Marklight.hideSyntax = true
         

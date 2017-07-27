@@ -15,7 +15,7 @@ import struct Foundation.CGFloat
 /// if you do not want to change the parent style of the
 /// affected range.
 public struct FontStyle {
-    public static var empty: FontStyle {
+    public static var inherit: FontStyle {
         return FontStyle()
     }
     

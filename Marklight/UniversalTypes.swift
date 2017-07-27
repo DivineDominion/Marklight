@@ -50,4 +50,12 @@ extension MarklightFont {
             return NSFontManager().convert(self, toHaveTrait: .boldFontMask)
         #endif
     }
+
+    static var systemFontOfDefaultSize: MarklightFont {
+        #if os(iOS)
+            return MarklightFont.systemFont(ofSize: MarklightFont.systemFontSize)
+        #elseif os(macOS)
+            return MarklightFont.systemFont(ofSize: MarklightFont.systemFontSize())
+        #endif
+    }
 }

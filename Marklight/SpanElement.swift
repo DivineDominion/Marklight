@@ -1,5 +1,5 @@
 //
-//  InlineStyle.swift
+//  SpanElement.swift
 //  Marklight
 //
 //  Created by Christian Tietze on 2017-07-24.
@@ -13,7 +13,7 @@ internal struct Paragraph {
     let paragraphRange: NSRange
 }
 
-internal protocol InlineStyle {
+internal protocol SpanElement {
     func apply(
         _ theme: MarklightTheme,
         styleApplier: MarklightStyleApplier,

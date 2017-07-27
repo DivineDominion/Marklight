@@ -1,5 +1,5 @@
 //
-//  ReferenceLinkInlineStyle
+//  ReferenceLinkSpanElement
 //  Marklight
 //
 //  Created by Christian Tietze on 2017-07-24.
@@ -10,8 +10,8 @@ import Foundation
 
 /// Style for:
 ///
-///    [Title](http://example.com)
-struct ReferenceLinkStyle: InlineStyle {
+///    [Title][ref]
+struct ReferenceLinkElement: SpanElement {
 
     fileprivate static var anchorPattern: String { return [
         "(\\[)                          # opening 1st bracket = $1",
@@ -51,7 +51,7 @@ struct ReferenceLinkStyle: InlineStyle {
 
     func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
 
-        ReferenceLinkStyle.anchorRegex.matches(paragraph) { (result) -> Void in
+        ReferenceLinkElement.anchorRegex.matches(paragraph) { (result) -> Void in
 
             theme.linkStyle.apply(styleApplier, range: result.range)
 
@@ -63,7 +63,7 @@ struct ReferenceLinkStyle: InlineStyle {
             }
 
             // TODO: see issue #12; what is this used for?
-            ReferenceLinkStyle.parenRegex.matches(paragraph.string, range: result.range) { (innerResult) -> Void in
+            ReferenceLinkElement.parenRegex.matches(paragraph.string, range: result.range) { (innerResult) -> Void in
                 theme.syntaxStyle.apply(styleApplier, range: innerResult.range)
 
                 if hideSyntax {

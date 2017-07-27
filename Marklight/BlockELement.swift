@@ -1,5 +1,5 @@
 //
-//  BlockStyle.swift
+//  BlockElement.swift
 //  Marklight
 //
 //  Created by Christian Tietze on 2017-07-24.
@@ -13,7 +13,7 @@ internal struct Document {
     let wholeRange: NSRange
 }
 
-internal protocol BlockStyle {
+internal protocol BlockElement {
     func apply(
         _ theme: MarklightTheme,
         styleApplier: MarklightStyleApplier,

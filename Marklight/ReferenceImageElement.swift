@@ -1,5 +1,5 @@
 //
-//  ReferenceImageStyle.swift
+//  ReferenceImageElement.swift
 //  Marklight
 //
 //  Created by Christian Tietze on 2017-07-24.
@@ -11,7 +11,7 @@ import Foundation
 /// Matches
 ///
 ///     ![Title][identifier]
-struct ReferenceImageStyle: InlineStyle {
+struct ReferenceImageElement: SpanElement {
 
     fileprivate static var imagePattern: String { return [
         "(!\\[)          # opening 1st bracket = $1",
@@ -31,7 +31,7 @@ struct ReferenceImageStyle: InlineStyle {
 
     func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
 
-        ReferenceImageStyle.imageRegex.matches(paragraph) { (result) -> Void in
+        ReferenceImageElement.imageRegex.matches(paragraph) { (result) -> Void in
             
             theme.imageStyle.apply(styleApplier, range: result.range)
 

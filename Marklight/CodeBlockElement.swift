@@ -1,5 +1,5 @@
 //
-//  CodeBlockStyle.swift
+//  CodeBlockElement.swift
 //  Marklight
 //
 //  Created by Christian Tietze on 2017-07-24.
@@ -18,7 +18,7 @@ import Foundation
 ///
 ///        Code here
 ///
-struct CodeBlockStyle: BlockStyle {
+struct CodeBlockElement: BlockElement {
 
     fileprivate static var codeBlockPattern: String { return [
         "(?:\\n\\n|\\A\\n?)",
@@ -45,11 +45,11 @@ struct CodeBlockStyle: BlockStyle {
 
     func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, document: Document) {
 
-        CodeBlockStyle.codeBlockRegex.matches(document) { (result) -> Void in
+        CodeBlockElement.codeBlockRegex.matches(document) { (result) -> Void in
             theme.codeBlockStyle.apply(styleApplier, range: result.range)
         }
 
-        CodeBlockStyle.fencedCodeBlockRegex.matches(document) { (result) -> Void in
+        CodeBlockElement.fencedCodeBlockRegex.matches(document) { (result) -> Void in
             theme.codeBlockStyle.apply(styleApplier, range: result.range)
 
             [result.rangeAt(1),

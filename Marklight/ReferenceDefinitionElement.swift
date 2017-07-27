@@ -1,5 +1,5 @@
 //
-//  ReferenceDefinitionStyle.swift
+//  ReferenceDefinitionElement.swift
 //  Marklight
 //
 //  Created by Christian Tietze on 2017-07-24.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ReferenceDefinitionStyle: BlockStyle {
+struct ReferenceDefinitionElement: BlockElement {
 
     fileprivate static var referenceLinkPattern: String { return [
         "^\\p{Z}{0,3}\\[([^\\[\\]]+)\\]:  # id = $1",
@@ -33,7 +33,7 @@ struct ReferenceDefinitionStyle: BlockStyle {
     fileprivate static let referenceLinkRegex = Regex(pattern: referenceLinkPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
 
     func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, document: Document) {
-        ReferenceDefinitionStyle.referenceLinkRegex.matches(document) { (result) -> Void in
+        ReferenceDefinitionElement.referenceLinkRegex.matches(document) { (result) -> Void in
             theme.referenceDefinitionStyle.apply(styleApplier, range: result.range)
         }
     }

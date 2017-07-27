@@ -7,74 +7,74 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00ACE39DE5B6A0DB93AFA996B2685318 /* MarklightStyleApplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F99BC34D0DB7D8FFE50B75C2302D97 /* MarklightStyleApplier.swift */; };
 		00AEDAB76D00254B836B567755F01598 /* Marklight-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 463E64432DD88F5DBC8B9D3DD71419D3 /* Marklight-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		07C928CEDF83AD3547CBA752E717CD2C /* BlockquoteStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAAB3B6664E553D605E2F96D3AAD98D /* BlockquoteStyle.swift */; };
-		11FFF472802AC39C172848672F3F74DA /* InlineStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E04205B4BEC2547BCC96FFDE7B533D /* InlineStyle.swift */; };
-		151CDE2BDEBEC9D471C9AAEDF19DD26B /* ReferenceLinkStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68CD0EBA3B745E75BE71F64601339F8 /* ReferenceLinkStyle.swift */; };
+		0385C7BC5B077AAC693F73124AC5421C /* Array+appending.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5462BEF7C621DAC66ADFD87CA83AE12 /* Array+appending.swift */; };
+		0567533FB7E2BF9691ED2B5E9602954B /* ReferenceImageElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43E3E283F483DE34B9466201CA3448 /* ReferenceImageElement.swift */; };
+		085E0425309B0CD0EAA762D5067632CC /* MarklightTextProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3F581D023CCA33C501BD9D94469856 /* MarklightTextProcessor.swift */; };
+		09BC5EC4F1B62F346C9B0B06AA64342F /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3897A6C85DF05FE74E8E259DFAB1A1 /* Regex.swift */; };
+		0A50BC20F2D20A88F52899D666E8CBCD /* AtxHeadingElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE5D42C61591C64BD63D7A1FAAE9617 /* AtxHeadingElement.swift */; };
+		0B4C44EEF8C3F9C20A9BB04A6F9487FC /* ItalicElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C220A066D2458B6889BDEE08F04360D /* ItalicElement.swift */; };
+		0F305F9391F4D48B35D37D8427A30101 /* FontStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48E6A51D988A96DC3FA568CE659586 /* FontStyle.swift */; };
 		1688361F6523285811FCA642E4E536CC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB8E2D632CADFEBE217900FD1D4F3ABF /* Foundation.framework */; };
-		1A396BF59EF0B2E977E36D6EE7984251 /* UniversalTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317F573435518453F297799C5974AD5 /* UniversalTypes.swift */; };
-		1AA33C3C131FE922ACA16079B815DBA9 /* BlockStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E960CD1C3EF893A6D50FB0F4E50FAF /* BlockStyle.swift */; };
-		1BA57BFD275D24CBE64B308BAEED9C68 /* Marklight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701CF9EA3E89735B83D332277BCC59CC /* Marklight.swift */; };
-		237C36FF9A6D121AFD5333B74D8C8392 /* Marklight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701CF9EA3E89735B83D332277BCC59CC /* Marklight.swift */; };
-		2DA58E7AD8B0BC8BAB1289FCFAE63BFF /* SetextHeaderStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DA7EED76170BEC6A9AD3E26C25829F /* SetextHeaderStyle.swift */; };
-		2E40866296F9EFF75EF1962E6939CBCF /* MarklightTextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E694910F930F4FCDD62266AD2C6F055 /* MarklightTextStorage.swift */; };
+		1777C16713F98664644D8D1D4C2C3C7A /* ListElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E617A353D478455C832DFA746B06B8DF /* ListElement.swift */; };
+		21A131939B07E7B0CDDD0B118284BC55 /* ReferenceLinkElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEBA8449927580B5CA51503454E2EF /* ReferenceLinkElement.swift */; };
+		249C22DD9BE49D21AE00E7A2A172424C /* MarklightTextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176CE9EFC347F3FB045F380593F6BA5A /* MarklightTextStorage.swift */; };
+		2BDFBA759DA5CB2C1A6639BE13819822 /* MarklightStyleApplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3ECA834A4A8A3A885A44F9AE1837D5 /* MarklightStyleApplier.swift */; };
+		2D651E84C64C12D149EC71102F1A6273 /* FontStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48E6A51D988A96DC3FA568CE659586 /* FontStyle.swift */; };
 		2E612F9ADF28C1FA478362A5D4581F2F /* Pods-Marklight-Marklight Sample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AA5F181E888ACFDFF647DBBDF734C7 /* Pods-Marklight-Marklight Sample-dummy.m */; };
-		34C26905C9C9031D06F8EDCE2DAB9B64 /* Marklight-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8968F009BF86CCE562B5316359E50F /* Marklight-iOS-dummy.m */; };
-		35BC1617B9EE8B9B9A957535F78B1017 /* CodeSpanStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4051C4938A994D10791DB42B95C6258F /* CodeSpanStyle.swift */; };
-		36CC3ED40944EB5083D240780589FA91 /* MarklightStyleApplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F99BC34D0DB7D8FFE50B75C2302D97 /* MarklightStyleApplier.swift */; };
-		3797F55A8E6F4B89DB13283E25C14598 /* AutolinkEmailStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D932FB5AAAF93F42D1E29DFB0927C50E /* AutolinkEmailStyle.swift */; };
-		3813B72BB38E5989E8223F58C7252235 /* ItalicStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF01C333B00A07A42D60C0F8C156E06 /* ItalicStyle.swift */; };
-		3E628BF5F94835D0E316A5763BDB2D67 /* AutolinkStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106E8948987B305C34B4C2BF4FE8874D /* AutolinkStyle.swift */; };
+		301DE8952F3E66F3210FD007CB1B1D81 /* NSString+paragraphRangeAt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585DFCC4178D73E628D003BC034B251C /* NSString+paragraphRangeAt.swift */; };
+		347CA397B26CAE07BB72AD1420BE814E /* BlockquoteElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B8DB080AA1F693D73020A9C5B73BE2 /* BlockquoteElement.swift */; };
+		377C4D6B3F4C26590CE4A06C5569C267 /* InlineLinkElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3D28A3488387122011F9BADE0688CC /* InlineLinkElement.swift */; };
+		3805154C04B88F2C8A95F1E62803E062 /* BlockELement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9608BACFD444603E8AC7732344CE31F2 /* BlockELement.swift */; };
+		3976D3E003720219437A3218E7470365 /* Marklight-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8968F009BF86CCE562B5316359E50F /* Marklight-iOS-dummy.m */; };
+		3AE4CAF24835289F0B04DFBBF3F2285A /* SetextHeaderElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC306D10C6DB2F577F6C2FA1795586 /* SetextHeaderElement.swift */; };
+		3CE42DB4901F6EF09F9A029290B575CE /* CodeBlockElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DCECD7D1C68D54F80E4DC4CD8A46DD /* CodeBlockElement.swift */; };
+		3E0CB90721DEBB0A8D71D53A74B9580A /* Marklight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611D6FB84962C80B63C63C99B05E5121 /* Marklight.swift */; };
 		42EF4612EDE4034EE0D12AF27E80034A /* Pods-Marklight-Marklight Sample-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 504AFCB6CDCED06DFA7CBCCE54EB4B10 /* Pods-Marklight-Marklight Sample-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4370C7678A15794E729AA6CAB2FA9FCA /* MarklightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A42D928B7AD16DEED3348D880DCB7B /* MarklightTheme.swift */; };
 		44BAD6158348D6FE49EEE205D8649192 /* Pods-Marklight-Marklight Sample macOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E6CB78FFFA83229A53A147A62F96F3 /* Pods-Marklight-Marklight Sample macOS-dummy.m */; };
-		475EC0B2D70DD5C5FAF42D34D807BE91 /* ListStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5D83756D646D5B0F24D1AEA279CE1 /* ListStyle.swift */; };
-		4C972F1BE194387907F371DE04713E80 /* InlineStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E04205B4BEC2547BCC96FFDE7B533D /* InlineStyle.swift */; };
-		5A186C02132C5ABB1711F2681E9CADC3 /* Array+appending.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF4322C4DB72C7EC8C44A4D29B6B31B /* Array+appending.swift */; };
-		5EDFFF7D5C2D56C716BAA433330FF075 /* AutolinkEmailStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D932FB5AAAF93F42D1E29DFB0927C50E /* AutolinkEmailStyle.swift */; };
-		6173917CF935D769140B5F8B89138534 /* BlockStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E960CD1C3EF893A6D50FB0F4E50FAF /* BlockStyle.swift */; };
-		6650AB987DA68E7828B0F20D3CC9B1CF /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14B1153892D6E47F07988CEF935C656 /* Regex.swift */; };
-		6A17846EBD82B7DDF4FBE85D8CAEDBE1 /* AtxHeadingStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742E9EC6EE2851970AA0F40719DD4C63 /* AtxHeadingStyle.swift */; };
-		6D76C6D16353D60A624F02DB720CD890 /* MarklightTextProcessingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B401D19F1598E14D838063D3F606CF5E /* MarklightTextProcessingResult.swift */; };
-		79C56A00ABBEDB5757330D7FDB3F93DE /* ListStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5D83756D646D5B0F24D1AEA279CE1 /* ListStyle.swift */; };
-		7E0F5513AEF7F727EC15932D708B08F5 /* FontStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286C5827494B697EBC38CD69B7EA8119 /* FontStyle.swift */; };
-		82AC32B20C46ED3E6D194EC5808E3FFA /* BoldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84DAFB9D2A07E5C2FDC78187F6A8BE7 /* BoldStyle.swift */; };
+		4655BA8CAC7540186DE929063B9CA40E /* MarklightTextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176CE9EFC347F3FB045F380593F6BA5A /* MarklightTextStorage.swift */; };
+		4716438ACEB6649CACC57B6DF1984BAD /* AutolinkElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F2C46E19675F47328D7FFADCD60F96 /* AutolinkElement.swift */; };
+		4BC8298EFA332B8D71C92C44BFD71E2B /* ReferenceDefinitionElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B79628124F192B622BA5896B79AAFE4 /* ReferenceDefinitionElement.swift */; };
+		533AC934BE646A20DD9B376ED627194A /* BoldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3326326D5585719EDD90C9043B474E34 /* BoldElement.swift */; };
+		5701409D414CF9D7FD10A1CA81DD488E /* ReferenceImageElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43E3E283F483DE34B9466201CA3448 /* ReferenceImageElement.swift */; };
+		5723210C6D7FC6E0E00C36EC6C4BD54F /* BlockquoteElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B8DB080AA1F693D73020A9C5B73BE2 /* BlockquoteElement.swift */; };
+		594BFF1F1FA35C10C580784B340DA534 /* InlineImageElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854351736552406681A1D695419D737E /* InlineImageElement.swift */; };
+		5D7714945AEA63E1D661DE9BF8F920C7 /* MarklightTextProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3F581D023CCA33C501BD9D94469856 /* MarklightTextProcessor.swift */; };
+		631519A27CAA77BF92B7DBF0805FDC3C /* MarklightStyleApplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3ECA834A4A8A3A885A44F9AE1837D5 /* MarklightStyleApplier.swift */; };
+		636B0D71B9AC48DD5C7A9465394C8C35 /* ItalicElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C220A066D2458B6889BDEE08F04360D /* ItalicElement.swift */; };
+		673804AC198EAAEBF4DF878C93B48DA5 /* ReferenceDefinitionElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B79628124F192B622BA5896B79AAFE4 /* ReferenceDefinitionElement.swift */; };
+		7C29471BA33F8B439321E02937CED7CB /* UniversalTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC206F453EEBD6AAE506C3B242E03A2 /* UniversalTypes.swift */; };
+		80017134DB79EE10FBBEC496DB00B170 /* BlockELement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9608BACFD444603E8AC7732344CE31F2 /* BlockELement.swift */; };
 		8438EF5A437A9A008C54E2EDB0A229BD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDDAA23DDA8E082FC77E38FA01601C8F /* Cocoa.framework */; };
-		84B6375A4012D9C536AFE6E946D7F703 /* BlockquoteStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAAB3B6664E553D605E2F96D3AAD98D /* BlockquoteStyle.swift */; };
 		8599BADDD54D8331FA293C0A63D5364D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDDAA23DDA8E082FC77E38FA01601C8F /* Cocoa.framework */; };
-		8D7F3B1879AA881C9D33838C91F50A88 /* ReferenceImageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34381A8C7A9D593CD79E3BD9C0C0659B /* ReferenceImageStyle.swift */; };
-		98F92C75A5D2F8A408C5D8F73B29F469 /* MarklightTextProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A12EF9DEFFEC8FE247DF19DFA84D8 /* MarklightTextProcessor.swift */; };
-		A358C5076D7E3A8E94A5FCA42C4E374F /* ReferenceDefinitionStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7FE9AB6D54916292B8C176725F67FB /* ReferenceDefinitionStyle.swift */; };
-		A5C61670607793A05E8A76FAEB9480BD /* InlineImageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCA00B356A285E2E0A5E99C0831227 /* InlineImageStyle.swift */; };
-		A70A2559409302176C4500F172C12C12 /* BoldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84DAFB9D2A07E5C2FDC78187F6A8BE7 /* BoldStyle.swift */; };
-		AA109AE0C42823AD37A5AA9A08E9F382 /* InlineLinkStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B2C2471BA861F687191D963B0294BE /* InlineLinkStyle.swift */; };
-		ADBCD7AA60525B5867CD21E2B87E4DB4 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14B1153892D6E47F07988CEF935C656 /* Regex.swift */; };
-		B01FA465C3A0B8857C51B07F89DA1AB9 /* MarklightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A42D928B7AD16DEED3348D880DCB7B /* MarklightTheme.swift */; };
-		B1BE4294D538EC4A99FB1325AF11D59E /* UniversalTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317F573435518453F297799C5974AD5 /* UniversalTypes.swift */; };
-		B39F103E20322013791660BDF8AD2E28 /* InlineImageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CCA00B356A285E2E0A5E99C0831227 /* InlineImageStyle.swift */; };
+		91415F569988D042EE921ED5119C0E10 /* SpanElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C290C12C4E2614F6D6250E236FD2A42 /* SpanElement.swift */; };
+		982F530DCDBE1144ECA3F28E839D9CEF /* InlineLinkElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3D28A3488387122011F9BADE0688CC /* InlineLinkElement.swift */; };
+		9947CF22E19D924B6BB840D6B325ED6C /* UniversalTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC206F453EEBD6AAE506C3B242E03A2 /* UniversalTypes.swift */; };
+		9E6AA2DD74162A193DE75FDF0CEB6A97 /* MarklightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A4F68CDFCC4E2CD6E17F75E227F426 /* MarklightTheme.swift */; };
+		9E94E808D4839A87103C3329AACFB1EE /* AutolinkEmailElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7632727E13920BAA4736E2614100A74C /* AutolinkEmailElement.swift */; };
+		A6E006FE29FB14F1B5074E97280FE6B5 /* ListElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E617A353D478455C832DFA746B06B8DF /* ListElement.swift */; };
+		A95E780BFC7243CB41825A152A648B03 /* InlineImageElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854351736552406681A1D695419D737E /* InlineImageElement.swift */; };
+		AD122835C8E3FF6ACF9B6D1C6D6114E9 /* CodeSpanElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5B91934CE5FA1019441AFD5960FA90 /* CodeSpanElement.swift */; };
+		B3A0DFA784FD02DAC10B5E664156F168 /* MarklightTextProcessingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCC24702D24D69F4DD5B8993178C477 /* MarklightTextProcessingResult.swift */; };
 		B832DFFF46EBFD07A504FB16B8B792AE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB8E2D632CADFEBE217900FD1D4F3ABF /* Foundation.framework */; };
 		BA0D65CA1C4EFBD3F4873F01BD07536E /* Marklight-OSX-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 08B51271D8816A139E397BD3EEFC4172 /* Marklight-OSX-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BC5F1F087005068D5183B109CCA404E8 /* AtxHeadingStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742E9EC6EE2851970AA0F40719DD4C63 /* AtxHeadingStyle.swift */; };
-		C0BD8467E9490C33479FD2BEEBD86842 /* NSString+paragraphRangeAt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B241087C3B634524DB0990F665BD2FFC /* NSString+paragraphRangeAt.swift */; };
-		C78C6DB9F7D3C83AD8A26D79C1FA0A0D /* NSString+paragraphRangeAt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B241087C3B634524DB0990F665BD2FFC /* NSString+paragraphRangeAt.swift */; };
-		C9C289B6C48570EFA48102D4FD5CA8F1 /* AutolinkStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106E8948987B305C34B4C2BF4FE8874D /* AutolinkStyle.swift */; };
-		D0C99CDB1F1BD9CDFE99EBCA319390F0 /* Array+appending.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF4322C4DB72C7EC8C44A4D29B6B31B /* Array+appending.swift */; };
-		D19F01964A9F13523541C385D1FF15C0 /* InlineLinkStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B2C2471BA861F687191D963B0294BE /* InlineLinkStyle.swift */; };
-		D732E6A4FC9A42D5FB9C49CFEB67FAD2 /* MarklightTextProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582A12EF9DEFFEC8FE247DF19DFA84D8 /* MarklightTextProcessor.swift */; };
-		D752F958F93D3111C77F4306A52AB8AD /* CodeBlockStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218C800352879FA78D9523006EC5995B /* CodeBlockStyle.swift */; };
-		DA9F1B92D18BEE3E4EC064A3ABAB9133 /* Marklight-OSX-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F83CA49050FD3631A1673F98311BDD75 /* Marklight-OSX-dummy.m */; };
-		DD039E643151E1B420E7AB3285351C87 /* ReferenceLinkStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68CD0EBA3B745E75BE71F64601339F8 /* ReferenceLinkStyle.swift */; };
-		DD42445381D3C2BEAAFF4A5A38A50E32 /* ReferenceDefinitionStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7FE9AB6D54916292B8C176725F67FB /* ReferenceDefinitionStyle.swift */; };
-		DE6E78411CA40B52124379FC525931C6 /* CodeBlockStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218C800352879FA78D9523006EC5995B /* CodeBlockStyle.swift */; };
-		E286C33D40922D185F7381EB1251B803 /* CodeSpanStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4051C4938A994D10791DB42B95C6258F /* CodeSpanStyle.swift */; };
-		EAE9E4F15B5FA8112D23C3CC1CB9AC93 /* MarklightTextProcessingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B401D19F1598E14D838063D3F606CF5E /* MarklightTextProcessingResult.swift */; };
-		EB7D0715A15A0D33C11136BC245FDAB1 /* SetextHeaderStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DA7EED76170BEC6A9AD3E26C25829F /* SetextHeaderStyle.swift */; };
+		C2B02E4AB038670C460A6C4AFCB2ACBE /* Array+appending.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5462BEF7C621DAC66ADFD87CA83AE12 /* Array+appending.swift */; };
+		C7362F8FC16A4A9A9716E93C2CCBB868 /* Marklight-OSX-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F83CA49050FD3631A1673F98311BDD75 /* Marklight-OSX-dummy.m */; };
+		CAD38914231BE48DAE8F5651BC2AD1C0 /* AutolinkEmailElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7632727E13920BAA4736E2614100A74C /* AutolinkEmailElement.swift */; };
+		CFBA8A49658FFF29BF56B4DF373E28F5 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3897A6C85DF05FE74E8E259DFAB1A1 /* Regex.swift */; };
+		D0768379AB64DF38FFCB2D2B58CF0DA7 /* MarklightTextProcessingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCC24702D24D69F4DD5B8993178C477 /* MarklightTextProcessingResult.swift */; };
+		D15FB2738F7BC43E5104EDD48865596F /* SpanElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C290C12C4E2614F6D6250E236FD2A42 /* SpanElement.swift */; };
+		D83608315D1B10CFA44D81CAF3237A32 /* ReferenceLinkElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEBA8449927580B5CA51503454E2EF /* ReferenceLinkElement.swift */; };
+		D8B92516EAE20FAF4CCF079BE345E5CC /* BoldElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3326326D5585719EDD90C9043B474E34 /* BoldElement.swift */; };
+		E050308D04C429F2E717878E55910625 /* NSString+paragraphRangeAt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585DFCC4178D73E628D003BC034B251C /* NSString+paragraphRangeAt.swift */; };
+		E3080370064E03D2272DCAC4ED8AADBA /* AtxHeadingElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE5D42C61591C64BD63D7A1FAAE9617 /* AtxHeadingElement.swift */; };
+		E4E2655DB2C13DEF52EEC147FEE8B77C /* Marklight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611D6FB84962C80B63C63C99B05E5121 /* Marklight.swift */; };
+		E53AD6C4517CF1E9968F1CC7D40620C7 /* MarklightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A4F68CDFCC4E2CD6E17F75E227F426 /* MarklightTheme.swift */; };
+		E9A9F601911CA634C69D9AB907FF8D57 /* CodeSpanElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5B91934CE5FA1019441AFD5960FA90 /* CodeSpanElement.swift */; };
 		EB8BFD7AC77D589580982C6E57375A1F /* Pods-Marklight-Marklight Sample macOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D997AD92D29379A9564227402B1DB03 /* Pods-Marklight-Marklight Sample macOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ECBB80EF752E7EBB97692BCBCEB1FF44 /* ItalicStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF01C333B00A07A42D60C0F8C156E06 /* ItalicStyle.swift */; };
-		F52A83EE8933D599ED2E14CE2920AE00 /* FontStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286C5827494B697EBC38CD69B7EA8119 /* FontStyle.swift */; };
-		F705AD45F395103652712C5F26B41473 /* ReferenceImageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34381A8C7A9D593CD79E3BD9C0C0659B /* ReferenceImageStyle.swift */; };
-		F91FDE5B68DD7307D780F5059B5FA42E /* MarklightTextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E694910F930F4FCDD62266AD2C6F055 /* MarklightTextStorage.swift */; };
+		F649151C76F5CAE0D574E34111D6E6C4 /* SetextHeaderElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DC306D10C6DB2F577F6C2FA1795586 /* SetextHeaderElement.swift */; };
+		F95CA46991E96EA8AC5F75CB787A55EA /* AutolinkElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F2C46E19675F47328D7FFADCD60F96 /* AutolinkElement.swift */; };
+		FF597227AC24890B6F3B919A8DBBCCA6 /* CodeBlockElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DCECD7D1C68D54F80E4DC4CD8A46DD /* CodeBlockElement.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,73 +95,73 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		04A5D83756D646D5B0F24D1AEA279CE1 /* ListStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ListStyle.swift; sourceTree = "<group>"; };
+		01F2C46E19675F47328D7FFADCD60F96 /* AutolinkElement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AutolinkElement.swift; sourceTree = "<group>"; };
 		08B51271D8816A139E397BD3EEFC4172 /* Marklight-OSX-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Marklight-OSX-umbrella.h"; sourceTree = "<group>"; };
-		09226AE663C2BBB2FBAF315C196479F7 /* Marklight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Marklight.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		08DCECD7D1C68D54F80E4DC4CD8A46DD /* CodeBlockElement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CodeBlockElement.swift; sourceTree = "<group>"; };
+		09226AE663C2BBB2FBAF315C196479F7 /* Marklight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Marklight.framework; path = "Marklight-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C220A066D2458B6889BDEE08F04360D /* ItalicElement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ItalicElement.swift; sourceTree = "<group>"; };
 		0D272D4BE74D02D8E6758FC6C6CD6597 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Marklight-iOS/Info.plist"; sourceTree = "<group>"; };
-		106E8948987B305C34B4C2BF4FE8874D /* AutolinkStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AutolinkStyle.swift; sourceTree = "<group>"; };
-		16B2C2471BA861F687191D963B0294BE /* InlineLinkStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InlineLinkStyle.swift; sourceTree = "<group>"; };
+		176CE9EFC347F3FB045F380593F6BA5A /* MarklightTextStorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MarklightTextStorage.swift; sourceTree = "<group>"; };
 		1954BB0D4690843F084A66BA41B7CB09 /* Pods-Marklight-Marklight Sample macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Marklight-Marklight Sample macOS.debug.xcconfig"; sourceTree = "<group>"; };
-		1E694910F930F4FCDD62266AD2C6F055 /* MarklightTextStorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MarklightTextStorage.swift; sourceTree = "<group>"; };
-		218C800352879FA78D9523006EC5995B /* CodeBlockStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CodeBlockStyle.swift; sourceTree = "<group>"; };
-		25F99BC34D0DB7D8FFE50B75C2302D97 /* MarklightStyleApplier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MarklightStyleApplier.swift; sourceTree = "<group>"; };
-		286C5827494B697EBC38CD69B7EA8119 /* FontStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FontStyle.swift; sourceTree = "<group>"; };
+		1B79628124F192B622BA5896B79AAFE4 /* ReferenceDefinitionElement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReferenceDefinitionElement.swift; sourceTree = "<group>"; };
 		30F6549FE977D235554A0BB70A3B4304 /* Marklight-OSX.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Marklight-OSX.xcconfig"; sourceTree = "<group>"; };
-		34381A8C7A9D593CD79E3BD9C0C0659B /* ReferenceImageStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReferenceImageStyle.swift; sourceTree = "<group>"; };
-		37E960CD1C3EF893A6D50FB0F4E50FAF /* BlockStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BlockStyle.swift; sourceTree = "<group>"; };
-		4051C4938A994D10791DB42B95C6258F /* CodeSpanStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CodeSpanStyle.swift; sourceTree = "<group>"; };
-		43CCA00B356A285E2E0A5E99C0831227 /* InlineImageStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InlineImageStyle.swift; sourceTree = "<group>"; };
-		43DF927B37430BB78EB68BEA8CDABD53 /* Marklight-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; name = "Marklight-iOS.modulemap"; path = "../Marklight-iOS/Marklight-iOS.modulemap"; sourceTree = "<group>"; };
+		3326326D5585719EDD90C9043B474E34 /* BoldElement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BoldElement.swift; sourceTree = "<group>"; };
+		35EEBA8449927580B5CA51503454E2EF /* ReferenceLinkElement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReferenceLinkElement.swift; sourceTree = "<group>"; };
+		3F43E3E283F483DE34B9466201CA3448 /* ReferenceImageElement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReferenceImageElement.swift; sourceTree = "<group>"; };
+		43DF927B37430BB78EB68BEA8CDABD53 /* Marklight-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; name = "Marklight-iOS.modulemap"; path = "../Marklight-iOS/Marklight-iOS.modulemap"; sourceTree = "<group>"; };
 		463E64432DD88F5DBC8B9D3DD71419D3 /* Marklight-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Marklight-iOS-umbrella.h"; path = "../Marklight-iOS/Marklight-iOS-umbrella.h"; sourceTree = "<group>"; };
-		4B5BAF31CDC2E5C8D6FB1C4E26D87313 /* Pods_Marklight_Marklight_Sample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marklight_Marklight_Sample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4CF01C333B00A07A42D60C0F8C156E06 /* ItalicStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ItalicStyle.swift; sourceTree = "<group>"; };
+		4B5BAF31CDC2E5C8D6FB1C4E26D87313 /* Pods_Marklight_Marklight_Sample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Marklight_Marklight_Sample.framework; path = "Pods-Marklight-Marklight Sample.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		504AFCB6CDCED06DFA7CBCCE54EB4B10 /* Pods-Marklight-Marklight Sample-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Marklight-Marklight Sample-umbrella.h"; sourceTree = "<group>"; };
-		54DA7EED76170BEC6A9AD3E26C25829F /* SetextHeaderStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SetextHeaderStyle.swift; sourceTree = "<group>"; };
 		56F6F4CECF6458464F20294A63B168F4 /* Pods-Marklight-Marklight Sample macOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Marklight-Marklight Sample macOS-frameworks.sh"; sourceTree = "<group>"; };
 		578C65CA4D55E331FDCE813DF6CC1D4F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		582A12EF9DEFFEC8FE247DF19DFA84D8 /* MarklightTextProcessor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MarklightTextProcessor.swift; sourceTree = "<group>"; };
+		585DFCC4178D73E628D003BC034B251C /* NSString+paragraphRangeAt.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NSString+paragraphRangeAt.swift"; sourceTree = "<group>"; };
 		5BEC194900724FA39134E150F2565D3B /* Pods-Marklight-Marklight Sample-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Marklight-Marklight Sample-acknowledgements.plist"; sourceTree = "<group>"; };
-		5DE6924255815EFAE93E0BE6DEC59070 /* Pods-Marklight-Marklight Sample macOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Marklight-Marklight Sample macOS.modulemap"; sourceTree = "<group>"; };
-		65E04205B4BEC2547BCC96FFDE7B533D /* InlineStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InlineStyle.swift; sourceTree = "<group>"; };
+		5CE5D42C61591C64BD63D7A1FAAE9617 /* AtxHeadingElement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AtxHeadingElement.swift; sourceTree = "<group>"; };
+		5DE6924255815EFAE93E0BE6DEC59070 /* Pods-Marklight-Marklight Sample macOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Marklight-Marklight Sample macOS.modulemap"; sourceTree = "<group>"; };
+		611D6FB84962C80B63C63C99B05E5121 /* Marklight.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Marklight.swift; sourceTree = "<group>"; };
 		6E8968F009BF86CCE562B5316359E50F /* Marklight-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Marklight-iOS-dummy.m"; path = "../Marklight-iOS/Marklight-iOS-dummy.m"; sourceTree = "<group>"; };
-		701CF9EA3E89735B83D332277BCC59CC /* Marklight.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Marklight.swift; sourceTree = "<group>"; };
 		71E6CB78FFFA83229A53A147A62F96F3 /* Pods-Marklight-Marklight Sample macOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Marklight-Marklight Sample macOS-dummy.m"; sourceTree = "<group>"; };
-		742E9EC6EE2851970AA0F40719DD4C63 /* AtxHeadingStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AtxHeadingStyle.swift; sourceTree = "<group>"; };
-		76A42D928B7AD16DEED3348D880DCB7B /* MarklightTheme.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MarklightTheme.swift; sourceTree = "<group>"; };
-		843C32C9C475C8EC0FB7B7C033B8DEE9 /* Pods-Marklight-Marklight Sample.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Marklight-Marklight Sample.modulemap"; sourceTree = "<group>"; };
-		8BF4322C4DB72C7EC8C44A4D29B6B31B /* Array+appending.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Array+appending.swift"; sourceTree = "<group>"; };
+		7632727E13920BAA4736E2614100A74C /* AutolinkEmailElement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AutolinkEmailElement.swift; sourceTree = "<group>"; };
+		7B3F581D023CCA33C501BD9D94469856 /* MarklightTextProcessor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MarklightTextProcessor.swift; sourceTree = "<group>"; };
+		7B48E6A51D988A96DC3FA568CE659586 /* FontStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FontStyle.swift; sourceTree = "<group>"; };
+		7FC206F453EEBD6AAE506C3B242E03A2 /* UniversalTypes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UniversalTypes.swift; sourceTree = "<group>"; };
+		843C32C9C475C8EC0FB7B7C033B8DEE9 /* Pods-Marklight-Marklight Sample.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Marklight-Marklight Sample.modulemap"; sourceTree = "<group>"; };
+		854351736552406681A1D695419D737E /* InlineImageElement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InlineImageElement.swift; sourceTree = "<group>"; };
+		8C290C12C4E2614F6D6250E236FD2A42 /* SpanElement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SpanElement.swift; sourceTree = "<group>"; };
 		92BC6DE58210B38C700FD11D6A87D0F3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9608BACFD444603E8AC7732344CE31F2 /* BlockELement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BlockELement.swift; sourceTree = "<group>"; };
 		9A0C55E39FDA6434BFBEFA5297FF5F28 /* Pods-Marklight-Marklight Sample macOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Marklight-Marklight Sample macOS-acknowledgements.markdown"; sourceTree = "<group>"; };
+		9C3897A6C85DF05FE74E8E259DFAB1A1 /* Regex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 		9D997AD92D29379A9564227402B1DB03 /* Pods-Marklight-Marklight Sample macOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Marklight-Marklight Sample macOS-umbrella.h"; sourceTree = "<group>"; };
 		A183DAE50D3D1375CC1E5940AAD8669B /* Pods-Marklight-Marklight Sample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Marklight-Marklight Sample.debug.xcconfig"; sourceTree = "<group>"; };
-		A68CD0EBA3B745E75BE71F64601339F8 /* ReferenceLinkStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReferenceLinkStyle.swift; sourceTree = "<group>"; };
 		A9138CF4A09889A9CA257732DF184F40 /* Pods-Marklight-Marklight Sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Marklight-Marklight Sample.release.xcconfig"; sourceTree = "<group>"; };
-		B241087C3B634524DB0990F665BD2FFC /* NSString+paragraphRangeAt.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NSString+paragraphRangeAt.swift"; sourceTree = "<group>"; };
 		B2AA5F181E888ACFDFF647DBBDF734C7 /* Pods-Marklight-Marklight Sample-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Marklight-Marklight Sample-dummy.m"; sourceTree = "<group>"; };
-		B401D19F1598E14D838063D3F606CF5E /* MarklightTextProcessingResult.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MarklightTextProcessingResult.swift; sourceTree = "<group>"; };
+		B6DC306D10C6DB2F577F6C2FA1795586 /* SetextHeaderElement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SetextHeaderElement.swift; sourceTree = "<group>"; };
 		B76B05C1138D2830469521BB7FB34227 /* Marklight-OSX-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Marklight-OSX-prefix.pch"; sourceTree = "<group>"; };
 		BAF7151CA41F63FD764D705A4A21486D /* Pods-Marklight-Marklight Sample macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Marklight-Marklight Sample macOS.release.xcconfig"; sourceTree = "<group>"; };
+		BDCC24702D24D69F4DD5B8993178C477 /* MarklightTextProcessingResult.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MarklightTextProcessingResult.swift; sourceTree = "<group>"; };
 		CDDAA23DDA8E082FC77E38FA01601C8F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		CFDDDA2D8148F2241E407722F4FD4320 /* Marklight-iOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Marklight-iOS-prefix.pch"; path = "../Marklight-iOS/Marklight-iOS-prefix.pch"; sourceTree = "<group>"; };
 		D49625C52D5D30481B2951F7332F49B3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D84DAFB9D2A07E5C2FDC78187F6A8BE7 /* BoldStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BoldStyle.swift; sourceTree = "<group>"; };
-		D932FB5AAAF93F42D1E29DFB0927C50E /* AutolinkEmailStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AutolinkEmailStyle.swift; sourceTree = "<group>"; };
+		D5462BEF7C621DAC66ADFD87CA83AE12 /* Array+appending.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Array+appending.swift"; sourceTree = "<group>"; };
+		D6B8DB080AA1F693D73020A9C5B73BE2 /* BlockquoteElement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BlockquoteElement.swift; sourceTree = "<group>"; };
 		D9699F78DFC2F89B90E2B41EFECFCF00 /* Pods-Marklight-Marklight Sample-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Marklight-Marklight Sample-frameworks.sh"; sourceTree = "<group>"; };
 		DB8E2D632CADFEBE217900FD1D4F3ABF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		E05DF1B938576A3A34C7C1D2D6460105 /* Pods-Marklight-Marklight Sample-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Marklight-Marklight Sample-acknowledgements.markdown"; sourceTree = "<group>"; };
-		E14B1153892D6E47F07988CEF935C656 /* Regex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 		E3992CF302A62CD93304B4800D70CB20 /* Pods-Marklight-Marklight Sample macOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Marklight-Marklight Sample macOS-resources.sh"; sourceTree = "<group>"; };
-		E64FF4B4B61227C565A28D9F1A796579 /* Pods_Marklight_Marklight_Sample_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marklight_Marklight_Sample_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E617A353D478455C832DFA746B06B8DF /* ListElement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ListElement.swift; sourceTree = "<group>"; };
+		E64FF4B4B61227C565A28D9F1A796579 /* Pods_Marklight_Marklight_Sample_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Marklight_Marklight_Sample_macOS.framework; path = "Pods-Marklight-Marklight Sample macOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8BD4078E9B4674831BB5E515FD95999 /* Pods-Marklight-Marklight Sample-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Marklight-Marklight Sample-resources.sh"; sourceTree = "<group>"; };
-		E9432A6655CE7E92A6099DAE20BF835D /* Marklight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Marklight.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9432A6655CE7E92A6099DAE20BF835D /* Marklight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Marklight.framework; path = "Marklight-OSX.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB3ECA834A4A8A3A885A44F9AE1837D5 /* MarklightStyleApplier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MarklightStyleApplier.swift; sourceTree = "<group>"; };
+		EC5B91934CE5FA1019441AFD5960FA90 /* CodeSpanElement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CodeSpanElement.swift; sourceTree = "<group>"; };
 		ED02BCBEB0B232496022A0B486474F80 /* Marklight-iOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Marklight-iOS.xcconfig"; path = "../Marklight-iOS/Marklight-iOS.xcconfig"; sourceTree = "<group>"; };
-		ED7FE9AB6D54916292B8C176725F67FB /* ReferenceDefinitionStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReferenceDefinitionStyle.swift; sourceTree = "<group>"; };
-		F2FD7B26D8E25341F072CCF8A76FFF42 /* Marklight-OSX.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Marklight-OSX.modulemap"; sourceTree = "<group>"; };
-		F317F573435518453F297799C5974AD5 /* UniversalTypes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UniversalTypes.swift; sourceTree = "<group>"; };
+		EF3D28A3488387122011F9BADE0688CC /* InlineLinkElement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InlineLinkElement.swift; sourceTree = "<group>"; };
+		F2FD7B26D8E25341F072CCF8A76FFF42 /* Marklight-OSX.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Marklight-OSX.modulemap"; sourceTree = "<group>"; };
+		F7A4F68CDFCC4E2CD6E17F75E227F426 /* MarklightTheme.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MarklightTheme.swift; sourceTree = "<group>"; };
 		F83CA49050FD3631A1673F98311BDD75 /* Marklight-OSX-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Marklight-OSX-dummy.m"; sourceTree = "<group>"; };
 		FAC8140593AF379498930206868F9871 /* Pods-Marklight-Marklight Sample macOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Marklight-Marklight Sample macOS-acknowledgements.plist"; sourceTree = "<group>"; };
-		FCAAB3B6664E553D605E2F96D3AAD98D /* BlockquoteStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BlockquoteStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,7 +221,7 @@
 		25947C6A9E57D78703F1C458FE7D8C42 /* Marklight */ = {
 			isa = PBXGroup;
 			children = (
-				C267D932B35A41FB024899AAAE2E5E41 /* Marklight */,
+				68F753B4261A8406CBC396D7AEEC3359 /* Marklight */,
 				2D3F0D564484A51104C172F6A950E645 /* Support Files */,
 			);
 			name = Marklight;
@@ -273,6 +273,42 @@
 			name = "Development Pods";
 			sourceTree = "<group>";
 		};
+		68F753B4261A8406CBC396D7AEEC3359 /* Marklight */ = {
+			isa = PBXGroup;
+			children = (
+				D5462BEF7C621DAC66ADFD87CA83AE12 /* Array+appending.swift */,
+				5CE5D42C61591C64BD63D7A1FAAE9617 /* AtxHeadingElement.swift */,
+				01F2C46E19675F47328D7FFADCD60F96 /* AutolinkElement.swift */,
+				7632727E13920BAA4736E2614100A74C /* AutolinkEmailElement.swift */,
+				9608BACFD444603E8AC7732344CE31F2 /* BlockELement.swift */,
+				D6B8DB080AA1F693D73020A9C5B73BE2 /* BlockquoteElement.swift */,
+				3326326D5585719EDD90C9043B474E34 /* BoldElement.swift */,
+				08DCECD7D1C68D54F80E4DC4CD8A46DD /* CodeBlockElement.swift */,
+				EC5B91934CE5FA1019441AFD5960FA90 /* CodeSpanElement.swift */,
+				7B48E6A51D988A96DC3FA568CE659586 /* FontStyle.swift */,
+				854351736552406681A1D695419D737E /* InlineImageElement.swift */,
+				EF3D28A3488387122011F9BADE0688CC /* InlineLinkElement.swift */,
+				0C220A066D2458B6889BDEE08F04360D /* ItalicElement.swift */,
+				E617A353D478455C832DFA746B06B8DF /* ListElement.swift */,
+				611D6FB84962C80B63C63C99B05E5121 /* Marklight.swift */,
+				EB3ECA834A4A8A3A885A44F9AE1837D5 /* MarklightStyleApplier.swift */,
+				BDCC24702D24D69F4DD5B8993178C477 /* MarklightTextProcessingResult.swift */,
+				7B3F581D023CCA33C501BD9D94469856 /* MarklightTextProcessor.swift */,
+				176CE9EFC347F3FB045F380593F6BA5A /* MarklightTextStorage.swift */,
+				F7A4F68CDFCC4E2CD6E17F75E227F426 /* MarklightTheme.swift */,
+				585DFCC4178D73E628D003BC034B251C /* NSString+paragraphRangeAt.swift */,
+				1B79628124F192B622BA5896B79AAFE4 /* ReferenceDefinitionElement.swift */,
+				3F43E3E283F483DE34B9466201CA3448 /* ReferenceImageElement.swift */,
+				35EEBA8449927580B5CA51503454E2EF /* ReferenceLinkElement.swift */,
+				9C3897A6C85DF05FE74E8E259DFAB1A1 /* Regex.swift */,
+				B6DC306D10C6DB2F577F6C2FA1795586 /* SetextHeaderElement.swift */,
+				8C290C12C4E2614F6D6250E236FD2A42 /* SpanElement.swift */,
+				7FC206F453EEBD6AAE506C3B242E03A2 /* UniversalTypes.swift */,
+			);
+			name = Marklight;
+			path = Marklight;
+			sourceTree = "<group>";
+		};
 		71C89E3795D9A06508E8F54A55F5A581 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -319,41 +355,6 @@
 			);
 			name = "Pods-Marklight-Marklight Sample";
 			path = "Target Support Files/Pods-Marklight-Marklight Sample";
-			sourceTree = "<group>";
-		};
-		C267D932B35A41FB024899AAAE2E5E41 /* Marklight */ = {
-			isa = PBXGroup;
-			children = (
-				8BF4322C4DB72C7EC8C44A4D29B6B31B /* Array+appending.swift */,
-				742E9EC6EE2851970AA0F40719DD4C63 /* AtxHeadingStyle.swift */,
-				106E8948987B305C34B4C2BF4FE8874D /* AutolinkStyle.swift */,
-				FCAAB3B6664E553D605E2F96D3AAD98D /* BlockquoteStyle.swift */,
-				D932FB5AAAF93F42D1E29DFB0927C50E /* AutolinkEmailStyle.swift */,
-				37E960CD1C3EF893A6D50FB0F4E50FAF /* BlockStyle.swift */,
-				D84DAFB9D2A07E5C2FDC78187F6A8BE7 /* BoldStyle.swift */,
-				218C800352879FA78D9523006EC5995B /* CodeBlockStyle.swift */,
-				4051C4938A994D10791DB42B95C6258F /* CodeSpanStyle.swift */,
-				286C5827494B697EBC38CD69B7EA8119 /* FontStyle.swift */,
-				43CCA00B356A285E2E0A5E99C0831227 /* InlineImageStyle.swift */,
-				16B2C2471BA861F687191D963B0294BE /* InlineLinkStyle.swift */,
-				65E04205B4BEC2547BCC96FFDE7B533D /* InlineStyle.swift */,
-				4CF01C333B00A07A42D60C0F8C156E06 /* ItalicStyle.swift */,
-				04A5D83756D646D5B0F24D1AEA279CE1 /* ListStyle.swift */,
-				701CF9EA3E89735B83D332277BCC59CC /* Marklight.swift */,
-				25F99BC34D0DB7D8FFE50B75C2302D97 /* MarklightStyleApplier.swift */,
-				B401D19F1598E14D838063D3F606CF5E /* MarklightTextProcessingResult.swift */,
-				582A12EF9DEFFEC8FE247DF19DFA84D8 /* MarklightTextProcessor.swift */,
-				1E694910F930F4FCDD62266AD2C6F055 /* MarklightTextStorage.swift */,
-				76A42D928B7AD16DEED3348D880DCB7B /* MarklightTheme.swift */,
-				B241087C3B634524DB0990F665BD2FFC /* NSString+paragraphRangeAt.swift */,
-				ED7FE9AB6D54916292B8C176725F67FB /* ReferenceDefinitionStyle.swift */,
-				34381A8C7A9D593CD79E3BD9C0C0659B /* ReferenceImageStyle.swift */,
-				A68CD0EBA3B745E75BE71F64601339F8 /* ReferenceLinkStyle.swift */,
-				E14B1153892D6E47F07988CEF935C656 /* Regex.swift */,
-				54DA7EED76170BEC6A9AD3E26C25829F /* SetextHeaderStyle.swift */,
-				F317F573435518453F297799C5974AD5 /* UniversalTypes.swift */,
-			);
-			path = Marklight;
 			sourceTree = "<group>";
 		};
 		D9264F83C4D02B328DC17E03FD692462 /* Targets Support Files */ = {
@@ -443,7 +444,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E9262A558056F6E121A7C38A0D6C0A5B /* Build configuration list for PBXNativeTarget "Marklight-iOS" */;
 			buildPhases = (
-				8B41DEA4FF96B20A1CF6413BD7006C38 /* Sources */,
+				D6EF9F6291B9AF733FAA5A8A08AECE66 /* Sources */,
 				1E7209121975FB4B9D45335A6F4790C6 /* Frameworks */,
 				E5EEA67D027F5A5FCA821ADBBEB20C06 /* Headers */,
 			);
@@ -460,7 +461,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 888D61ADB173F233AF628C86D39CECBC /* Build configuration list for PBXNativeTarget "Marklight-OSX" */;
 			buildPhases = (
-				6D34F64F40CC52990A7CF0DF0B7D09DD /* Sources */,
+				F52D9BDC5BA754042830827F5BD836C7 /* Sources */,
 				03CADA6540F43CDCAE817B88F24DC9D6 /* Frameworks */,
 				64F1F1F55D0FB141BE749FC002D50747 /* Headers */,
 			);
@@ -519,75 +520,75 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6D34F64F40CC52990A7CF0DF0B7D09DD /* Sources */ = {
+		D6EF9F6291B9AF733FAA5A8A08AECE66 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0C99CDB1F1BD9CDFE99EBCA319390F0 /* Array+appending.swift in Sources */,
-				BC5F1F087005068D5183B109CCA404E8 /* AtxHeadingStyle.swift in Sources */,
-				3797F55A8E6F4B89DB13283E25C14598 /* AutolinkEmailStyle.swift in Sources */,
-				C9C289B6C48570EFA48102D4FD5CA8F1 /* AutolinkStyle.swift in Sources */,
-				84B6375A4012D9C536AFE6E946D7F703 /* BlockquoteStyle.swift in Sources */,
-				6173917CF935D769140B5F8B89138534 /* BlockStyle.swift in Sources */,
-				A70A2559409302176C4500F172C12C12 /* BoldStyle.swift in Sources */,
-				DE6E78411CA40B52124379FC525931C6 /* CodeBlockStyle.swift in Sources */,
-				E286C33D40922D185F7381EB1251B803 /* CodeSpanStyle.swift in Sources */,
-				F52A83EE8933D599ED2E14CE2920AE00 /* FontStyle.swift in Sources */,
-				A5C61670607793A05E8A76FAEB9480BD /* InlineImageStyle.swift in Sources */,
-				AA109AE0C42823AD37A5AA9A08E9F382 /* InlineLinkStyle.swift in Sources */,
-				4C972F1BE194387907F371DE04713E80 /* InlineStyle.swift in Sources */,
-				ECBB80EF752E7EBB97692BCBCEB1FF44 /* ItalicStyle.swift in Sources */,
-				475EC0B2D70DD5C5FAF42D34D807BE91 /* ListStyle.swift in Sources */,
-				DA9F1B92D18BEE3E4EC064A3ABAB9133 /* Marklight-OSX-dummy.m in Sources */,
-				1BA57BFD275D24CBE64B308BAEED9C68 /* Marklight.swift in Sources */,
-				36CC3ED40944EB5083D240780589FA91 /* MarklightStyleApplier.swift in Sources */,
-				6D76C6D16353D60A624F02DB720CD890 /* MarklightTextProcessingResult.swift in Sources */,
-				98F92C75A5D2F8A408C5D8F73B29F469 /* MarklightTextProcessor.swift in Sources */,
-				F91FDE5B68DD7307D780F5059B5FA42E /* MarklightTextStorage.swift in Sources */,
-				B01FA465C3A0B8857C51B07F89DA1AB9 /* MarklightTheme.swift in Sources */,
-				C0BD8467E9490C33479FD2BEEBD86842 /* NSString+paragraphRangeAt.swift in Sources */,
-				A358C5076D7E3A8E94A5FCA42C4E374F /* ReferenceDefinitionStyle.swift in Sources */,
-				F705AD45F395103652712C5F26B41473 /* ReferenceImageStyle.swift in Sources */,
-				151CDE2BDEBEC9D471C9AAEDF19DD26B /* ReferenceLinkStyle.swift in Sources */,
-				6650AB987DA68E7828B0F20D3CC9B1CF /* Regex.swift in Sources */,
-				EB7D0715A15A0D33C11136BC245FDAB1 /* SetextHeaderStyle.swift in Sources */,
-				B1BE4294D538EC4A99FB1325AF11D59E /* UniversalTypes.swift in Sources */,
+				C2B02E4AB038670C460A6C4AFCB2ACBE /* Array+appending.swift in Sources */,
+				E3080370064E03D2272DCAC4ED8AADBA /* AtxHeadingElement.swift in Sources */,
+				4716438ACEB6649CACC57B6DF1984BAD /* AutolinkElement.swift in Sources */,
+				CAD38914231BE48DAE8F5651BC2AD1C0 /* AutolinkEmailElement.swift in Sources */,
+				80017134DB79EE10FBBEC496DB00B170 /* BlockELement.swift in Sources */,
+				347CA397B26CAE07BB72AD1420BE814E /* BlockquoteElement.swift in Sources */,
+				D8B92516EAE20FAF4CCF079BE345E5CC /* BoldElement.swift in Sources */,
+				FF597227AC24890B6F3B919A8DBBCCA6 /* CodeBlockElement.swift in Sources */,
+				AD122835C8E3FF6ACF9B6D1C6D6114E9 /* CodeSpanElement.swift in Sources */,
+				2D651E84C64C12D149EC71102F1A6273 /* FontStyle.swift in Sources */,
+				A95E780BFC7243CB41825A152A648B03 /* InlineImageElement.swift in Sources */,
+				982F530DCDBE1144ECA3F28E839D9CEF /* InlineLinkElement.swift in Sources */,
+				0B4C44EEF8C3F9C20A9BB04A6F9487FC /* ItalicElement.swift in Sources */,
+				1777C16713F98664644D8D1D4C2C3C7A /* ListElement.swift in Sources */,
+				3976D3E003720219437A3218E7470365 /* Marklight-iOS-dummy.m in Sources */,
+				3E0CB90721DEBB0A8D71D53A74B9580A /* Marklight.swift in Sources */,
+				2BDFBA759DA5CB2C1A6639BE13819822 /* MarklightStyleApplier.swift in Sources */,
+				B3A0DFA784FD02DAC10B5E664156F168 /* MarklightTextProcessingResult.swift in Sources */,
+				085E0425309B0CD0EAA762D5067632CC /* MarklightTextProcessor.swift in Sources */,
+				249C22DD9BE49D21AE00E7A2A172424C /* MarklightTextStorage.swift in Sources */,
+				9E6AA2DD74162A193DE75FDF0CEB6A97 /* MarklightTheme.swift in Sources */,
+				E050308D04C429F2E717878E55910625 /* NSString+paragraphRangeAt.swift in Sources */,
+				4BC8298EFA332B8D71C92C44BFD71E2B /* ReferenceDefinitionElement.swift in Sources */,
+				0567533FB7E2BF9691ED2B5E9602954B /* ReferenceImageElement.swift in Sources */,
+				21A131939B07E7B0CDDD0B118284BC55 /* ReferenceLinkElement.swift in Sources */,
+				09BC5EC4F1B62F346C9B0B06AA64342F /* Regex.swift in Sources */,
+				F649151C76F5CAE0D574E34111D6E6C4 /* SetextHeaderElement.swift in Sources */,
+				D15FB2738F7BC43E5104EDD48865596F /* SpanElement.swift in Sources */,
+				7C29471BA33F8B439321E02937CED7CB /* UniversalTypes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8B41DEA4FF96B20A1CF6413BD7006C38 /* Sources */ = {
+		F52D9BDC5BA754042830827F5BD836C7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A186C02132C5ABB1711F2681E9CADC3 /* Array+appending.swift in Sources */,
-				6A17846EBD82B7DDF4FBE85D8CAEDBE1 /* AtxHeadingStyle.swift in Sources */,
-				5EDFFF7D5C2D56C716BAA433330FF075 /* AutolinkEmailStyle.swift in Sources */,
-				3E628BF5F94835D0E316A5763BDB2D67 /* AutolinkStyle.swift in Sources */,
-				07C928CEDF83AD3547CBA752E717CD2C /* BlockquoteStyle.swift in Sources */,
-				1AA33C3C131FE922ACA16079B815DBA9 /* BlockStyle.swift in Sources */,
-				82AC32B20C46ED3E6D194EC5808E3FFA /* BoldStyle.swift in Sources */,
-				D752F958F93D3111C77F4306A52AB8AD /* CodeBlockStyle.swift in Sources */,
-				35BC1617B9EE8B9B9A957535F78B1017 /* CodeSpanStyle.swift in Sources */,
-				7E0F5513AEF7F727EC15932D708B08F5 /* FontStyle.swift in Sources */,
-				B39F103E20322013791660BDF8AD2E28 /* InlineImageStyle.swift in Sources */,
-				D19F01964A9F13523541C385D1FF15C0 /* InlineLinkStyle.swift in Sources */,
-				11FFF472802AC39C172848672F3F74DA /* InlineStyle.swift in Sources */,
-				3813B72BB38E5989E8223F58C7252235 /* ItalicStyle.swift in Sources */,
-				79C56A00ABBEDB5757330D7FDB3F93DE /* ListStyle.swift in Sources */,
-				34C26905C9C9031D06F8EDCE2DAB9B64 /* Marklight-iOS-dummy.m in Sources */,
-				237C36FF9A6D121AFD5333B74D8C8392 /* Marklight.swift in Sources */,
-				00ACE39DE5B6A0DB93AFA996B2685318 /* MarklightStyleApplier.swift in Sources */,
-				EAE9E4F15B5FA8112D23C3CC1CB9AC93 /* MarklightTextProcessingResult.swift in Sources */,
-				D732E6A4FC9A42D5FB9C49CFEB67FAD2 /* MarklightTextProcessor.swift in Sources */,
-				2E40866296F9EFF75EF1962E6939CBCF /* MarklightTextStorage.swift in Sources */,
-				4370C7678A15794E729AA6CAB2FA9FCA /* MarklightTheme.swift in Sources */,
-				C78C6DB9F7D3C83AD8A26D79C1FA0A0D /* NSString+paragraphRangeAt.swift in Sources */,
-				DD42445381D3C2BEAAFF4A5A38A50E32 /* ReferenceDefinitionStyle.swift in Sources */,
-				8D7F3B1879AA881C9D33838C91F50A88 /* ReferenceImageStyle.swift in Sources */,
-				DD039E643151E1B420E7AB3285351C87 /* ReferenceLinkStyle.swift in Sources */,
-				ADBCD7AA60525B5867CD21E2B87E4DB4 /* Regex.swift in Sources */,
-				2DA58E7AD8B0BC8BAB1289FCFAE63BFF /* SetextHeaderStyle.swift in Sources */,
-				1A396BF59EF0B2E977E36D6EE7984251 /* UniversalTypes.swift in Sources */,
+				0385C7BC5B077AAC693F73124AC5421C /* Array+appending.swift in Sources */,
+				0A50BC20F2D20A88F52899D666E8CBCD /* AtxHeadingElement.swift in Sources */,
+				F95CA46991E96EA8AC5F75CB787A55EA /* AutolinkElement.swift in Sources */,
+				9E94E808D4839A87103C3329AACFB1EE /* AutolinkEmailElement.swift in Sources */,
+				3805154C04B88F2C8A95F1E62803E062 /* BlockELement.swift in Sources */,
+				5723210C6D7FC6E0E00C36EC6C4BD54F /* BlockquoteElement.swift in Sources */,
+				533AC934BE646A20DD9B376ED627194A /* BoldElement.swift in Sources */,
+				3CE42DB4901F6EF09F9A029290B575CE /* CodeBlockElement.swift in Sources */,
+				E9A9F601911CA634C69D9AB907FF8D57 /* CodeSpanElement.swift in Sources */,
+				0F305F9391F4D48B35D37D8427A30101 /* FontStyle.swift in Sources */,
+				594BFF1F1FA35C10C580784B340DA534 /* InlineImageElement.swift in Sources */,
+				377C4D6B3F4C26590CE4A06C5569C267 /* InlineLinkElement.swift in Sources */,
+				636B0D71B9AC48DD5C7A9465394C8C35 /* ItalicElement.swift in Sources */,
+				A6E006FE29FB14F1B5074E97280FE6B5 /* ListElement.swift in Sources */,
+				C7362F8FC16A4A9A9716E93C2CCBB868 /* Marklight-OSX-dummy.m in Sources */,
+				E4E2655DB2C13DEF52EEC147FEE8B77C /* Marklight.swift in Sources */,
+				631519A27CAA77BF92B7DBF0805FDC3C /* MarklightStyleApplier.swift in Sources */,
+				D0768379AB64DF38FFCB2D2B58CF0DA7 /* MarklightTextProcessingResult.swift in Sources */,
+				5D7714945AEA63E1D661DE9BF8F920C7 /* MarklightTextProcessor.swift in Sources */,
+				4655BA8CAC7540186DE929063B9CA40E /* MarklightTextStorage.swift in Sources */,
+				E53AD6C4517CF1E9968F1CC7D40620C7 /* MarklightTheme.swift in Sources */,
+				301DE8952F3E66F3210FD007CB1B1D81 /* NSString+paragraphRangeAt.swift in Sources */,
+				673804AC198EAAEBF4DF878C93B48DA5 /* ReferenceDefinitionElement.swift in Sources */,
+				5701409D414CF9D7FD10A1CA81DD488E /* ReferenceImageElement.swift in Sources */,
+				D83608315D1B10CFA44D81CAF3237A32 /* ReferenceLinkElement.swift in Sources */,
+				CFBA8A49658FFF29BF56B4DF373E28F5 /* Regex.swift in Sources */,
+				3AE4CAF24835289F0B04DFBBF3F2285A /* SetextHeaderElement.swift in Sources */,
+				91415F569988D042EE921ED5119C0E10 /* SpanElement.swift in Sources */,
+				9947CF22E19D924B6BB840D6B325ED6C /* UniversalTypes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

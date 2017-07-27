@@ -1,5 +1,5 @@
 //
-//  AutolinkEmailStyle.swift
+//  AutolinkEmailElement.swift
 //  Marklight
 //
 //  Created by Christian Tietze on 2017-07-24.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct AutolinkEmailStyle: InlineStyle {
+struct AutolinkEmailElement: SpanElement {
 
     fileprivate static let autolinkEmailPattern = [
         "(?:mailto:)?",
@@ -26,13 +26,13 @@ struct AutolinkEmailStyle: InlineStyle {
     fileprivate static let mailtoRegex = Regex(pattern: mailtoPattern, options: [.allowCommentsAndWhitespace, .dotMatchesLineSeparators])
 
     func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
-        AutolinkEmailStyle.autolinkEmailRegex.matches(paragraph) { (result) -> Void in
+        AutolinkEmailElement.autolinkEmailRegex.matches(paragraph) { (result) -> Void in
             let linkSubstring = (paragraph.string as NSString).substring(with: result.range)
             guard linkSubstring.lengthOfBytes(using: .utf8) > 0 else { return }
             styleApplier.addLinkAttribute(linkSubstring, range: result.range)
 
             if hideSyntax {
-                AutolinkEmailStyle.mailtoRegex.matches(paragraph.string, range: result.range) { (innerResult) -> Void in
+                AutolinkEmailElement.mailtoRegex.matches(paragraph.string, range: result.range) { (innerResult) -> Void in
                     styleApplier.addHiddenAttributes(range: innerResult.range)
                 }
             }

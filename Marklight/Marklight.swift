@@ -191,19 +191,19 @@ public struct Marklight {
         let wholeRange = NSMakeRange(0, (string as NSString).length)
         let document = Document(string: string, wholeRange: wholeRange)
 
-        blockMarkdownStyles.forEach { blockStyle in
-            blockStyle.apply(Marklight.theme, styleApplier: styleApplier, hideSyntax: Marklight.hideSyntax, document: document)
+        markdownBlockElements.forEach { blockElement in
+            blockElement.apply(Marklight.theme, styleApplier: styleApplier, hideSyntax: Marklight.hideSyntax, document: document)
         }
     }
 
-    fileprivate static let blockMarkdownStyles: [BlockStyle] = [
-        AtxHeadingStyle(),
-        SetextHeadingStyle(),
+    fileprivate static let markdownBlockElements: [BlockElement] = [
+        AtxHeadingElement(),
+        SetextHeadingElement(),
 
-        ReferenceDefinitionStyle(),
-        BlockquoteStyle(),
-        ListStyle(),
-        CodeBlockStyle()
+        ReferenceDefinitionElement(),
+        BlockquoteElement(),
+        ListElement(),
+        CodeBlockElement()
     ]
 
     /**
@@ -220,27 +220,27 @@ public struct Marklight {
 
         let paragraph = Paragraph(string: string, paragraphRange: paragraphRange)
 
-        spanMarkdownStyles.forEach { style in
-            style.apply(Marklight.theme, styleApplier: styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
+        markdownSpanElement.forEach { spanElement in
+            spanElement.apply(Marklight.theme, styleApplier: styleApplier, hideSyntax: Marklight.hideSyntax, paragraph: paragraph)
         }
     }
 
-    fileprivate static let spanMarkdownStyles: [InlineStyle] = [
-        ReferenceLinkStyle(),
-        InlineLinkStyle(),
+    fileprivate static let markdownSpanElement: [SpanElement] = [
+        ReferenceLinkElement(),
+        InlineLinkElement(),
 
-        ReferenceImageStyle(),
-        InlineImageStyle(),
+        ReferenceImageElement(),
+        InlineImageElement(),
 
         // Apply bold before italic to support hiding syntax glyphs in nested bold/italic styles.
-        BoldStyle(),
-        ItalicStyle(),
+        BoldElement(),
+        ItalicElement(),
 
         // Apply code last to remove bold/italic from matched text again
-        CodeSpanStyle(),
+        CodeSpanElement(),
 
-        AutolinkStyle(),
-        AutolinkEmailStyle()
+        AutolinkElement(),
+        AutolinkEmailElement()
     ]
 
     /// maximum nested depth of [] and () supported by the transform; 

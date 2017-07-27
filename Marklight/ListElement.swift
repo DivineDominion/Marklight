@@ -1,5 +1,5 @@
 //
-//  ListStyle.swift
+//  ListElement.swift
 //  Marklight
 //
 //  Created by Christian Tietze on 2017-07-24.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ListStyle: BlockStyle {
+struct ListElement: BlockElement {
 
     fileprivate static var _markerUL: String { return "[*+-]" }
     fileprivate static var _markerOL: String { return "\\d+[.]" }
@@ -42,8 +42,8 @@ struct ListStyle: BlockStyle {
 
     func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, document: Document) {
 
-        ListStyle.listRegex.matches(document) { (result) -> Void in
-            ListStyle.listOpeningRegex.matches(document.string, range: result.range) { (innerResult) -> Void in
+        ListElement.listRegex.matches(document) { (result) -> Void in
+            ListElement.listOpeningRegex.matches(document.string, range: result.range) { (innerResult) -> Void in
                 theme.syntaxStyle.apply(styleApplier, range: innerResult.range)
             }
         }

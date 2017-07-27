@@ -1,5 +1,5 @@
 //
-//  InlineLinkStyle.swift
+//  InlineLinkElement.swift
 //  Marklight
 //
 //  Created by Christian Tietze on 2017-07-24.
@@ -8,7 +8,10 @@
 
 import Foundation
 
-struct InlineLinkStyle: InlineStyle {
+/// Matches:
+///
+///    foo [bar](http://baz/)
+struct InlineLinkElement: SpanElement {
 
     fileprivate static var anchorInlinePattern: String { return [
         "(\\[)                   # opening 1st bracket = $1",
@@ -35,13 +38,13 @@ struct InlineLinkStyle: InlineStyle {
 
     func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
 
-        InlineLinkStyle.anchorInlineRegex.matches(paragraph) { (result) -> Void in
+        InlineLinkElement.anchorInlineRegex.matches(paragraph) { (result) -> Void in
             theme.linkStyle.apply(styleApplier, range: result.range)
 
             var destinationLink : String?
 
             // TODO: use $5?
-            InlineLinkStyle.coupleRoundRegex.matches(paragraph.string, range: result.range) { (innerResult) -> Void in
+            InlineLinkElement.coupleRoundRegex.matches(paragraph.string, range: result.range) { (innerResult) -> Void in
                 if hideSyntax { styleApplier.addHiddenAttributes(range: innerResult.range) }
                 else { theme.syntaxStyle.apply(styleApplier, range: innerResult.range) }
                 
@@ -64,7 +67,7 @@ struct InlineLinkStyle: InlineStyle {
             guard let destinationLinkString = destinationLink else { return }
 
             // TODO: use $2?
-            InlineLinkStyle.coupleSquareRegex.matches(paragraph.string, range: result.range) { (innerResult) -> Void in
+            InlineLinkElement.coupleSquareRegex.matches(paragraph.string, range: result.range) { (innerResult) -> Void in
                 var range = innerResult.range
                 range.location = range.location + 1
                 range.length = range.length - 2

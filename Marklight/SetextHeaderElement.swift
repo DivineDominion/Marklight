@@ -15,7 +15,7 @@ import Foundation
 ///
 ///     Subheading
 ///     ----------
-struct SetextHeadingStyle: BlockStyle {
+struct SetextHeadingElement: BlockElement {
 
     fileprivate static var headerSetextPattern: String { return [
         "^(.+?)",     // $1 = Heading text
@@ -30,7 +30,7 @@ struct SetextHeadingStyle: BlockStyle {
     fileprivate static let headersSetextRegex = Regex(pattern: headerSetextPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
 
     func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, document: Document) {
-        SetextHeadingStyle.headersSetextRegex.matches(document) { (result) -> Void in
+        SetextHeadingElement.headersSetextRegex.matches(document) { (result) -> Void in
             styleApplier.embolden(range: result.range)
             theme.syntaxStyle.apply(styleApplier, range: result.rangeAt(2))
         }

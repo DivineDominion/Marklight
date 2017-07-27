@@ -1,5 +1,5 @@
 //
-//  CodeSpanStyle.swift
+//  CodeSpanElement.swift
 //  Marklight
 //
 //  Created by Christian Tietze on 2017-07-24.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CodeSpanStyle: InlineStyle {
+struct CodeSpanElement: SpanElement {
 
     fileprivate static var codeSpanPattern: String { return [
         "(?<![\\\\`])   # Character before opening ` can't be a backslash or backtick",
@@ -41,14 +41,14 @@ struct CodeSpanStyle: InlineStyle {
 
     func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
 
-        CodeSpanStyle.codeSpanRegex.matches(paragraph) { (result) -> Void in
+        CodeSpanElement.codeSpanRegex.matches(paragraph) { (result) -> Void in
             theme.inlineCodeStyle.apply(styleApplier, range: result.range)
 
-            CodeSpanStyle.codeSpanOpeningRegex.matches(paragraph) { (innerResult) -> Void in
+            CodeSpanElement.codeSpanOpeningRegex.matches(paragraph) { (innerResult) -> Void in
                 if hideSyntax { styleApplier.addHiddenAttributes(range: innerResult.range) }
                 else { theme.syntaxStyle.apply(styleApplier, range: innerResult.range) }
             }
-            CodeSpanStyle.codeSpanClosingRegex.matches(paragraph) { (innerResult) -> Void in
+            CodeSpanElement.codeSpanClosingRegex.matches(paragraph) { (innerResult) -> Void in
                 if hideSyntax { styleApplier.addHiddenAttributes(range: innerResult.range) }
                 else { theme.syntaxStyle.apply(styleApplier, range: innerResult.range) }
             }

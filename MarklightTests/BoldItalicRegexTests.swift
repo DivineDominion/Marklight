@@ -41,7 +41,7 @@ extension BoldItalicRegexTests {
         ["hi **bold** text",
          "hi __bold__ text"].forEach { string in
             let callbackExp = expectation(description: "Matched \(string)")
-            match(string, BoldStyle.strictBoldRegex) {
+            match(string, BoldElement.strictBoldRegex) {
                 if let result = $0,
                     result.numberOfRanges == 6 {
                     XCTAssertEqual(result.rangeAt(4), NSMakeRange(5, 4))
@@ -52,12 +52,12 @@ extension BoldItalicRegexTests {
             }
         }
 
-        match("intra__word__ emphasis", BoldStyle.strictBoldRegex) { _ in
+        match("intra__word__ emphasis", BoldElement.strictBoldRegex) { _ in
             XCTFail("intraword emphasis with underscore disallowed")
         }
         do {
             let callbackExp = expectation(description: "Matched intraword bold emphasis")
-            match("intra**word** emphasis", BoldStyle.strictBoldRegex) {
+            match("intra**word** emphasis", BoldElement.strictBoldRegex) {
                 if let result = $0,
                     result.numberOfRanges == 6 {
                     XCTAssertEqual(result.rangeAt(0), NSMakeRange(5, 8))
@@ -75,7 +75,7 @@ extension BoldItalicRegexTests {
             var nestedMatches = 0
             let outerCallbackExp = expectation(description: "Matched nested outer bold")
             let innerCallbackExp = expectation(description: "Matched nested inner bold")
-            match("__foo, __bar__, baz__", BoldStyle.strictBoldRegex) {
+            match("__foo, __bar__, baz__", BoldElement.strictBoldRegex) {
                 if nestedMatches == 0 {
                     // Outer emphasis
                     if let result = $0,
@@ -107,7 +107,7 @@ extension BoldItalicRegexTests {
         ["Sentence **end**.",
          "Sentence __end__."].forEach { string in
             let callbackExp = expectation(description: "Matched \(string)")
-            match(string, BoldStyle.strictBoldRegex) {
+            match(string, BoldElement.strictBoldRegex) {
                 if let result = $0,
                     result.numberOfRanges == 6 {
                     XCTAssertEqual(result.rangeAt(2), NSMakeRange(9, 2))
@@ -120,7 +120,7 @@ extension BoldItalicRegexTests {
         }
 
         boldNonMatches.forEach { string in
-            match(string, BoldStyle.strictBoldRegex) { _ in
+            match(string, BoldElement.strictBoldRegex) { _ in
                 XCTFail("\"\(string)\" should not match")
             }
         }
@@ -154,7 +154,7 @@ extension BoldItalicRegexTests {
         ["hi *italic* text",
          "hi _italic_ text"].forEach { string in
             let callbackExp = expectation(description: "Matched \(string)")
-            match(string, ItalicStyle.strictItalicRegex) {
+            match(string, ItalicElement.strictItalicRegex) {
                 if let result = $0,
                     result.numberOfRanges == 5 {
                     XCTAssertEqual(result.rangeAt(2), NSMakeRange(3, 1))
@@ -166,12 +166,12 @@ extension BoldItalicRegexTests {
             }
         }
 
-        match("intra_word_ emphasis", ItalicStyle.strictItalicRegex) { _ in
+        match("intra_word_ emphasis", ItalicElement.strictItalicRegex) { _ in
             XCTFail("intraword emphasis with underscore disallowed")
         }
         do {
             let callbackExp = expectation(description: "Matched intraword emphasis")
-            match("intra*word* emphasis", ItalicStyle.strictItalicRegex) {
+            match("intra*word* emphasis", ItalicElement.strictItalicRegex) {
                 if let result = $0,
                     result.numberOfRanges == 5 {
                     XCTAssertEqual(result.rangeAt(2), NSMakeRange(5, 1))
@@ -187,7 +187,7 @@ extension BoldItalicRegexTests {
         ["Sentence *end*.",
          "Sentence _end_."].forEach { string in
             let callbackExp = expectation(description: "Matched \(string)")
-            match(string, ItalicStyle.strictItalicRegex) {
+            match(string, ItalicElement.strictItalicRegex) {
                 if let result = $0,
                     result.numberOfRanges == 5 {
                     XCTAssertEqual(result.rangeAt(2), NSMakeRange(9, 1))
@@ -200,7 +200,7 @@ extension BoldItalicRegexTests {
         }
 
         italicNonMatches.forEach { string in
-            match(string, ItalicStyle.strictItalicRegex) { _ in
+            match(string, ItalicElement.strictItalicRegex) { _ in
                 XCTFail("\"\(string)\" should not match")
             }
         }
@@ -216,7 +216,7 @@ extension BoldItalicRegexTests {
     func testBoldAndItalic() {
 
         let italicCallback = expectation(description: "Matched italics")
-        match("**hi *italic* text**", ItalicStyle.strictItalicRegex) {
+        match("**hi *italic* text**", ItalicElement.strictItalicRegex) {
             if let result = $0,
                 result.numberOfRanges == 5 {
                 XCTAssertEqual(result.rangeAt(2), NSMakeRange(5, 1))
@@ -228,7 +228,7 @@ extension BoldItalicRegexTests {
         }
 
         let boldCallback = expectation(description: "Matched bold")
-        match("**hi *italic* text**", BoldStyle.strictBoldRegex) {
+        match("**hi *italic* text**", BoldElement.strictBoldRegex) {
             if let result = $0,
                 result.numberOfRanges == 6 {
                 XCTAssertEqual(result.rangeAt(4), NSMakeRange(2, 16))
@@ -244,7 +244,7 @@ extension BoldItalicRegexTests {
     func testBoldAndItalic_SameGlyph_NestingPrecedence() {
 
         let italicCallback = expectation(description: "Matched italics on the inside")
-        match("***italic***", ItalicStyle.strictItalicRegex) {
+        match("***italic***", ItalicElement.strictItalicRegex) {
             if let result = $0,
                 result.numberOfRanges == 5 {
                 XCTAssertEqual(result.rangeAt(2), NSMakeRange(2, 1))
@@ -257,7 +257,7 @@ extension BoldItalicRegexTests {
         }
 
         let boldCallback = expectation(description: "Matched bold on the outside")
-        match("***bold***", BoldStyle.strictBoldRegex) {
+        match("***bold***", BoldElement.strictBoldRegex) {
             if let result = $0,
                 result.numberOfRanges == 6 {
                 XCTAssertEqual(result.rangeAt(2), NSMakeRange(0, 2))
@@ -275,7 +275,7 @@ extension BoldItalicRegexTests {
     func testItalicAndBold() {
 
         let italicCallback = expectation(description: "Matched italics")
-        match("*hi **italic** text*", ItalicStyle.strictItalicRegex) {
+        match("*hi **italic** text*", ItalicElement.strictItalicRegex) {
             if let result = $0,
                 result.numberOfRanges == 5 {
                 XCTAssertEqual(result.rangeAt(2), NSMakeRange(0, 1))
@@ -287,7 +287,7 @@ extension BoldItalicRegexTests {
         }
 
         let boldCallback = expectation(description: "Matched bold")
-        match("*hi **italic** text*", BoldStyle.strictBoldRegex) {
+        match("*hi **italic** text*", BoldElement.strictBoldRegex) {
             if let result = $0,
                 result.numberOfRanges == 6 {
                 XCTAssertEqual(result.rangeAt(4), NSMakeRange(6, 6))
@@ -303,7 +303,7 @@ extension BoldItalicRegexTests {
     func testItalicAndBold_DifferentGlyphWithoutAlphanumericCharacterInBetween() {
 
         let italicCallback = expectation(description: "Matched italics next to bold syntax")
-        match("_**italic**_", ItalicStyle.strictItalicRegex) {
+        match("_**italic**_", ItalicElement.strictItalicRegex) {
             if let result = $0,
                 result.numberOfRanges == 5 {
                 XCTAssertEqual(result.rangeAt(2), NSMakeRange(0, 1))
@@ -316,7 +316,7 @@ extension BoldItalicRegexTests {
         }
 
         let boldCallback = expectation(description: "Matched bold")
-        match("_**bold**_", BoldStyle.strictBoldRegex) {
+        match("_**bold**_", BoldElement.strictBoldRegex) {
             if let result = $0,
                 result.numberOfRanges == 6 {
                 XCTAssertEqual(result.rangeAt(2), NSMakeRange(1, 2))

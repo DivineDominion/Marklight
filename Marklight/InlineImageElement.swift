@@ -1,5 +1,5 @@
 //
-//  InlineImageStyle.swift
+//  InlineImageElement.swift
 //  Marklight
 //
 //  Created by Christian Tietze on 2017-07-24.
@@ -11,7 +11,7 @@ import Foundation
 /// Matches
 ///
 ///     ![Title](http://example.com/image.png)
-struct InlineImageStyle: InlineStyle {
+struct InlineImageElement: SpanElement {
 
     fileprivate static var imageInlinePattern: String { return [
         "(!\\[)              # opening 1st bracket = $1",
@@ -36,7 +36,7 @@ struct InlineImageStyle: InlineStyle {
 
     func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
 
-        InlineImageStyle.imageInlineRegex.matches(paragraph) { (result) -> Void in
+        InlineImageElement.imageInlineRegex.matches(paragraph) { (result) -> Void in
             theme.imageStyle.apply(styleApplier, range: result.range)
 
             // TODO: add image attachment

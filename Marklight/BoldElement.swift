@@ -1,5 +1,5 @@
 //
-//  BoldStyle.swift
+//  BoldElement.swift
 //  Marklight
 //
 //  Created by Christian Tietze on 2017-07-24.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct BoldStyle: InlineStyle {
+struct BoldElement: SpanElement {
 
     fileprivate static var strictBoldPattern: String {
         return [
@@ -24,7 +24,7 @@ struct BoldStyle: InlineStyle {
 
     func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
 
-        BoldStyle.strictBoldRegex.matches(paragraph) { (result) -> Void in
+        BoldElement.strictBoldRegex.matches(paragraph) { (result) -> Void in
             styleApplier.embolden(range: result.rangeAt(1))
 
             [result.rangeAt(2),

@@ -1,5 +1,5 @@
 //
-//  BlockquoteStyle.swift
+//  BlockquoteElement.swift
 //  Marklight
 //
 //  Created by Christian Tietze on 2017-07-24.
@@ -11,7 +11,7 @@ import Foundation
 /// Matches:
 ///
 ///     > Quoted text
-struct BlockquoteStyle: BlockStyle {
+struct BlockquoteElement: BlockElement {
 
     fileprivate static var blockQuotePattern: String { return [
         "(                           # Wrap whole match in $1",
@@ -31,12 +31,12 @@ struct BlockquoteStyle: BlockStyle {
 
     func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, document: Document) {
 
-        BlockquoteStyle.blockQuoteRegex.matches(document) { (result) -> Void in
+        BlockquoteElement.blockQuoteRegex.matches(document) { (result) -> Void in
             theme.quoteStyle.apply(styleApplier, range: result.range)
 
             styleApplier.addParagraphIndentation(indent: Marklight.quoteIndentation, range: result.range)
 
-            BlockquoteStyle.blockQuoteOpeningRegex.matches(document.string, range: result.range) { (innerResult) -> Void in
+            BlockquoteElement.blockQuoteOpeningRegex.matches(document.string, range: result.range) { (innerResult) -> Void in
                 if hideSyntax { styleApplier.addHiddenAttributes(range: innerResult.range) }
                 else { theme.syntaxStyle.apply(styleApplier, range: innerResult.range) }
             }

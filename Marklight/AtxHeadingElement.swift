@@ -1,5 +1,5 @@
 //
-//  AtxHeadingStyle.swift
+//  AtxHeadingElement.swift
 //  Marklight
 //
 //  Created by Christian Tietze on 2017-07-24.
@@ -13,7 +13,7 @@ import Foundation
 ///     # Heading
 ///
 ///     ## Subheading ##
-struct AtxHeadingStyle: BlockStyle {
+struct AtxHeadingElement: BlockElement {
 
     fileprivate static var headerAtxPattern: String { return [
         "^[\\ ]{0,3}\\\\{0}(\\#{1,6})", // $1 = string of #'s
@@ -29,7 +29,7 @@ struct AtxHeadingStyle: BlockStyle {
 
     func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, document: Document) {
 
-        AtxHeadingStyle.headersAtxRegex.matches(document) { (result) -> Void in
+        AtxHeadingElement.headersAtxRegex.matches(document) { (result) -> Void in
             // TODO: Solve quickfix.
             // Without re-applying the base style, on iOS the headers will 
             // obtain a hidden style when you type elsewhere.

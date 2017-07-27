@@ -1,5 +1,5 @@
 //
-//  ItalicStyle.swift
+//  ItalicElement.swift
 //  Marklight
 //
 //  Created by Christian Tietze on 2017-07-24.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ItalicStyle: InlineStyle {
+struct ItalicElement: SpanElement {
 
     fileprivate static var strictItalicPattern: String {
         return [
@@ -24,11 +24,11 @@ struct ItalicStyle: InlineStyle {
 
     static let strictItalicRegex = Regex(pattern: strictItalicPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
 
-    let innerBoldStyle = BoldStyle()
+    let innerBoldElement = BoldElement()
 
     func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
 
-        ItalicStyle.strictItalicRegex.matches(paragraph) { result in
+        ItalicElement.strictItalicRegex.matches(paragraph) { result in
             let innerTextRange = result.rangeAt(3)
 
             // Do not make the syntax glyphs themselves italic
@@ -38,7 +38,7 @@ struct ItalicStyle: InlineStyle {
                 // Bold font was already applied, but if italics surround 
                 // bold syntax, the previously hidden **/__ now have 
                 // regular font size again.
-                self.innerBoldStyle.apply(
+                self.innerBoldElement.apply(
                     theme,
                     styleApplier: styleApplier,
                     hideSyntax: hideSyntax,

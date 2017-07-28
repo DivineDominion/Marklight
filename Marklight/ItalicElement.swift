@@ -39,16 +39,14 @@ struct ItalicElement: SpanElement {
             // Do not make the syntax glyphs themselves italic
             styleApplier.italicize(range: innerTextRange)
 
-            if hideSyntax {
-                // Bold font was already applied, but if italics surround 
-                // bold syntax, the previously hidden **/__ now have 
-                // regular font size again.
-                self.innerBoldElement.apply(
-                    theme,
-                    styleApplier: styleApplier,
-                    hideSyntax: hideSyntax,
-                    paragraph: Paragraph(string: paragraph.string, paragraphRange: innerTextRange))
-            }
+            // Bold font was already applied, but if italics surround
+            // bold syntax, the previously hidden **/__ now have
+            // regular font size again or are italicized.
+            self.innerBoldElement.apply(
+                theme,
+                styleApplier: styleApplier,
+                hideSyntax: hideSyntax,
+                paragraph: Paragraph(string: paragraph.string, paragraphRange: innerTextRange))
 
             [result.rangeAt(2),
              result.rangeAt(4)].forEach { syntaxRange in

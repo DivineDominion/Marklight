@@ -39,7 +39,7 @@ extension MarklightFont {
         #if os(iOS)
             return withTraits(.traitItalic)
         #elseif os(macOS)
-            return NSFontManager().convert(self, toHaveTrait: .italicFontMask)
+            return NSFontManager.shared().convert(self, toHaveTrait: .italicFontMask)
         #endif
     }
 
@@ -47,7 +47,7 @@ extension MarklightFont {
         #if os(iOS)
             return withTraits(.traitBold)
         #elseif os(macOS)
-            return NSFontManager().convert(self, toHaveTrait: .boldFontMask)
+            return NSFontManager.shared().convert(self, toHaveTrait: .boldFontMask)
         #endif
     }
 

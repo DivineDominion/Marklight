@@ -35,9 +35,9 @@ struct CodeBlockElement: BlockElement {
     fileprivate static let codeBlockRegex = Regex(pattern: codeBlockPattern, options: [.allowCommentsAndWhitespace, .anchorsMatchLines])
 
     fileprivate static var fencedCodeBlockPattern: String { return [
-        "^(`{3}([\\S]+)?)\\n",  // $1 = opening fence, $2 = language
+        "^\\n(`{3}([\\S]+)?)\\n",  // $1 = opening fence, $2 = language
         "([\\s\\S]+?)",         // $3 = code block
-        "\\n(`{3})"             // $4 = opening fence
+        "\\n(`{3})\\n"             // $4 = opening fence
         ].joined(separator: "")
     }
 
@@ -54,7 +54,8 @@ struct CodeBlockElement: BlockElement {
 
             [result.rangeAt(1),
              result.rangeAt(4)].forEach { fenceRange in
-                theme.syntaxStyle.apply(styleApplier, range: fenceRange)
+                if hideSyntax { styleApplier.addHiddenAttributes(range: fenceRange) }
+                else { theme.syntaxStyle.apply(styleApplier, range: fenceRange) }
             }
         }
     }

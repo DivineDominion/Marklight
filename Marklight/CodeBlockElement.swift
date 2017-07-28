@@ -36,7 +36,7 @@ struct CodeBlockElement: BlockElement {
 
     fileprivate static var fencedCodeBlockPattern: String { return [
         "^(`{3}([\\S]+)?)\\n",  // $1 = opening fence, $2 = language
-        "([\\s\\S]+)",          // $3 = code block
+        "([\\s\\S]+?)",         // $3 = code block
         "\\n(`{3})"             // $4 = opening fence
         ].joined(separator: "")
     }

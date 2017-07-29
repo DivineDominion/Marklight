@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		500C17C51F2C897900D373A9 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 500C17C41F2C896C00D373A9 /* Themes */; };
+		500C17C61F2C898000D373A9 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 500C17C41F2C896C00D373A9 /* Themes */; };
 		500DC5601F1F54DA00FE8C3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500DC55F1F1F54DA00FE8C3E /* AppDelegate.swift */; };
 		500DC5621F1F54DA00FE8C3E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500DC5611F1F54DA00FE8C3E /* ViewController.swift */; };
 		500DC5641F1F54DA00FE8C3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 500DC5631F1F54DA00FE8C3E /* Assets.xcassets */; };
@@ -23,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		500C17C41F2C896C00D373A9 /* Themes */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Themes; path = ../Themes; sourceTree = "<group>"; };
 		500DC55D1F1F54DA00FE8C3E /* Marklight Sample macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Marklight Sample macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		500DC55F1F1F54DA00FE8C3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		500DC5611F1F54DA00FE8C3E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +87,7 @@
 			children = (
 				95F6691C1C33E86E0046634D /* Podfile */,
 				95F6691D1C33EA870046634D /* Sample.md */,
+				500C17C41F2C896C00D373A9 /* Themes */,
 				95C46D941C33E7F40070AEDC /* Marklight Sample iOS */,
 				500DC55E1F1F54DA00FE8C3E /* Marklight Sample macOS */,
 				95C46D931C33E7F40070AEDC /* Products */,
@@ -228,6 +232,7 @@
 				500DC5641F1F54DA00FE8C3E /* Assets.xcassets in Resources */,
 				500DC5671F1F54DA00FE8C3E /* Main.storyboard in Resources */,
 				500DC56D1F1F578B00FE8C3E /* Sample.md in Resources */,
+				500C17C51F2C897900D373A9 /* Themes in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +240,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				500C17C61F2C898000D373A9 /* Themes in Resources */,
 				95F6691F1C33EC310046634D /* Sample.md in Resources */,
 				95C46DA01C33E7F40070AEDC /* LaunchScreen.storyboard in Resources */,
 				95C46D9D1C33E7F40070AEDC /* Assets.xcassets in Resources */,

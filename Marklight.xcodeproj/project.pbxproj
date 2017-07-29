@@ -41,6 +41,8 @@
 		5003F98E1F2647F50074C770 /* SetextHeaderElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5003F98C1F2647F50074C770 /* SetextHeaderElement.swift */; };
 		5003F9901F2648EE0074C770 /* AtxHeadingElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5003F98F1F2648EE0074C770 /* AtxHeadingElement.swift */; };
 		5003F9911F2648EE0074C770 /* AtxHeadingElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5003F98F1F2648EE0074C770 /* AtxHeadingElement.swift */; };
+		500C17BF1F2C7AC200D373A9 /* DefaultMarklightTheme+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500C17BE1F2C7AC200D373A9 /* DefaultMarklightTheme+JSON.swift */; };
+		500C17C01F2C7AC200D373A9 /* DefaultMarklightTheme+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500C17BE1F2C7AC200D373A9 /* DefaultMarklightTheme+JSON.swift */; };
 		500DC5461F1F473400FE8C3E /* Marklight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 500DC53D1F1F473300FE8C3E /* Marklight.framework */; };
 		500DC5561F1F4BDC00FE8C3E /* Array+appending.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500DC5551F1F4BDC00FE8C3E /* Array+appending.swift */; };
 		500DC5571F1F508500FE8C3E /* MarklightTextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C46D831C33E1300070AEDC /* MarklightTextStorage.swift */; };
@@ -113,6 +115,7 @@
 		5003F9881F26442B0074C770 /* CodeSpanElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeSpanElement.swift; sourceTree = "<group>"; };
 		5003F98C1F2647F50074C770 /* SetextHeaderElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetextHeaderElement.swift; sourceTree = "<group>"; };
 		5003F98F1F2648EE0074C770 /* AtxHeadingElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtxHeadingElement.swift; sourceTree = "<group>"; };
+		500C17BE1F2C7AC200D373A9 /* DefaultMarklightTheme+JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DefaultMarklightTheme+JSON.swift"; sourceTree = "<group>"; };
 		500DC53D1F1F473300FE8C3E /* Marklight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Marklight.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		500DC5401F1F473300FE8C3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		500DC5451F1F473300FE8C3E /* Marklight macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Marklight macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -268,6 +271,7 @@
 				502B57011F276C7D004DDB54 /* FontStyle.swift */,
 				507EAFB11F2A3A92009A10F4 /* BlockStyle.swift */,
 				507EAFB41F2A4416009A10F4 /* SpanStyle.swift */,
+				500C17BE1F2C7AC200D373A9 /* DefaultMarklightTheme+JSON.swift */,
 			);
 			name = Theme;
 			sourceTree = "<group>";
@@ -526,6 +530,7 @@
 				503683F71F2095E3006A7344 /* MarklightTextProcessingResult.swift in Sources */,
 				5003F9801F2630FE0074C770 /* ReferenceImageElement.swift in Sources */,
 				5003F9691F25E2D90074C770 /* InlineLinkElement.swift in Sources */,
+				500C17C01F2C7AC200D373A9 /* DefaultMarklightTheme+JSON.swift in Sources */,
 				5003F9661F25DE380074C770 /* ReferenceLinkElement.swift in Sources */,
 				507EAFB61F2A4416009A10F4 /* SpanStyle.swift in Sources */,
 				502B57031F276C7D004DDB54 /* FontStyle.swift in Sources */,
@@ -576,6 +581,7 @@
 				5003F9781F262E470074C770 /* ListElement.swift in Sources */,
 				5003F9651F25DE380074C770 /* ReferenceLinkElement.swift in Sources */,
 				503683F61F2095E3006A7344 /* MarklightTextProcessingResult.swift in Sources */,
+				500C17BF1F2C7AC200D373A9 /* DefaultMarklightTheme+JSON.swift in Sources */,
 				5003F9751F262D200074C770 /* BlockELement.swift in Sources */,
 				507EAFB81F2A4932009A10F4 /* LayoutHelpers.swift in Sources */,
 				5003F97F1F2630FE0074C770 /* ReferenceImageElement.swift in Sources */,

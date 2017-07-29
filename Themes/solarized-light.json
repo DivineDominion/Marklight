@@ -1,0 +1,69 @@
+{
+    "name": "Solarized",
+    "style": "Light",
+    "author": [ 
+        {
+            "name": "Rudd Fawcett",
+            "email": "rudd.fawcett@gmail.com"
+        },
+        {
+            "name": "Christian Tietze"
+        }
+    ],
+    "version": "1.0",
+
+    "editor": {
+        "backgroundColor": "#FDF6E4",
+        "caretColor": "#022B35"
+    },
+
+    "styles": {
+        "base": {
+            "font": { 
+                "name": "Menlo-Regular",
+                "size": 15
+            },
+            "color": "#667B82"
+        },
+        "referenceDefinition": {},
+        
+        "h1": {
+            "color": "#3A93D0"
+        },
+        "h2": {
+            "color": "#3A93D0"
+        },
+        "h3": {
+            "color": "#3A93D0"
+        },
+        "codeBlock": {
+            "indent": { "characters": 4 }
+        },
+        "blockquote": {},
+        
+        "bold": {
+            "font": { 
+                "name": "Menlo-Bold",
+                "size": 15
+            }
+        },
+        "italic": {
+            "font": { 
+                "name": "Menlo-Italic",
+                "size": 15
+            }
+        },
+        "inlineCode": {
+            "font": { 
+                "name": "Menlo-Italic",
+                "size": 15
+            }
+        },
+        "image": {},
+        "link": {},
+        
+        "syntax": {
+            "color": "#828282"
+        }
+    }
+}

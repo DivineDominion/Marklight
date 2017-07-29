@@ -7,6 +7,10 @@
 //
 
 public protocol MarklightTheme {
+
+    /// Style used to configure the text view itself.
+    var editorStyle: EditorStyle { get }
+
     /// Style initially used for any text. Comparable to CSS selectors on 
     /// the `body` or `html` tags. Setting this affects all subsequent styles.
     var baseStyle: BlockStyle { get }
@@ -38,6 +42,8 @@ public protocol MarklightTheme {
 
 public struct DefaultMarklightTheme: MarklightTheme {
 
+    public var editorStyle: EditorStyle
+
     public var baseStyle: BlockStyle
 
     public var referenceDefinitionStyle: BlockStyle
@@ -50,6 +56,7 @@ public struct DefaultMarklightTheme: MarklightTheme {
     public var linkStyle: SpanStyle
     public var syntaxStyle: SpanStyle
 
+    /// - parameter editorStyle: Optional style for the text view itself.
     /// - parameter baseStyle: Required font setting for unstyled text. Like 
     ///   `body` or `html` in a CSS style sheet. Set to `.empty` to fall back to
     ///   system default font settings. Note this will not be `NSTextView.font`
@@ -63,6 +70,7 @@ public struct DefaultMarklightTheme: MarklightTheme {
     /// - parameter linkStyle: Decoration for inline or reference style link tags.
     /// - parameter syntaxStyle: Decoration for Markdown syntax elements.
     public init(
+        editorStyle: EditorStyle = .default,
         baseStyle: BlockStyle,
         referenceDefinitionStyle: BlockStyle = .inherit,
         listStyle: BlockStyle = .inherit,
@@ -73,6 +81,8 @@ public struct DefaultMarklightTheme: MarklightTheme {
         imageStyle: SpanStyle = .inherit,
         linkStyle: SpanStyle = .inherit,
         syntaxStyle: SpanStyle = .inherit){
+
+        self.editorStyle = editorStyle
 
         self.baseStyle = baseStyle
 

@@ -1,7 +1,10 @@
 {
     "name": "Solarized",
     "style": "Light",
-    "author": [ 
+    "author": [
+        {
+            "name": "Ethan Schoonover"
+        },
         {
             "name": "Rudd Fawcett",
             "email": "rudd.fawcett@gmail.com"
@@ -14,7 +17,7 @@
 
     "editor": {
         "backgroundColor": "#FDF6E4",
-        "caretColor": "#022B35"
+        "caretColor": "#91D2E7"
     },
 
     "styles": {

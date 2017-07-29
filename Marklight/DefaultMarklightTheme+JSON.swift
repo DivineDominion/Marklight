@@ -18,23 +18,33 @@ extension DefaultMarklightTheme {
             let json = jsonObject as? [String: Any]
             else { return nil }
 
-        self.init(json: json["styles"] as? JSON ?? [:])
+        self.init(json: json)
     }
 
     public init(json: JSON) {
+        self.init(
+            editorStyleJSON: json["editor"] as? JSON ?? [:],
+            markdownStyleJSON: json["styles"] as? JSON ?? [:])
+    }
 
-        let baseStyle = BlockStyle(json: json["base"] as? JSON ?? [:])
-        let referenceDefinitionStyle = BlockStyle(json: json["referenceDefinition"] as? JSON ?? [:])
-        let listStyle = BlockStyle(json: json["list"] as? JSON ?? [:])
-        let codeBlockStyle = BlockStyle(json: json["codeBlock"] as? JSON ?? [:])
-        let quoteStyle = BlockStyle(json: json["blockquote"] as? JSON ?? [:])
+    public init(editorStyleJSON: JSON, markdownStyleJSON: JSON) {
 
-        let inlineCodeStyle = SpanStyle(json: json["inlineCode"] as? JSON ?? [:])
-        let imageStyle = SpanStyle(json: json["image"] as? JSON ?? [:])
-        let linkStyle = SpanStyle(json: json["link"] as? JSON ?? [:])
-        let syntaxStyle = SpanStyle(json: json["syntax"] as? JSON ?? [:])
+        let editorStyle = EditorStyle(json: editorStyleJSON)
+
+        let baseStyle = BlockStyle(json: markdownStyleJSON["base"] as? JSON ?? [:])
+        let referenceDefinitionStyle = BlockStyle(json: markdownStyleJSON["referenceDefinition"] as? JSON ?? [:])
+        let listStyle = BlockStyle(json: markdownStyleJSON["list"] as? JSON ?? [:])
+        let codeBlockStyle = BlockStyle(json: markdownStyleJSON["codeBlock"] as? JSON ?? [:])
+        let quoteStyle = BlockStyle(json: markdownStyleJSON["blockquote"] as? JSON ?? [:])
+
+        let inlineCodeStyle = SpanStyle(json: markdownStyleJSON["inlineCode"] as? JSON ?? [:])
+        let imageStyle = SpanStyle(json: markdownStyleJSON["image"] as? JSON ?? [:])
+        let linkStyle = SpanStyle(json: markdownStyleJSON["link"] as? JSON ?? [:])
+        let syntaxStyle = SpanStyle(json: markdownStyleJSON["syntax"] as? JSON ?? [:])
 
         self.init(
+            editorStyle: editorStyle,
+
             baseStyle: baseStyle,
             referenceDefinitionStyle: referenceDefinitionStyle,
             listStyle: listStyle,
@@ -45,6 +55,14 @@ extension DefaultMarklightTheme {
             imageStyle: imageStyle,
             linkStyle: linkStyle,
             syntaxStyle: syntaxStyle)
+    }
+}
+
+extension EditorStyle {
+    public init(json: JSON) {
+        let backgroundColor = MarklightColor(hexString: json["backgroundColor"] as? String ?? "")
+        let caretColor = MarklightColor(hexString: json["caretColor"] as? String ?? "")
+        self.init(backgroundColor: backgroundColor, caretColor: caretColor)
     }
 }
 

@@ -37,6 +37,8 @@ extension DefaultMarklightTheme {
         let codeBlockStyle = BlockStyle(json: markdownStyleJSON["codeBlock"] as? JSON ?? [:])
         let quoteStyle = BlockStyle(json: markdownStyleJSON["blockquote"] as? JSON ?? [:])
 
+        let emphasisStyle = SpanStyle(json: markdownStyleJSON["emphasis"] as? JSON ?? [:])
+        let strongEmphasisStyle = SpanStyle(json: markdownStyleJSON["strong"] as? JSON ?? [:])
         let inlineCodeStyle = SpanStyle(json: markdownStyleJSON["inlineCode"] as? JSON ?? [:])
         let imageStyle = SpanStyle(json: markdownStyleJSON["image"] as? JSON ?? [:])
         let linkStyle = SpanStyle(json: markdownStyleJSON["link"] as? JSON ?? [:])
@@ -51,6 +53,8 @@ extension DefaultMarklightTheme {
             codeBlockStyle: codeBlockStyle,
             quoteStyle: quoteStyle,
 
+            emphasisStyle: emphasisStyle,
+            strongEmphasisStyle: strongEmphasisStyle,
             inlineCodeStyle: inlineCodeStyle,
             imageStyle: imageStyle,
             linkStyle: linkStyle,
@@ -76,11 +80,33 @@ extension BlockStyle {
 
 extension FontStyle {
     public init?(json: JSON) {
-        let font = MarklightFont(json: json["font"] as? JSON ?? [:])
+        let fontAdjustment = FontAdjustment(json: json["font"] as? JSON ?? [:])
         let color = MarklightColor(hexString: json["color"] as? String ?? "")
         self.init(
-            fontReplacement: font,
+            fontAdjustment: fontAdjustment,
             color: color)
+    }
+}
+
+extension FontAdjustment {
+    /// Example for bold font settings:
+    ///
+    ///     {font: {name: "Menlo-Bold", size: 20}}
+    ///
+    /// Or:
+    ///
+    ///     {font: {style: "bold"}
+    public init(json: JSON) {
+        if let font = MarklightFont(json: json) {
+            self = .replace(font)
+            return
+        }
+
+        switch json["style"] as? String {
+        case .some("italic"): self = .italicize
+        case .some("bold"): self = .embolden
+        default: self = .inherit
+        }
     }
 }
 

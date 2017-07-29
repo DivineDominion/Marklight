@@ -16,10 +16,18 @@ import struct Foundation.CGFloat
 /// affected range.
 public struct FontStyle {
     public static var inherit: FontStyle {
-        return FontStyle()
+        return FontStyle(fontAdjustment: .inherit, color: nil)
+    }
+
+    public static var emboldened: FontStyle {
+        return FontStyle(fontAdjustment: .embolden)
+    }
+
+    public static var italicized: FontStyle {
+        return FontStyle(fontAdjustment: .italicize)
     }
     
-    public var fontReplacement: MarklightFont?
+    public var fontAdjustment: FontAdjustment
     public var color: MarklightColor?
 
     #if os(iOS)
@@ -29,14 +37,24 @@ public struct FontStyle {
     #endif
 
     public init(
-        fontReplacement: MarklightFont? = nil,
+        fontAdjustment: FontAdjustment = .inherit,
         color: MarklightColor? = nil) {
-        self.fontReplacement = fontReplacement
+
+        self.fontAdjustment = fontAdjustment
         self.color = color
 
         #if os(iOS)
         self.fontTextStyle = nil
         #endif
+    }
+
+    public init(
+        fontReplacement: MarklightFont,
+        color: MarklightColor? = nil) {
+
+        self.init(
+            fontAdjustment: .replace(fontReplacement),
+            color: color)
     }
 
     public init(
@@ -48,6 +66,13 @@ public struct FontStyle {
             fontReplacement: font,
             color: color)
     }
+}
+
+public enum FontAdjustment {
+    case inherit
+    case italicize
+    case embolden
+    case replace(MarklightFont)
 }
 
 #if os(iOS)
@@ -95,8 +120,17 @@ extension FontStyle {
             styleApplier.addColorAttribute(color, range: range)
         }
 
-        if let font = self.fontReplacement {
-            styleApplier.addFontAttribute(font, range: range)
+        self.fontAdjustment.apply(styleApplier, range: range)
+    }
+}
+
+extension FontAdjustment {
+    internal func apply(_ styleApplier: MarklightStyleApplier, range: NSRange) {
+        switch self {
+        case .inherit: return
+        case .embolden: styleApplier.embolden(range: range)
+        case .italicize: styleApplier.italicize(range: range)
+        case .replace(let font): styleApplier.addFontAttribute(font, range: range)
         }
     }
 }

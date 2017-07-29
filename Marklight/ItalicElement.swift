@@ -37,7 +37,7 @@ struct ItalicElement: SpanElement {
             let innerTextRange = result.rangeAt(3)
 
             // Do not make the syntax glyphs themselves italic
-            styleApplier.italicize(range: innerTextRange)
+            theme.emphasisStyle.apply(styleApplier, range: innerTextRange)
 
             // Bold font was already applied, but if italics surround
             // bold syntax, the previously hidden **/__ now have

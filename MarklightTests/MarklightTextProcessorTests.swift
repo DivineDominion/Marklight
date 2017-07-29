@@ -17,6 +17,10 @@ extension NSRange: Equatable, CustomStringConvertible {
 class MarklightTextProcessorTests: XCTestCase {
 
     class StyleApplierDouble: MarklightStyleApplier {
+        func font(at location: Int) -> MarklightFont {
+            return MarklightFont.systemFontOfDefaultSize
+        }
+
 
         func embolden(range: NSRange) {
             // no op

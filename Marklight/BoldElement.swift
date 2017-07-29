@@ -25,7 +25,7 @@ struct BoldElement: SpanElement {
     func apply(_ theme: MarklightTheme, styleApplier: MarklightStyleApplier, hideSyntax: Bool, paragraph: Paragraph) {
 
         BoldElement.strictBoldRegex.matches(paragraph) { (result) -> Void in
-            styleApplier.embolden(range: result.rangeAt(1))
+            theme.strongEmphasisStyle.apply(styleApplier, range: result.rangeAt(1))
 
             [result.rangeAt(2),
              result.rangeAt(5)].forEach { syntaxRange in

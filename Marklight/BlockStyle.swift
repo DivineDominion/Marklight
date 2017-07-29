@@ -34,29 +34,7 @@ public struct BlockStyle {
 extension BlockStyle {
     internal func apply(_ styleApplier: MarklightStyleApplier, range: NSRange) {
         fontStyle.apply(styleApplier, range: range)
-
-        switch indentation {
-        case .inherit:
-            break
-
-        case .none:
-            styleApplier.addParagraphIndentation(
-                indent: 0,
-                range: range)
-
-        case .points(let indent):
-            styleApplier.addParagraphIndentation(
-                indent: indent,
-                range: range)
-
-        case .characters(let amount):
-            // TODO: determine font applied to `range` instead
-            let font = fontStyle.fontReplacement ?? MarklightFont.systemFontOfDefaultSize
-            let indent = widthOfCharacters(amount, font: font)
-            styleApplier.addParagraphIndentation(
-                indent: indent,
-                range: range)
-        }
+        indentation.apply(styleApplier, range: range)
     }
 }
 
@@ -72,6 +50,32 @@ public enum BlockIndentation {
 
     case points(CGFloat)
     case characters(UInt)
+}
+
+extension BlockIndentation {
+    internal func apply(_ styleApplier: MarklightStyleApplier, range: NSRange) {
+        switch self {
+        case .inherit:
+            break
+
+        case .none:
+            styleApplier.addParagraphIndentation(
+                indent: 0,
+                range: range)
+
+        case .points(let indent):
+            styleApplier.addParagraphIndentation(
+                indent: indent,
+                range: range)
+
+        case .characters(let amount):
+            let font = styleApplier.font(at: range.location)
+            let indent = widthOfCharacters(amount, font: font)
+            styleApplier.addParagraphIndentation(
+                indent: indent,
+                range: range)
+        }
+    }
 }
 
 #if os(iOS)

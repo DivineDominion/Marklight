@@ -21,6 +21,8 @@ public protocol MarklightStyleApplier {
     /// Also resets the paragraph style.
     func resetMarklightTextAttributes(range: NSRange)
 
+    func font(at location: Int) -> MarklightFont
+
     func embolden(range: NSRange)
     func italicize(range: NSRange)
 }
@@ -59,17 +61,18 @@ extension MarklightStyleApplier {
 extension NSTextStorage {
     open func embolden(range: NSRange) {
 
-        guard let font = self.attribute(NSFontAttributeName, at: range.location + range.length / 2, effectiveRange: nil) as? MarklightFont
-            else { assertionFailure(); return }
-
+        let font = self.font(at: range.location + range.length / 2)
         self.addAttribute(NSFontAttributeName, value: font.emboldened(), range: range)
     }
 
     open func italicize(range: NSRange) {
 
-        guard let font = self.attribute(NSFontAttributeName, at: range.location + range.length / 2, effectiveRange: nil) as? MarklightFont
-            else { assertionFailure(); return }
-
+        let font = self.font(at: range.location + range.length / 2)
         self.addAttribute(NSFontAttributeName, value: font.italicized(), range: range)
+    }
+
+    open func font(at location: Int) -> MarklightFont {
+        return self.attribute(NSFontAttributeName, at: location, effectiveRange: nil) as? MarklightFont
+            ?? MarklightFont.systemFontOfDefaultSize
     }
 }

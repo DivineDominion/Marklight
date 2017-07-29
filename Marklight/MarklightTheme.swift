@@ -27,6 +27,12 @@ public protocol MarklightTheme {
     /// Style used for quotation blocks.
     var quoteStyle: BlockStyle { get }
 
+    /// Style used for emphasis (`*...*`).
+    var emphasisStyle: SpanStyle { get }
+
+    /// Style used for strong emphasis (`**...**`).
+    var strongEmphasisStyle: SpanStyle { get }
+
     /// Style used for inline code.
     var inlineCodeStyle: SpanStyle { get }
 
@@ -51,6 +57,8 @@ public struct DefaultMarklightTheme: MarklightTheme {
     public var codeBlockStyle: BlockStyle
     public var quoteStyle: BlockStyle
 
+    public var emphasisStyle: SpanStyle
+    public var strongEmphasisStyle: SpanStyle
     public var inlineCodeStyle: SpanStyle
     public var imageStyle: SpanStyle
     public var linkStyle: SpanStyle
@@ -65,6 +73,8 @@ public struct DefaultMarklightTheme: MarklightTheme {
     /// - parameter listStyle: Decoration for unordered or ordered list blocks.
     /// - parameter codeBlockStyle: Decoration for code blocks.
     /// - parameter quoteStyle: Decoration for blockquotes.
+    /// - parameter emphasisStyle: Decoration for emphasis/italics.
+    /// - parameter strongEmphasisStyle: Decoration for strong emphasis/bold text.
     /// - parameter inlineCodeStyle: Decoration for inline code.
     /// - parameter imageStyle: Decoration for inline and reference style images tags.
     /// - parameter linkStyle: Decoration for inline or reference style link tags.
@@ -77,6 +87,8 @@ public struct DefaultMarklightTheme: MarklightTheme {
         codeBlockStyle: BlockStyle = .inherit,
         quoteStyle: BlockStyle = .inherit,
 
+        emphasisStyle: SpanStyle = .italicized,
+        strongEmphasisStyle: SpanStyle = .emboldened,
         inlineCodeStyle: SpanStyle = .inherit,
         imageStyle: SpanStyle = .inherit,
         linkStyle: SpanStyle = .inherit,
@@ -91,6 +103,8 @@ public struct DefaultMarklightTheme: MarklightTheme {
         self.codeBlockStyle = codeBlockStyle
         self.quoteStyle = quoteStyle
 
+        self.emphasisStyle = emphasisStyle
+        self.strongEmphasisStyle = strongEmphasisStyle
         self.inlineCodeStyle = inlineCodeStyle
         self.imageStyle = imageStyle
         self.linkStyle = linkStyle
@@ -121,6 +135,8 @@ extension DefaultMarklightTheme: DynamicMarklightTheme {
         codeBlockStyle.refreshFontSize()
         quoteStyle.refreshFontSize()
 
+        emphasisStyle.refreshFontSize()
+        strongEmphasisStyle.refreshFontSize()
         inlineCodeStyle.refreshFontSize()
         imageStyle.refreshFontSize()
         linkStyle.refreshFontSize()

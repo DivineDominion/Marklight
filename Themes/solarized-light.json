@@ -44,23 +44,14 @@
         },
         "blockquote": {},
         
-        "bold": {
-            "font": { 
-                "name": "Menlo-Bold",
-                "size": 15
-            }
+        "emphasis": {
+            "font": {  "style": "italic" }
         },
-        "italic": {
-            "font": { 
-                "name": "Menlo-Italic",
-                "size": 15
-            }
+        "strong": {
+            "font": {  "style": "bold" }
         },
         "inlineCode": {
-            "font": { 
-                "name": "Menlo-Italic",
-                "size": 15
-            }
+            "font": {  "style": "italic" }
         },
         "image": {},
         "link": {},

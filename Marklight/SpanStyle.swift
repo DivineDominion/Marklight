@@ -13,6 +13,14 @@ public struct SpanStyle {
         return SpanStyle(fontStyle: .inherit)
     }
 
+    public static var emboldened: SpanStyle {
+        return SpanStyle(fontStyle: .emboldened)
+    }
+
+    public static var italicized: SpanStyle {
+        return SpanStyle(fontStyle: .italicized)
+    }
+
     public var fontStyle: FontStyle
 
     public init(fontStyle: FontStyle) {

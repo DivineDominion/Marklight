@@ -117,12 +117,12 @@ open class MarklightTextStorage: NSTextStorage {
         super.processEditing()
     }
 
-    override public func resetMarklightTextAttributes(textSize: CGFloat, range: NSRange) {
+    @objc override public func resetMarklightTextAttributes(textSize: CGFloat, range: NSRange) {
         // Use `imp` directly instead of `self` to avoid changing the edited range
         // after attribute fixing, affecting the insertion point on macOS.
-        imp.removeAttribute(NSForegroundColorAttributeName, range: range)
-        imp.addAttribute(NSFontAttributeName, value: MarklightFont.systemFont(ofSize: textSize), range: range)
-        imp.addAttribute(NSParagraphStyleAttributeName, value: NSParagraphStyle(), range: range)
+        imp.removeAttribute(.foregroundColor, range: range)
+        imp.addAttribute(.font, value: MarklightFont.systemFont(ofSize: textSize), range: range)
+        imp.addAttribute(.paragraphStyle, value: NSParagraphStyle(), range: range)
     }
 
 
@@ -157,7 +157,7 @@ open class MarklightTextStorage: NSTextStorage {
      */
 
     
-    open override func attributes(at location: Int, effectiveRange range: NSRangePointer?) -> [String : Any] {
+    open override func attributes(at location: Int, effectiveRange range: NSRangePointer?) -> [NSAttributedStringKey : Any] {
         return imp.attributes(at: location, effectiveRange: range)
     }
     
@@ -204,7 +204,7 @@ open class MarklightTextStorage: NSTextStorage {
      */
     
     
-    open override func setAttributes(_ attrs: [String : Any]?, range: NSRange) {
+    open override func setAttributes(_ attrs: [NSAttributedStringKey : Any]?, range: NSRange) {
         // When we are processing, using the regular callback triggers will 
         // result in the caret jumping to the end of the document.
         guard !isBusyProcessing else {

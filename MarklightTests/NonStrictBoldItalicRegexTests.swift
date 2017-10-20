@@ -29,10 +29,10 @@ extension NonStrictBoldItalicRegexTests {
             match(string, Marklight.boldRegex) {
                 if let result = $0,
                     result.numberOfRanges == 4 {
-                    XCTAssertEqual(result.rangeAt(0), NSMakeRange(3, 8))
-                    XCTAssertEqual(result.rangeAt(1), NSMakeRange(3, 2))
-                    XCTAssertEqual(result.rangeAt(2), NSMakeRange(5, 4))
-                    XCTAssertEqual(result.rangeAt(3), NSMakeRange(9, 2))
+                    XCTAssertEqual(result.range(at: 0), NSMakeRange(3, 8))
+                    XCTAssertEqual(result.range(at: 1), NSMakeRange(3, 2))
+                    XCTAssertEqual(result.range(at: 2), NSMakeRange(5, 4))
+                    XCTAssertEqual(result.range(at: 3), NSMakeRange(9, 2))
                 } else {
                     XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges))) in \(string)")
                 }
@@ -48,10 +48,10 @@ extension NonStrictBoldItalicRegexTests {
             match("intra**word** emphasis", Marklight.boldRegex) {
                 if let result = $0,
                     result.numberOfRanges == 4 {
-                    XCTAssertEqual(result.rangeAt(0), NSMakeRange(5, 8))
-                    XCTAssertEqual(result.rangeAt(1), NSMakeRange(5, 2))
-                    XCTAssertEqual(result.rangeAt(2), NSMakeRange(7, 4))
-                    XCTAssertEqual(result.rangeAt(3), NSMakeRange(11, 2))
+                    XCTAssertEqual(result.range(at: 0), NSMakeRange(5, 8))
+                    XCTAssertEqual(result.range(at: 1), NSMakeRange(5, 2))
+                    XCTAssertEqual(result.range(at: 2), NSMakeRange(7, 4))
+                    XCTAssertEqual(result.range(at: 3), NSMakeRange(11, 2))
                 } else {
                     XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges)))")
                 }
@@ -68,10 +68,10 @@ extension NonStrictBoldItalicRegexTests {
                     // Outer emphasis
                     if let result = $0,
                         result.numberOfRanges == 4 {
-                        XCTAssertEqual(result.rangeAt(0), NSMakeRange(0, 21))
-                        XCTAssertEqual(result.rangeAt(1), NSMakeRange(0, 2))
-                        XCTAssertEqual(result.rangeAt(2), NSMakeRange(2, 17))
-                        XCTAssertEqual(result.rangeAt(3), NSMakeRange(19, 2))
+                        XCTAssertEqual(result.range(at: 0), NSMakeRange(0, 21))
+                        XCTAssertEqual(result.range(at: 1), NSMakeRange(0, 2))
+                        XCTAssertEqual(result.range(at: 2), NSMakeRange(2, 17))
+                        XCTAssertEqual(result.range(at: 3), NSMakeRange(19, 2))
                     } else {
                         XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges)))")
                     }
@@ -81,10 +81,10 @@ extension NonStrictBoldItalicRegexTests {
                     // Inner emphasis
                     if let result = $0,
                         result.numberOfRanges == 4 {
-                        XCTAssertEqual(result.rangeAt(0), NSMakeRange(7, 5))
-                        XCTAssertEqual(result.rangeAt(1), NSMakeRange(7, 2))
-                        XCTAssertEqual(result.rangeAt(2), NSMakeRange(9, 3))
-                        XCTAssertEqual(result.rangeAt(3), NSMakeRange(12, 2))
+                        XCTAssertEqual(result.range(at: 0), NSMakeRange(7, 5))
+                        XCTAssertEqual(result.range(at: 1), NSMakeRange(7, 2))
+                        XCTAssertEqual(result.range(at: 2), NSMakeRange(9, 3))
+                        XCTAssertEqual(result.range(at: 3), NSMakeRange(12, 2))
                     } else {
                         XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges)))")
                     }
@@ -100,10 +100,10 @@ extension NonStrictBoldItalicRegexTests {
             match(string, Marklight.boldRegex) {
                 if let result = $0,
                     result.numberOfRanges == 4 {
-                    XCTAssertEqual(result.rangeAt(0), NSMakeRange(9, 7))
-                    XCTAssertEqual(result.rangeAt(1), NSMakeRange(9, 2))
-                    XCTAssertEqual(result.rangeAt(2), NSMakeRange(11, 3))
-                    XCTAssertEqual(result.rangeAt(3), NSMakeRange(14, 2))
+                    XCTAssertEqual(result.range(at: 0), NSMakeRange(9, 7))
+                    XCTAssertEqual(result.range(at: 1), NSMakeRange(9, 2))
+                    XCTAssertEqual(result.range(at: 2), NSMakeRange(11, 3))
+                    XCTAssertEqual(result.range(at: 3), NSMakeRange(14, 2))
                 } else {
                     XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges))) in \(string)")
                 }
@@ -138,10 +138,10 @@ extension NonStrictBoldItalicRegexTests {
             match(string, Marklight.italicRegex) {
                 if let result = $0,
                     result.numberOfRanges == 4 {
-                    XCTAssertEqual(result.rangeAt(0), NSMakeRange(3, 8))
-                    XCTAssertEqual(result.rangeAt(1), NSMakeRange(3, 1))
-                    XCTAssertEqual(result.rangeAt(2), NSMakeRange(4, 6))
-                    XCTAssertEqual(result.rangeAt(3), NSMakeRange(10, 1))
+                    XCTAssertEqual(result.range(at: 0), NSMakeRange(3, 8))
+                    XCTAssertEqual(result.range(at: 1), NSMakeRange(3, 1))
+                    XCTAssertEqual(result.range(at: 2), NSMakeRange(4, 6))
+                    XCTAssertEqual(result.range(at: 3), NSMakeRange(10, 1))
                 } else {
                     XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges))) in \(string)")
                 }
@@ -157,10 +157,10 @@ extension NonStrictBoldItalicRegexTests {
             match("intra*word* emphasis", Marklight.italicRegex) {
                 if let result = $0,
                     result.numberOfRanges == 4 {
-                    XCTAssertEqual(result.rangeAt(0), NSMakeRange(5, 6))
-                    XCTAssertEqual(result.rangeAt(1), NSMakeRange(5, 1))
-                    XCTAssertEqual(result.rangeAt(2), NSMakeRange(6, 4))
-                    XCTAssertEqual(result.rangeAt(3), NSMakeRange(10, 1))
+                    XCTAssertEqual(result.range(at: 0), NSMakeRange(5, 6))
+                    XCTAssertEqual(result.range(at: 1), NSMakeRange(5, 1))
+                    XCTAssertEqual(result.range(at: 2), NSMakeRange(6, 4))
+                    XCTAssertEqual(result.range(at: 3), NSMakeRange(10, 1))
                 } else {
                     XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges)))")
                 }
@@ -175,10 +175,10 @@ extension NonStrictBoldItalicRegexTests {
             match(string, Marklight.italicRegex) {
                 if let result = $0,
                     result.numberOfRanges == 4 {
-                    XCTAssertEqual(result.rangeAt(0), NSMakeRange(9, 5))
-                    XCTAssertEqual(result.rangeAt(1), NSMakeRange(9, 1))
-                    XCTAssertEqual(result.rangeAt(2), NSMakeRange(10, 3))
-                    XCTAssertEqual(result.rangeAt(3), NSMakeRange(13, 1))
+                    XCTAssertEqual(result.range(at: 0), NSMakeRange(9, 5))
+                    XCTAssertEqual(result.range(at: 1), NSMakeRange(9, 1))
+                    XCTAssertEqual(result.range(at: 2), NSMakeRange(10, 3))
+                    XCTAssertEqual(result.range(at: 3), NSMakeRange(13, 1))
                 } else {
                     XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges))) in \(string)")
                 }

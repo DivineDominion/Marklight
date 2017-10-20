@@ -56,12 +56,12 @@ struct CodeBlockStyle: BlockStyle {
         CodeBlockStyle.fencedCodeBlockRegex.matches(document) { (result) -> Void in
             styleApplier.addFontAttribute(codeFont, range: result.range)
 
-            [result.rangeAt(1),
-             result.rangeAt(4)].forEach { fenceRange in
+            [result.range(at: 1),
+             result.range(at: 4)].forEach { fenceRange in
                 styleApplier.addColorAttribute(Marklight.syntaxColor, range: fenceRange)
             }
 
-            styleApplier.addColorAttribute(codeColor, range: result.rangeAt(3))
+            styleApplier.addColorAttribute(codeColor, range: result.range(at: 3))
         }
     }
 }

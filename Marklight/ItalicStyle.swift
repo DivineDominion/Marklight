@@ -31,7 +31,7 @@ struct ItalicStyle: InlineStyle {
             styleApplier.italicize(range: result.range)
 
             // Previously applied inner bold text would have been overwritten by now
-            let innerTextRange = result.rangeAt(3)
+            let innerTextRange = result.range(at: 3)
             self.innerBoldStyle.apply(
                 styleApplier,
                 hideSyntax: hideSyntax,

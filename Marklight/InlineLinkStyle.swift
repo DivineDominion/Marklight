@@ -58,8 +58,8 @@ struct InlineLinkStyle: InlineStyle {
                 styleApplier.addLinkAttribute(substring, range: range)
             }
 
-            [result.rangeAt(1),
-             result.rangeAt(3)].forEach { (bracketRange: NSRange) in
+            [result.range(at: 1),
+             result.range(at: 3)].forEach { (bracketRange: NSRange) in
                 styleApplier.addColorAttribute(Marklight.syntaxColor, range: bracketRange)
             }
 

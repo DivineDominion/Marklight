@@ -4,20 +4,9 @@
 import XCTest
 @testable import Marklight
 
-extension NSRange: Equatable, CustomStringConvertible {
-    public static func ==(lhs: NSRange, rhs: NSRange) -> Bool {
-        return lhs.location == rhs.location && lhs.length == rhs.length
-    }
-
-    public var description: String {
-        return "NSRange(\(location), \(length))"
-    }
-}
-
 class MarklightTextProcessorTests: XCTestCase {
 
     class StyleApplierDouble: MarklightStyleApplier {
-
         func embolden(range: NSRange) {
             // no op
         }
@@ -26,24 +15,24 @@ class MarklightTextProcessorTests: XCTestCase {
             // no op
         }
 
-        var didAddAttributes: (attributes: [String : Any], range: NSRange)?
-        func addAttributes(_ attrs: [String : Any], range: NSRange) {
+        var didAddAttributes: (attributes: [NSAttributedStringKey : Any], range: NSRange)?
+        func addAttributes(_ attrs: [NSAttributedStringKey : Any], range: NSRange) {
             didAddAttributes = (attrs, range)
         }
 
-        var didAddAttribute: (name: String, value: Any, range: NSRange)?
-        func addAttribute(_ name: String, value: Any, range: NSRange) {
+        var didAddAttribute: (name: NSAttributedStringKey, value: Any, range: NSRange)?
+        func addAttribute(_ name: NSAttributedStringKey, value: Any, range: NSRange) {
             didAddAttribute = (name, value, range)
         }
 
-        var didRemoveAttribute: (name: String, range: NSRange)?
-        func removeAttribute(_ name: String, range: NSRange) {
+        var didRemoveAttribute: (name: NSAttributedStringKey, range: NSRange)?
+        func removeAttribute(_ name: NSAttributedStringKey, range: NSRange) {
             didRemoveAttribute = (name, range)
         }
 
-        var didResetMarklightTextAttributes: NSRange?
-        func resetMarklightTextAttributes(range: NSRange) {
-            didResetMarklightTextAttributes = range
+        var didResetMarklightTextAttributes: (textSize: CGFloat, range: NSRange)?
+        func resetMarklightTextAttributes(textSize: CGFloat, range: NSRange) {
+            didResetMarklightTextAttributes = (textSize, range)
         }
     }
 
@@ -64,13 +53,15 @@ class MarklightTextProcessorTests: XCTestCase {
 
         let string = "single"
         let editedRange = NSRange(location: 0, length: 0)
+        let processor = MarklightTextProcessor()
 
-        let result = MarklightTextProcessor().processEditing(styleApplier: styleApplierDouble, string: string, editedRange: editedRange)
+        let result = processor.processEditing(styleApplier: styleApplierDouble, string: string, editedRange: editedRange)
 
         let expectedAffectedRange = NSRange(location: 0, length: 6)
         XCTAssertNotNil(styleApplierDouble.didResetMarklightTextAttributes)
-        if let range = styleApplierDouble.didResetMarklightTextAttributes {
-            XCTAssertEqual(range, expectedAffectedRange)
+        if let values = styleApplierDouble.didResetMarklightTextAttributes {
+            XCTAssertEqual(values.range, expectedAffectedRange)
+            XCTAssertEqual(values.textSize, processor.textSize)
         }
 
         XCTAssertEqual(result.editedRange, editedRange)
@@ -82,13 +73,15 @@ class MarklightTextProcessorTests: XCTestCase {
 
         let string = "1\n2\n3\n"
         let editedRange = NSRange(location: 0, length: 0)
+        let processor = MarklightTextProcessor()
 
-        let result = MarklightTextProcessor().processEditing(styleApplier: styleApplierDouble, string: string, editedRange: editedRange)
+        let result = processor.processEditing(styleApplier: styleApplierDouble, string: string, editedRange: editedRange)
 
         let expectedAffectedRange = NSRange(location: 0, length: 4)
         XCTAssertNotNil(styleApplierDouble.didResetMarklightTextAttributes)
-        if let range = styleApplierDouble.didResetMarklightTextAttributes {
-            XCTAssertEqual(range, expectedAffectedRange)
+        if let values = styleApplierDouble.didResetMarklightTextAttributes {
+            XCTAssertEqual(values.range, expectedAffectedRange)
+            XCTAssertEqual(values.textSize, processor.textSize)
         }
 
         XCTAssertEqual(result.editedRange, editedRange)
@@ -100,13 +93,15 @@ class MarklightTextProcessorTests: XCTestCase {
         let string = "_\n\nxx\n\n_\n"
         //               ^ ^^^ ^
         let editedRange = NSRange(location: 4, length: 0)
+        let processor = MarklightTextProcessor()
 
-        let result = MarklightTextProcessor().processEditing(styleApplier: styleApplierDouble, string: string, editedRange: editedRange)
+        let result = processor.processEditing(styleApplier: styleApplierDouble, string: string, editedRange: editedRange)
 
         let expectedAffectedRange = NSRange(location: 2, length: 5)
         XCTAssertNotNil(styleApplierDouble.didResetMarklightTextAttributes)
-        if let range = styleApplierDouble.didResetMarklightTextAttributes {
-            XCTAssertEqual(range, expectedAffectedRange)
+        if let values = styleApplierDouble.didResetMarklightTextAttributes {
+            XCTAssertEqual(values.range, expectedAffectedRange)
+            XCTAssertEqual(values.textSize, processor.textSize)
         }
 
         XCTAssertEqual(result.editedRange, editedRange)
@@ -118,13 +113,15 @@ class MarklightTextProcessorTests: XCTestCase {
         let string = "1\n2\n3333\n4\n5\n"
         //               ^^ ^^^^^ ^^
         let editedRange = NSRange(location: 6, length: 0)
+        let processor = MarklightTextProcessor()
 
-        let result = MarklightTextProcessor().processEditing(styleApplier: styleApplierDouble, string: string, editedRange: editedRange)
+        let result = processor.processEditing(styleApplier: styleApplierDouble, string: string, editedRange: editedRange)
 
         let expectedAffectedRange = NSRange(location: 2, length: 9)
         XCTAssertNotNil(styleApplierDouble.didResetMarklightTextAttributes)
-        if let range = styleApplierDouble.didResetMarklightTextAttributes {
-            XCTAssertEqual(range, expectedAffectedRange)
+        if let values = styleApplierDouble.didResetMarklightTextAttributes {
+            XCTAssertEqual(values.range, expectedAffectedRange)
+            XCTAssertEqual(values.textSize, processor.textSize)
         }
 
         XCTAssertEqual(result.editedRange, editedRange)

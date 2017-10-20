@@ -183,15 +183,9 @@ public struct Marklight {
     /**
      Text size measured in points.
      */
-    #if os(iOS)
     public static var textSize: CGFloat = MarklightFont.systemFontSize  {
         didSet { Marklight.reloadFonts() }
     }
-    #elseif os(macOS)
-    public static var textSize: CGFloat = MarklightFont.systemFontSize() {
-        didSet { Marklight.reloadFonts() }
-    }
-    #endif
 
     fileprivate static func reloadFonts() {
         Marklight.codeFont = namedFont(Marklight.codeFontName, size: Marklight.textSize)

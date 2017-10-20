@@ -44,7 +44,7 @@ extension BoldItalicRegexTests {
             match(string, BoldStyle.strictBoldRegex) {
                 if let result = $0,
                     result.numberOfRanges == 4 {
-                    XCTAssertEqual(result.rangeAt(3), NSMakeRange(5, 4))
+                    XCTAssertEqual(result.range(at: 3), NSMakeRange(5, 4))
                 } else {
                     XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges))) in \(string)")
                 }
@@ -60,10 +60,10 @@ extension BoldItalicRegexTests {
             match("intra**word** emphasis", BoldStyle.strictBoldRegex) {
                 if let result = $0,
                     result.numberOfRanges == 4 {
-                    XCTAssertEqual(result.rangeAt(0), NSMakeRange(5, 8))
-                    XCTAssertEqual(result.rangeAt(1), NSMakeRange(5, 2))
-                    XCTAssertEqual(result.rangeAt(2), NSMakeRange(7, 4))
-                    XCTAssertEqual(result.rangeAt(3), NSMakeRange(11, 2))
+                    XCTAssertEqual(result.range(at: 0), NSMakeRange(5, 8))
+                    XCTAssertEqual(result.range(at: 1), NSMakeRange(5, 2))
+                    XCTAssertEqual(result.range(at: 2), NSMakeRange(7, 4))
+                    XCTAssertEqual(result.range(at: 3), NSMakeRange(11, 2))
                 } else {
                     XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges)))")
                 }
@@ -80,8 +80,8 @@ extension BoldItalicRegexTests {
                     // Outer emphasis
                     if let result = $0,
                         result.numberOfRanges == 4 {
-                        XCTAssertEqual(result.rangeAt(2), NSMakeRange(0, 2))
-                        XCTAssertEqual(result.rangeAt(3), NSMakeRange(2, 17))
+                        XCTAssertEqual(result.range(at: 2), NSMakeRange(0, 2))
+                        XCTAssertEqual(result.range(at: 3), NSMakeRange(2, 17))
                     } else {
                         XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges)))")
                     }
@@ -91,10 +91,10 @@ extension BoldItalicRegexTests {
                     // Inner emphasis
                     if let result = $0,
                         result.numberOfRanges == 4 {
-                        XCTAssertEqual(result.rangeAt(0), NSMakeRange(7, 5))
-                        XCTAssertEqual(result.rangeAt(1), NSMakeRange(7, 2))
-                        XCTAssertEqual(result.rangeAt(2), NSMakeRange(9, 3))
-                        XCTAssertEqual(result.rangeAt(3), NSMakeRange(12, 2))
+                        XCTAssertEqual(result.range(at: 0), NSMakeRange(7, 5))
+                        XCTAssertEqual(result.range(at: 1), NSMakeRange(7, 2))
+                        XCTAssertEqual(result.range(at: 2), NSMakeRange(9, 3))
+                        XCTAssertEqual(result.range(at: 3), NSMakeRange(12, 2))
                     } else {
                         XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges)))")
                     }
@@ -110,8 +110,8 @@ extension BoldItalicRegexTests {
             match(string, BoldStyle.strictBoldRegex) {
                 if let result = $0,
                     result.numberOfRanges == 4 {
-                    XCTAssertEqual(result.rangeAt(2), NSMakeRange(9, 2))
-                    XCTAssertEqual(result.rangeAt(3), NSMakeRange(11, 3))
+                    XCTAssertEqual(result.range(at: 2), NSMakeRange(9, 2))
+                    XCTAssertEqual(result.range(at: 3), NSMakeRange(11, 3))
                 } else {
                     XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges))) in \(string)")
                 }
@@ -157,8 +157,8 @@ extension BoldItalicRegexTests {
             match(string, ItalicStyle.strictItalicRegex) {
                 if let result = $0,
                     result.numberOfRanges == 4 {
-                    XCTAssertEqual(result.rangeAt(2), NSMakeRange(3, 1))
-                    XCTAssertEqual(result.rangeAt(3), NSMakeRange(4, 6))
+                    XCTAssertEqual(result.range(at: 2), NSMakeRange(3, 1))
+                    XCTAssertEqual(result.range(at: 3), NSMakeRange(4, 6))
                 } else {
                     XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges))) in \(string)")
                 }
@@ -174,8 +174,8 @@ extension BoldItalicRegexTests {
             match("intra*word* emphasis", ItalicStyle.strictItalicRegex) {
                 if let result = $0,
                     result.numberOfRanges == 4 {
-                    XCTAssertEqual(result.rangeAt(2), NSMakeRange(5, 1))
-                    XCTAssertEqual(result.rangeAt(3), NSMakeRange(6, 4))
+                    XCTAssertEqual(result.range(at: 2), NSMakeRange(5, 1))
+                    XCTAssertEqual(result.range(at: 3), NSMakeRange(6, 4))
                 } else {
                     XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges)))")
                 }
@@ -190,8 +190,8 @@ extension BoldItalicRegexTests {
             match(string, ItalicStyle.strictItalicRegex) {
                 if let result = $0,
                     result.numberOfRanges == 4 {
-                    XCTAssertEqual(result.rangeAt(2), NSMakeRange(9, 1))
-                    XCTAssertEqual(result.rangeAt(3), NSMakeRange(10, 3))
+                    XCTAssertEqual(result.range(at: 2), NSMakeRange(9, 1))
+                    XCTAssertEqual(result.range(at: 3), NSMakeRange(10, 3))
                 } else {
                     XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges))) in \(string)")
                 }
@@ -219,8 +219,8 @@ extension BoldItalicRegexTests {
         match("**hi *italic* text**", ItalicStyle.strictItalicRegex) {
             if let result = $0,
                 result.numberOfRanges == 4 {
-                XCTAssertEqual(result.rangeAt(2), NSMakeRange(5, 1))
-                XCTAssertEqual(result.rangeAt(3), NSMakeRange(6, 6))
+                XCTAssertEqual(result.range(at: 2), NSMakeRange(5, 1))
+                XCTAssertEqual(result.range(at: 3), NSMakeRange(6, 6))
             } else {
                 XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges)))")
             }
@@ -231,7 +231,7 @@ extension BoldItalicRegexTests {
         match("**hi *italic* text**", BoldStyle.strictBoldRegex) {
             if let result = $0,
                 result.numberOfRanges == 4 {
-                XCTAssertEqual(result.rangeAt(3), NSMakeRange(2, 16))
+                XCTAssertEqual(result.range(at: 3), NSMakeRange(2, 16))
             } else {
                 XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges)))")
             }
@@ -247,8 +247,8 @@ extension BoldItalicRegexTests {
         match("*hi **italic** text*", ItalicStyle.strictItalicRegex) {
             if let result = $0,
                 result.numberOfRanges == 4 {
-                XCTAssertEqual(result.rangeAt(2), NSMakeRange(0, 1))
-                XCTAssertEqual(result.rangeAt(3), NSMakeRange(1, 18))
+                XCTAssertEqual(result.range(at: 2), NSMakeRange(0, 1))
+                XCTAssertEqual(result.range(at: 3), NSMakeRange(1, 18))
             } else {
                 XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges)))")
             }
@@ -259,7 +259,7 @@ extension BoldItalicRegexTests {
         match("*hi **italic** text*", BoldStyle.strictBoldRegex) {
             if let result = $0,
                 result.numberOfRanges == 4 {
-                XCTAssertEqual(result.rangeAt(3), NSMakeRange(6, 6))
+                XCTAssertEqual(result.range(at: 3), NSMakeRange(6, 6))
             } else {
                 XCTFail("wrong number of matches (\(String(describing: $0?.numberOfRanges)))")
             }

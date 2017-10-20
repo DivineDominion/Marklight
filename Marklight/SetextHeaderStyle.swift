@@ -32,7 +32,7 @@ struct SetextHeadingStyle: BlockStyle {
     func apply(_ styleApplier: MarklightStyleApplier, hideSyntax: Bool, document: Document) {
         SetextHeadingStyle.headersSetextRegex.matches(document) { (result) -> Void in
             styleApplier.embolden(range: result.range)
-            styleApplier.addColorAttribute(Marklight.syntaxColor, range: result.rangeAt(1))
+            styleApplier.addColorAttribute(Marklight.syntaxColor, range: result.range(at: 1))
         }
     }
 }

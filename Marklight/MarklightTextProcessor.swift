@@ -171,7 +171,7 @@ open class MarklightTextProcessor {
 
     #elseif os(macOS)
 
-    open var textSize: CGFloat = NSFont.systemFontSize()
+    open var textSize: CGFloat = NSFont.systemFontSize
 
     #endif
 }

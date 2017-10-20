@@ -43,10 +43,10 @@ struct ReferenceImageStyle: InlineStyle {
                 return
             }
 
-            [result.rangeAt(1),
-             result.rangeAt(3),
-             result.rangeAt(4),
-             result.rangeAt(6)].forEach { (bracketRange: NSRange) in
+            [result.range(at: 1),
+             result.range(at: 3),
+             result.range(at: 4),
+             result.range(at: 6)].forEach { (bracketRange: NSRange) in
                 styleApplier.addColorAttribute(Marklight.syntaxColor, range: bracketRange)
             }
         }

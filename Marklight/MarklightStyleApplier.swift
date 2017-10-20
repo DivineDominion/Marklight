@@ -13,9 +13,9 @@
 #endif
 
 public protocol MarklightStyleApplier {
-    func addAttribute(_ name: String, value: Any, range: NSRange)
-    func addAttributes(_ attrs: [String : Any], range: NSRange)
-    func removeAttribute(_ name: String, range: NSRange)
+    func addAttribute(_ name: NSAttributedStringKey, value: Any, range: NSRange)
+    func addAttributes(_ attrs: [NSAttributedStringKey : Any], range: NSRange)
+    func removeAttribute(_ name: NSAttributedStringKey, range: NSRange)
     func resetMarklightTextAttributes(textSize: CGFloat, range: NSRange)
 
     func embolden(range: NSRange)
@@ -24,54 +24,54 @@ public protocol MarklightStyleApplier {
 
 extension MarklightStyleApplier {
     internal func addColorAttribute(_ color: MarklightColor, range: NSRange) {
-        addAttribute(NSForegroundColorAttributeName, value: color, range: range)
+        addAttribute(.foregroundColor, value: color, range: range)
     }
 
     internal func addFontAttribute(_ font: MarklightFont, range: NSRange) {
-        addAttribute(NSFontAttributeName, value: font, range: range)
+        addAttribute(.font, value: font, range: range)
     }
 
     internal func addLinkAttribute(_ link: String, range: NSRange) {
-        addAttribute(NSLinkAttributeName, value: link, range: range)
+        addAttribute(.link, value: link, range: range)
     }
 
     internal func addParagraphIndentation(indent: CGFloat, range: NSRange) {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.headIndent = indent
-        addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: range)
+        addAttribute(.paragraphStyle, value: paragraphStyle, range: range)
     }
 
     internal func addHiddenAttributes(range: NSRange) {
         let hiddenFont = MarklightFont.systemFont(ofSize: 0.1)
         let hiddenColor = MarklightColor.clear
-        let hiddenAttributes: [String : Any] = [
-            NSFontAttributeName : hiddenFont,
-            NSForegroundColorAttributeName : hiddenColor
+        let hiddenAttributes: [NSAttributedStringKey : Any] = [
+            .font : hiddenFont,
+            .foregroundColor : hiddenColor
         ]
         self.addAttributes(hiddenAttributes, range: range)
     }
 }
 
 extension NSTextStorage: MarklightStyleApplier {
-    public func resetMarklightTextAttributes(textSize: CGFloat, range: NSRange) {
-        self.removeAttribute(NSForegroundColorAttributeName, range: range)
-        self.addAttribute(NSFontAttributeName, value: MarklightFont.systemFont(ofSize: textSize), range: range)
-        self.addAttribute(NSParagraphStyleAttributeName, value: NSParagraphStyle(), range: range)
+    @objc public func resetMarklightTextAttributes(textSize: CGFloat, range: NSRange) {
+        self.removeAttribute(.foregroundColor, range: range)
+        self.addAttribute(.font, value: MarklightFont.systemFont(ofSize: textSize), range: range)
+        self.addAttribute(.paragraphStyle, value: NSParagraphStyle(), range: range)
     }
 
     public func embolden(range: NSRange) {
 
-        guard let font = self.attribute(NSFontAttributeName, at: range.location, effectiveRange: nil) as? MarklightFont
+        guard let font = self.attribute(.font, at: range.location, effectiveRange: nil) as? MarklightFont
             else { assertionFailure(); return }
 
-        self.addAttribute(NSFontAttributeName, value: font.emboldened(), range: range)
+        self.addAttribute(.font, value: font.emboldened(), range: range)
     }
 
     public func italicize(range: NSRange) {
 
-        guard let font = self.attribute(NSFontAttributeName, at: range.location, effectiveRange: nil) as? MarklightFont
+        guard let font = self.attribute(.font, at: range.location, effectiveRange: nil) as? MarklightFont
             else { assertionFailure(); return }
 
-        self.addAttribute(NSFontAttributeName, value: font.italicized(), range: range)
+        self.addAttribute(.font, value: font.italicized(), range: range)
     }
 }

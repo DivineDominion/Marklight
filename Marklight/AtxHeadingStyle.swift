@@ -32,8 +32,8 @@ struct AtxHeadingStyle: BlockStyle {
         AtxHeadingStyle.headersAtxRegex.matches(document) { (result) -> Void in
             styleApplier.embolden(range: result.range)
 
-            [result.rangeAt(1),
-             result.rangeAt(3)].forEach { hashRange in
+            [result.range(at: 1),
+             result.range(at: 3)].forEach { hashRange in
                 if hideSyntax { styleApplier.addHiddenAttributes(range: hashRange) }
                 else { styleApplier.addColorAttribute(Marklight.syntaxColor, range: hashRange) }
             }

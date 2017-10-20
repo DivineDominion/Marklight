@@ -131,7 +131,7 @@ open class MarklightTextProcessor {
     open var fontTextStyle : String = UIFontTextStyle.body.rawValue
 
     /// Text size measured in points.
-    fileprivate var textSize: CGFloat {
+    open var textSize: CGFloat {
         return MarklightFontDescriptor
             .preferredFontDescriptor(withTextStyle: UIFontTextStyle(rawValue: self.fontTextStyleValidated))
             .pointSize
